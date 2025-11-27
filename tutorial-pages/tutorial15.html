@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Settings for Android/iPhone - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">10 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">Cybersecurity Settings for Android/iPhone</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Secure your mobile device with these essential privacy and security settings for both Android and iOS.
+                </p>
+                <img src="../resources/mobile-security.png" alt="Mobile Security" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why Mobile Security Matters</h2>
+                <p class="text-gray-300 mb-4">
+                    Our smartphones hold a vast amount of personal information, from photos and messages to banking and email access. Securing your mobile device is just as important as securing your computer.
+                </p>
+            </section>
+
+            <!-- Essential Security Settings for Both Platforms -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Essential Security Settings for Both Platforms</h2>
+                <div class="success-box">
+                    <h3 class="text-lg font-semibold mb-2">1. Use a Strong Passcode and Biometrics</h3>
+                    <p class="text-gray-300">Set a strong, alphanumeric passcode and enable Face ID or Touch ID for an extra layer of security.</p>
+                </div>
+                <div class="success-box">
+                    <h3 class="text-lg font-semibold mb-2">2. Enable Two-Factor Authentication (2FA)</h3>
+                    <p class="text-gray-300">Enable 2FA for your Apple ID or Google account to protect your cloud data.</p>
+                </div>
+                <div class="success-box">
+                    <h3 class="text-lg font-semibold mb-2">3. Keep Your Operating System Updated</h3>
+                    <p class="text-gray-300">Regularly install OS updates to get the latest security patches.</p>
+                </div>
+                <div class="success-box">
+                    <h3 class="text-lg font-semibold mb-2">4. Review App Permissions</h3>
+                    <p class="text-gray-300">Regularly check which apps have access to your location, contacts, microphone, and camera. Revoke permissions for apps that don't need them.</p>
+                </div>
+                <div class="success-box">
+                    <h3 class="text-lg font-semibold mb-2">5. Use a VPN on Public WiFi</h3>
+                    <p class="text-gray-300">A VPN encrypts your internet traffic, protecting you from eavesdropping on public networks.</p>
+                </div>
+            </section>
+
+            <!-- Android-Specific Settings -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Android Security Settings</h2>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Enable Google Play Protect</h3>
+                    <p class="text-gray-300">Ensure Google Play Protect is enabled to scan your apps for malware. (Settings > Security > Google Play Protect)</p>
+                </div>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Disable "Install from Unknown Sources"</h3>
+                    <p class="text-gray-300">This prevents apps from being installed from outside the Google Play Store, reducing your risk of malware.</p>
+                </div>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Use "Find My Device"</h3>
+                    <p class="text-gray-300">Enable this feature to locate, lock, or wipe your device if it's lost or stolen. (Settings > Security > Find My Device)</p>
+                </div>
+            </section>
+
+            <!-- iOS-Specific Settings -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">iPhone (iOS) Security Settings</h2>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Enable "Find My iPhone"</h3>
+                    <p class="text-gray-300">This is crucial for locating, locking, or erasing your iPhone if it goes missing. (Settings > [Your Name] > Find My)</p>
+                </div>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Limit Ad Tracking</h3>
+                    <p class="text-gray-300">Reduce the amount of data apps can collect on you for advertising purposes. (Settings > Privacy > Tracking)</p>
+                </div>
+                 <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Use Safari's Privacy Features</h3>
+                    <p class="text-gray-300">Enable "Prevent Cross-Site Tracking" and "Block All Cookies" in Safari's settings for a more private browsing experience.</p>
+                </div>
+            </section>
+            
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial14.html" class="text-blue-400 font-semibold hover:underline">← How Hackers Crack Passwords</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 15 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial16.html" class="text-blue-400 font-semibold hover:underline">How to Secure Your Social Media Accounts →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

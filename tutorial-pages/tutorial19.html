@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Career Roadmap - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Advanced</span>
+                    <span class="text-gray-400 text-sm">15 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">Cybersecurity Career Roadmap</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    A guide to starting and advancing your career in the exciting and in-demand field of cybersecurity.
+                </p>
+                <img src="../resources/career-roadmap.png" alt="Cybersecurity Career Roadmap" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why Pursue a Career in Cybersecurity?</h2>
+                <p class="text-gray-300 mb-4">
+                    Cybersecurity is one of the fastest-growing fields in technology. With a massive talent shortage and increasing demand, a career in cybersecurity offers job security, competitive salaries, and the opportunity to do meaningful work protecting people and organizations from cyber threats.
+                </p>
+            </section>
+
+            <!-- Foundational Skills -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Phase 1: Foundational Skills</h2>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Networking Fundamentals</h3>
+                    <p class="text-gray-300">Understand the basics of how networks work, including TCP/IP, DNS, and HTTP/S.</p>
+                </div>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Operating Systems</h3>
+                    <p class="text-gray-300">Get comfortable with both Windows and Linux environments, especially the command line.</p>
+                </div>
+                 <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Programming/Scripting</h3>
+                    <p class="text-gray-300">Learn a scripting language like Python for automation and a compiled language like C or Go to understand how software works at a low level.</p>
+                </div>
+            </section>
+            
+            <!-- Entry-Level Certifications and Roles -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Phase 2: Entry-Level Certifications and Roles</h2>
+                <p class="text-gray-300 mb-4">
+                    Once you have the foundational skills, you can start looking at entry-level certifications and job roles.
+                </p>
+                <h3 class="text-xl font-semibold mb-2">Entry-Level Certifications</h3>
+                <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>CompTIA Security+:</strong> A great starting point that covers a wide range of security topics.</li>
+                    <li><strong>Certified Ethical Hacker (CEH):</strong> Focuses on the tools and techniques of ethical hacking.</li>
+                </ul>
+                <h3 class="text-xl font-semibold mt-4 mb-2">Entry-Level Roles</h3>
+                 <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>Security Analyst:</strong> Monitors security alerts and investigates incidents.</li>
+                    <li><strong>Junior Penetration Tester:</strong> Looks for vulnerabilities in systems and applications.</li>
+                    <li><strong>IT Support with a Security Focus:</strong> Helps users with security-related issues.</li>
+                </ul>
+            </section>
+            
+            <!-- Specializations -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Phase 3: Specializations</h2>
+                <p class="text-gray-300 mb-4">
+                    As you gain experience, you can specialize in a particular area of cybersecurity.
+                </p>
+                <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>Offensive Security (Red Team):</strong> Penetration testing, vulnerability research, exploit development.</li>
+                    <li><strong>Defensive Security (Blue Team):</strong> Incident response, threat hunting, digital forensics.</li>
+                    <li><strong>Cloud Security:</strong> Securing cloud environments like AWS, Azure, and GCP.</li>
+                    <li><strong>Application Security:</strong> Securing web and mobile applications.</li>
+                </ul>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial18.html" class="text-blue-400 font-semibold hover:underline">← What Is Encryption?</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 19 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial20.html" class="text-blue-400 font-semibold hover:underline">Free Tools for Cybersecurity Beginners →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

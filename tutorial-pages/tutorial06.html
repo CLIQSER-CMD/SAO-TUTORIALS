@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Secure Your WiFi Router - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .router-interface {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .security-setting {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .security-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .level-essential {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .level-recommended {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+        
+        .level-optional {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .step-by-step {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .encryption-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .weak-encryption {
+            background: #2d0b0b;
+            border: 1px solid #ef4444;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        
+        .strong-encryption {
+            background: #0d2818;
+            border: 1px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">10 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Secure Your WiFi Router</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Simple steps to protect your home network with WPA3 encryption, strong passwords, and security best practices.
+                </p>
+                <img src="../resources/wifi-security.png" alt="WiFi Security" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why WiFi Security Matters</h2>
+                <p class="text-gray-300 mb-4">
+                    Your WiFi router is the gateway to your entire home network. If compromised, attackers can access your personal files, steal your identity, monitor your internet activity, and even use your network for illegal activities.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-red-400">What Attackers Can Do</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Access devices on your network (computers, phones, smart TVs)</li>
+                        <li>• Steal personal files and photos</li>
+                        <li>• Monitor your internet traffic and passwords</li>
+                        <li>• Use your network for illegal downloading or attacks</li>
+                        <li>• Hijack your DNS to redirect you to malicious sites</li>
+                        <li>• Consume your bandwidth and slow your connection</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Router Access -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Accessing Your Router Settings</h2>
+                
+                <div class="step-by-step">
+                    <h3 class="font-semibold mb-3 text-blue-400">Step-by-Step Router Access</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. Connect to your WiFi network</li>
+                        <li>2. Open a web browser and enter your router's IP address</li>
+                        <li>3. Common addresses: <code>192.168.1.1</code>, <code>192.168.0.1</code>, or <code>10.0.0.1</code></li>
+                        <li>4. Enter your admin username and password</li>
+                        <li>5. If you haven't changed these, check the router label or manual</li>
+                    </ol>
+                </div>
+
+                <div class="router-interface">
+                    <div class="text-sm text-gray-400 mb-2">Example Router Login:</div>
+                    <div>Router IP: http://192.168.1.1</div>
+                    <div>Username: admin</div>
+                    <div>Password: [Your secure password]</div>
+                </div>
+
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-2 text-red-400">⚠️ Important Security Note</h4>
+                    <p class="text-gray-300">If you're still using default admin credentials (admin/password, admin/admin), change them immediately! Attackers know these defaults and can easily take control of your router.</p>
+                </div>
+            </section>
+
+            <!-- Essential Security Settings -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Essential Security Settings</h2>
+                
+                <div class="security-setting">
+                    <div class="security-level level-essential">ESSENTIAL</div>
+                    <h3 class="text-lg font-semibold mb-2">Change Default Admin Password</h3>
+                    <p class="text-gray-300 mb-3">Create a strong, unique password for router administration. This is your most critical security setting.</p>
+                    <div class="bg-gray-800 p-3 rounded text-sm">
+                        <strong>Good password example:</strong> RouterAdmin2025!Secure#123
+                    </div>
+                </div>
+
+                <div class="security-setting">
+                    <div class="security-level level-essential">ESSENTIAL</div>
+                    <h3 class="text-lg font-semibold mb-2">Update Router Firmware</h3>
+                    <p class="text-gray-300 mb-3">Keep your router's software updated to patch security vulnerabilities. Check for updates monthly.</p>
+                    <div class="step-by-step">
+                        <h4 class="font-semibold mb-2 text-blue-400">How to Update:</h4>
+                        <ol class="text-gray-300 text-sm space-y-1">
+                            <li>1. Log into your router admin panel</li>
+                            <li>2. Look for "Firmware Update" or "System Update"</li>
+                            <li>3. Check for updates and install if available</li>
+                            <li>4. Reboot the router after updating</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="security-setting">
+                    <div class="security-level level-essential">ESSENTIAL</div>
+                    <h3 class="text-lg font-semibold mb-2">Enable Strong WiFi Encryption</h3>
+                    <p class="text-gray-300 mb-3">Use the strongest encryption your router supports to protect your WiFi traffic from eavesdropping.</p>
+                    
+                    <div class="encryption-comparison">
+                        <div class="weak-encryption">
+                            <h4 class="font-semibold mb-2 text-red-400">❌ Avoid These</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• WEP (easily cracked)</li>
+                                <li>• WPA (vulnerable)</li>
+                                <li>• Open/No encryption</li>
+                            </ul>
+                        </div>
+                        <div class="strong-encryption">
+                            <h4 class="font-semibold mb-2 text-green-400">✅ Use These</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• WPA3 (best, newest)</li>
+                                <li>• WPA2 (good, most common)</li>
+                                <li>• WPA2/WPA3 mixed (compatibility)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WiFi Password Best Practices -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Creating a Strong WiFi Password</h2>
+                
+                <div class="bg-green-900/20 border-l-4 border-green-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-green-400">WiFi Password Requirements</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• At least 12-16 characters long</li>
+                        <li>• Mix of uppercase and lowercase letters</li>
+                        <li>• Include numbers and special characters</li>
+                        <li>• Avoid dictionary words and personal information</li>
+                        <li>• Unique to your WiFi (don't reuse other passwords)</li>
+                        <li>• Easy to share with guests but hard to guess</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">WiFi Password Examples</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2 text-red-400">❌ Bad Examples</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• password123</li>
+                            <li>• yourlastname2025</li>
+                            <li>• 12345678</li>
+                            <li>• wifi password</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2 text-green-400">✅ Good Examples</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• SecureHomeNetwork2025!</li>
+                            <li>• WiFi@MyHouse#2025</li>
+                            <li>• StrongPassword123$%^</li>
+                            <li>• MySecureWiFi2025&*</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Security Settings -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Advanced Security Settings</h2>
+                
+                <div class="security-setting">
+                    <div class="security-level level-recommended">RECOMMENDED</div>
+                    <h3 class="text-lg font-semibold mb-2">Disable WPS (WiFi Protected Setup)</h3>
+                    <p class="text-gray-300 mb-3">WPS has a major security flaw that allows attackers to crack your WiFi password easily. Disable it for better security.</p>
+                    <div class="warning-box">
+                        <h4 class="font-semibold mb-2 text-red-400">Security Risk</h4>
+                        <p class="text-gray-300 text-sm">WPS PIN can be cracked in hours using brute force attacks, giving attackers access to your WiFi network regardless of your password strength.</p>
+                    </div>
+                </div>
+
+                <div class="security-setting">
+                    <div class="security-level level-recommended">RECOMMENDED</div>
+                    <h3 class="text-lg font-semibold mb-2">Change Default Network Name (SSID)</h3>
+                    <p class="text-gray-300 mb-3">Don't use default names like "Linksys" or "NETGEAR" as they reveal your router brand and model to attackers.</p>
+                    <div class="bg-gray-800 p-3 rounded text-sm">
+                        <strong>Good SSID example:</strong> HomeNetwork-2025<br>
+                        <strong>Avoid:</strong> Your address, last name, or router brand
+                    </div>
+                </div>
+
+                <div class="security-setting">
+                    <div class="security-level level-recommended">RECOMMENDED</div>
+                    <h3 class="text-lg font-semibold mb-2">Disable Remote Management</h3>
+                    <p class="text-gray-300 mb-3">Unless you specifically need it, disable remote access to your router's admin panel from the internet.</p>
+                </div>
+
+                <div class="security-setting">
+                    <div class="security-level level-optional">OPTIONAL</div>
+                    <h3 class="text-lg font-semibold mb-2">Enable Guest Network</h3>
+                    <p class="text-gray-300 mb-3">Create a separate WiFi network for guests that can't access your main network or devices.</p>
+                    <div class="bg-blue-900/20 border-l-4 border-blue-500 p-4">
+                        <h4 class="font-semibold mb-2 text-blue-400">Benefits:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Guests can't access your devices</li>
+                            <li>• Easy to change guest password</li>
+                            <li>• Can limit guest network bandwidth</li>
+                            <li>• Protects your main network security</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step-by-Step Configuration -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Step-by-Step Configuration Guide</h2>
+                
+                <div class="step-by-step">
+                    <h3 class="font-semibold mb-3 text-blue-400">Complete Security Setup Checklist</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. <strong>Change admin password</strong> - Create a strong, unique password</li>
+                        <li>2. <strong>Update firmware</strong> - Install the latest security patches</li>
+                        <li>3. <strong>Set WiFi encryption</strong> - Choose WPA3 or WPA2</li>
+                        <li>4. <strong>Create strong WiFi password</strong> - 12+ characters, mixed case, symbols</li>
+                        <li>5. <strong>Change network name</strong> - Avoid default or personal information</li>
+                        <li>6. <strong>Disable WPS</strong> - Close this security vulnerability</li>
+                        <li>7. <strong>Disable remote management</strong> - Unless absolutely needed</li>
+                        <li>8. <strong>Enable guest network</strong> - For visitor access (optional)</li>
+                        <li>9. <strong>Save settings</strong> - Reboot router to apply changes</li>
+                        <li>10. <strong>Test connectivity</strong> - Ensure all devices can connect</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Issues & Solutions</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Can't Access Router Admin Panel</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Try different IP addresses: 192.168.1.1, 192.168.0.1, 10.0.0.1</li>
+                            <li>• Check router label for correct address</li>
+                            <li>• Ensure you're connected to the router's network</li>
+                            <li>• Try a different web browser</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Forgot Admin Password</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Check router label for default credentials</li>
+                            <li>• Try common defaults: admin/admin, admin/password</li>
+                            <li>• Reset router to factory settings (last resort)</li>
+                            <li>• Contact router manufacturer support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Devices Can't Connect After Changes</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Double-check WiFi password for typos</li>
+                            <li>• Ensure devices support your encryption type</li>
+                            <li>• Try restarting both router and devices</li>
+                            <li>• Temporarily disable WPA3 if older devices can't connect</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Maintenance Schedule -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Router Maintenance Schedule</h2>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Monthly</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Check for firmware updates</li>
+                            <li>• Review connected devices</li>
+                            <li>• Monitor network performance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Quarterly</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Change WiFi password</li>
+                            <li>• Review security settings</li>
+                            <li>• Update guest network password</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">As Needed</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Reboot router for performance</li>
+                            <li>• Remove unknown devices</li>
+                            <li>• Update after security alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial05.html" class="text-blue-400 font-semibold hover:underline">← Social Engineering</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 6 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial07.html" class="text-blue-400 font-semibold hover:underline">Linux Commands →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

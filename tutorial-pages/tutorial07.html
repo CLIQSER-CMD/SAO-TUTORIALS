@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Linux Commands for Beginners - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .terminal {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .terminal-header {
+            background: #333;
+            padding: 0.5rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            margin: -1rem -1rem 1rem -1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-button.close { background: #ff5f56; }
+        .terminal-button.minimize { background: #ffbd2e; }
+        .terminal-button.maximize { background: #27ca3f; }
+        
+        .command-output {
+            color: #00ff00;
+            margin: 0.5rem 0;
+        }
+        
+        .command-prompt {
+            color: var(--accent-primary);
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--accent-primary);
+            color: black;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        
+        .copy-btn:hover {
+            background: #0099cc;
+        }
+        
+        .command-card {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .command-number {
+            position: absolute;
+            top: -0.75rem;
+            left: 1.5rem;
+            background: var(--accent-primary);
+            color: black;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .difficulty-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .difficulty-easy {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .difficulty-medium {
+            background: rgba(251, 191, 36, 0.2);
+            color: #f59e0b;
+        }
+        
+        .example-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">15 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">Top 10 Linux Commands for Beginners</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Essential Linux commands every cybersecurity enthusiast should know for navigation, file management, and system analysis.
+                </p>
+                <img src="../resources/linux-commands.png" alt="Linux Commands" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why Learn Linux Commands?</h2>
+                <p class="text-gray-300 mb-4">
+                    Linux is the backbone of cybersecurity. Most security tools, penetration testing distributions, and server environments run on Linux. Understanding basic commands is essential for any cybersecurity professional.
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">Why Linux Dominates Cybersecurity</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Most hacking tools are built for Linux</li>
+                        <li>• Servers and cloud infrastructure run on Linux</li>
+                        <li>• Open-source nature allows security auditing</li>
+                        <li>• Powerful command-line tools for automation</li>
+                        <li>• Better control over system processes</li>
+                        <li>• Kali Linux and other security distributions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Terminal Basics -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Understanding the Linux Terminal</h2>
+                <p class="text-gray-300 mb-4">
+                    The terminal is your command-line interface to Linux. It might seem intimidating at first, but it's actually quite powerful and efficient once you learn the basics.
+                </p>
+
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-button close"></div>
+                        <div class="terminal-button minimize"></div>
+                        <div class="terminal-button maximize"></div>
+                        <span class="ml-2 text-gray-400">Terminal</span>
+                    </div>
+                    <div class="command-prompt">user@kali:~$</div>
+                    <div class="text-gray-400"># This is where you type your commands</div>
+                    <div class="text-gray-400"># The $ sign indicates you're a regular user</div>
+                    <div class="text-gray-400"># # sign indicates you're root (administrator)</div>
+                </div>
+
+                <div class="example-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Terminal Tips</h4>
+                    <ul class="text-gray-300 space-y-1">
+                        <li>• Use <kbd>Tab</kbd> to auto-complete commands and filenames</li>
+                        <li>• Use <kbd>↑</kbd> and <kbd>↓</kbd> arrows to browse command history</li>
+                        <li>• Use <kbd>Ctrl+C</kbd> to cancel a running command</li>
+                        <li>• Use <kbd>Ctrl+L</kbd> to clear the terminal screen</li>
+                        <li>• Use <kbd>man command</kbd> to read manual pages</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Interactive Command Line Simulator -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Interactive Command Line Simulator</h2>
+                <p class="text-gray-300 mb-4">Try out some basic Linux commands in this interactive terminal. Type a command and press Enter.</p>
+                
+                <div id="cli-simulator" class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-button close"></div>
+                        <div class="terminal-button minimize"></div>
+                        <div class="terminal-button maximize"></div>
+                        <span class="ml-2 text-gray-400">SAO Terminal</span>
+                    </div>
+                    <div id="cli-output" class="command-output"></div>
+                    <div class="flex">
+                        <span class="command-prompt">user@sao:~$</span>
+                        <input type="text" id="cli-input" class="bg-transparent border-none text-white w-full ml-2 focus:outline-none">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 1: pwd -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">1</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">pwd - Print Working Directory</h3>
+                    <p class="text-gray-300 mb-4">
+                        Shows your current location in the file system. Essential for navigation and understanding where you are.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('pwd')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ pwd</div>
+                        <div class="command-output">/home/user/Documents</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Why This Matters</h4>
+                        <p class="text-gray-300">When you're deep in directories, it's easy to lose track of where you are. <code>pwd</code> is your GPS in the Linux filesystem.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 2: ls -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">2</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">ls - List Directory Contents</h3>
+                    <p class="text-gray-300 mb-4">
+                        Lists files and directories in your current location. One of the most frequently used commands in Linux.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('ls')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ ls</div>
+                        <div class="command-output">Desktop  Documents  Downloads  Music  Pictures  Videos</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('ls -la')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ ls -la</div>
+                        <div class="command-output">drwxr-xr-x 2 user user 4096 Nov 27 10:30 .</div>
+                        <div class="command-output">drwxr-xr-x 3 user user 4096 Nov 27 10:25 ..</div>
+                        <div class="command-output">-rw-r--r-- 1 user user  220 Nov 27 10:20 .bashrc</div>
+                        <div class="command-output">-rw-r--r-- 1 user user  807 Nov 27 10:20 .profile</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Common ls Options</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>ls</code> - Basic list</li>
+                            <li><code>ls -l</code> - Long format with permissions</li>
+                            <li><code>ls -a</code> - Show hidden files (starting with .)</li>
+                            <li><code>ls -la</code> - Long format with hidden files</li>
+                            <li><code>ls -lh</code> - Human-readable file sizes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 3: cd -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">3</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">cd - Change Directory</h3>
+                    <p class="text-gray-300 mb-4">
+                        Navigate between directories in the Linux filesystem. Essential for moving around and accessing different locations.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('cd Documents')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ cd Documents</div>
+                        <div class="command-prompt">user@kali:~/Documents$</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('cd ..')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~/Documents$ cd ..</div>
+                        <div class="command-prompt">user@kali:~$</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('cd ~')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~/Documents$ cd ~</div>
+                        <div class="command-prompt">user@kali:~$</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Navigation Shortcuts</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>cd directory</code> - Enter a subdirectory</li>
+                            <li><code>cd ..</code> - Go up one level</li>
+                            <li><code>cd ~</code> - Go to home directory</li>
+                            <li><code>cd /</code> - Go to root directory</li>
+                            <li><code>cd -</code> - Go to previous directory</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 4: mkdir -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">4</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">mkdir - Make Directory</h3>
+                    <p class="text-gray-300 mb-4">
+                        Create new directories (folders) to organize your files. Essential for maintaining a clean and organized file structure.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('mkdir cybersecurity')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ mkdir cybersecurity</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('mkdir -p projects/2025/january')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ mkdir -p projects/2025/january</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Useful Options</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>mkdir name</code> - Create single directory</li>
+                            <li><code>mkdir -p path/to/directory</code> - Create nested directories</li>
+                            <li><code>mkdir folder1 folder2 folder3</code> - Create multiple directories</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 5: touch -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">5</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">touch - Create Empty Files</h3>
+                    <p class="text-gray-300 mb-4">
+                        Create empty files or update timestamps. Useful for creating placeholder files or updating file modification times.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('touch notes.txt')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ touch notes.txt</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('touch file1.txt file2.txt file3.txt')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ touch file1.txt file2.txt file3.txt</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Common Uses</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li>Create empty files for later use</li>
+                            <li>Update file timestamps without modifying content</li>
+                            <li>Create multiple files at once</li>
+                            <li>Use in scripts to create log files</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 6: cat -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">6</div>
+                    <div class="difficulty-badge difficulty-easy">EASY</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">cat - Display File Contents</h3>
+                    <p class="text-gray-300 mb-4">
+                        View the contents of text files, combine multiple files, or create new files with content. One of the most versatile commands.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('cat notes.txt')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ cat notes.txt</div>
+                        <div class="command-output">These are my cybersecurity notes</div>
+                        <div class="command-output">- Learn Linux commands</div>
+                        <div class="command-output">- Practice with Kali Linux</div>
+                        <div class="command-output">- Study networking basics</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('cat > newfile.txt')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ cat > newfile.txt</div>
+                        <div class="command-output">Type your content here</div>
+                        <div class="command-output">Press Ctrl+D to save and exit</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Advanced cat Uses</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>cat file.txt</code> - Display file contents</li>
+                            <li><code>cat file1.txt file2.txt</code> - Combine and display files</li>
+                            <li><code>cat > file.txt</code> - Create file with content</li>
+                            <li><code>cat >> file.txt</code> - Append to existing file</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 7: grep -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">7</div>
+                    <div class="difficulty-badge difficulty-medium">MEDIUM</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">grep - Search Text Patterns</h3>
+                    <p class="text-gray-300 mb-4">
+                        Search for specific text patterns in files. Extremely powerful for finding information in logs, configuration files, or large datasets.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('grep "password" log.txt')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ grep "password" log.txt</div>
+                        <div class="command-output">ERROR: Invalid password attempt</div>
+                        <div class="command-output">Password changed successfully</div>
+                        <div class="command-output">Failed password for user admin</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('grep -i "error" *.log')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ grep -i "error" *.log</div>
+                        <div class="command-output">system.log: ERROR: Connection timeout</div>
+                        <div class="command-output">security.log: Unauthorized access error</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Useful grep Options</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>grep "pattern" file</code> - Basic search</li>
+                            <li><code>grep -i "pattern" file</code> - Case-insensitive search</li>
+                            <li><code>grep -r "pattern" directory</code> - Recursive search</li>
+                            <li><code>grep -n "pattern" file</code> - Show line numbers</li>
+                            <li><code>grep -v "pattern" file</code> - Show lines NOT matching</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 8: ps -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">8</div>
+                    <div class="difficulty-badge difficulty-medium">MEDIUM</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">ps - Process Status</h3>
+                    <p class="text-gray-300 mb-4">
+                        Display information about running processes. Essential for system monitoring and troubleshooting.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('ps aux')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ ps aux</div>
+                        <div class="command-output">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</div>
+                        <div class="command-output">root         1  0.0  0.1 225768  9436 ?        Ss   10:20   0:01 /sbin/init</div>
+                        <div class="command-output">user      1234  0.5  2.3 456789 123456 ?      Sl   10:25   0:15 firefox</div>
+                        <div class="command-output">user      5678  0.1  0.5 234567  34567 ?      S    10:30   0:02 terminal</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('ps aux | grep firefox')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ ps aux | grep firefox</div>
+                        <div class="command-output">user      1234  0.5  2.3 456789 123456 ?      Sl   10:25   0:15 firefox</div>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Process Information</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><strong>PID:</strong> Process ID (unique identifier)</li>
+                            <li><strong>%CPU:</strong> CPU usage percentage</li>
+                            <li><strong>%MEM:</strong> Memory usage percentage</li>
+                            <li><strong>STAT:</strong> Process state (R=running, S=sleeping)</li>
+                            <li><strong>TIME:</strong> Total CPU time used</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 9: kill -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">9</div>
+                    <div class="difficulty-badge difficulty-medium">MEDIUM</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">kill - Terminate Processes</h3>
+                    <p class="text-gray-300 mb-4">
+                        Stop running processes using their Process ID (PID). Useful for terminating unresponsive programs or managing system resources.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('kill 1234')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ kill 1234</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('kill -9 1234')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ kill -9 1234</div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4 class="font-semibold mb-2 text-red-400">⚠️ Use with Caution</h4>
+                        <p class="text-gray-300">Killing system processes can crash your system. Always double-check the PID and use <code>kill -9</code> only as a last resort.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Kill Signal Types</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li><code>kill PID</code> - Graceful termination (SIGTERM)</li>
+                            <li><code>kill -9 PID</code> - Force kill (SIGKILL)</li>
+                            <li><code>kill -15 PID</code> - Termination signal</li>
+                            <li><code>killall process_name</code> - Kill by name</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Command 10: sudo -->
+            <section class="mb-8">
+                <div class="command-card">
+                    <div class="command-number">10</div>
+                    <div class="difficulty-badge difficulty-medium">MEDIUM</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-2">sudo - Superuser Do</h3>
+                    <p class="text-gray-300 mb-4">
+                        Execute commands with administrative privileges. Essential for system administration and running security tools that require elevated permissions.
+                    </p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('sudo apt update')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ sudo apt update</div>
+                        <div class="command-output">[sudo] password for user:</div>
+                        <div class="command-output">Hit:1 http://kali.org/kali kali-rolling InRelease</div>
+                        <div class="command-output">Reading package lists... Done</div>
+                    </div>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('sudo nmap -sS target.com')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">user@kali:~$ sudo nmap -sS target.com</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4 class="font-semibold mb-2 text-red-400">⚠️ Administrative Privileges</h4>
+                        <p class="text-gray-300">Be extremely careful with sudo commands. You can damage your system if you run dangerous commands as root. Always double-check before executing.</p>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">When You Need sudo</h4>
+                        <ul class="text-gray-300 space-y-1">
+                            <li>Installing or removing software</li>
+                            <li>Modifying system files</li>
+                            <li>Running network scanning tools</li>
+                            <li>Changing system configurations</li>
+                            <li>Accessing protected directories</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Practice Exercises</h2>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold mb-3 text-green-400">Try These Commands</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. <code>pwd</code> - See where you are</li>
+                        <li>2. <code>ls -la</code> - List all files with details</li>
+                        <li>3. <code>mkdir myfolder</code> - Create a directory</li>
+                        <li>4. <code>cd myfolder</code> - Enter the directory</li>
+                        <li>5. <code>touch myfile.txt</code> - Create a file</li>
+                        <li>6. <code>echo "Hello World" > myfile.txt</code> - Add content</li>
+                        <li>7. <code>cat myfile.txt</code> - View the content</li>
+                        <li>8. <code>grep "Hello" myfile.txt</code> - Search for text</li>
+                        <li>9. <code>ps aux | grep bash</code> - Find bash processes</li>
+                        <li>10. <code>cd ..</code> - Go back to parent directory</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Next Steps in Your Linux Journey</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Continue Learning</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Learn about file permissions (chmod, chown)</li>
+                            <li>• Master text editors (nano, vim)</li>
+                            <li>• Understand pipes and redirection</li>
+                            <li>• Practice with networking commands</li>
+                            <li>• Explore system monitoring tools</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Practice Resources</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Set up a Linux virtual machine</li>
+                            <li>• Use online Linux terminals</li>
+                            <li>• Join Linux communities</li>
+                            <li>• Follow Linux tutorials</li>
+                            <li>• Practice on Raspberry Pi</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial06.html" class="text-blue-400 font-semibold hover:underline">← WiFi Security</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 7 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial08.html" class="text-blue-400 font-semibold hover:underline">Kali Linux →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const message = document.createElement('div');
+                message.className = 'fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50';
+                message.textContent = 'Command copied to clipboard!';
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

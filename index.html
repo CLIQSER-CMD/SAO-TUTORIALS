@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAO - Cybersecurity Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .difficulty-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+        }
+        
+        .difficulty-beginner {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .difficulty-intermediate {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+        
+        .difficulty-advanced {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-primary);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-primary); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative">
+                        <input type="text" id="search-input" onkeyup="SAO.searchTutorials(this.value)" placeholder="Search... (Ctrl+K)" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 w-full pl-10 text-sm" />
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button id="filter-btn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-filter mr-2"></i>Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <div id="vanta-bg"></div>
+        <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="floating-animation mb-8">
+                <img src="resources/hero-cybersecurity.png" alt="Cybersecurity Hero" class="w-64 h-64 mx-auto object-cover rounded-full glow-effect">
+            </div>
+            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6">
+                <span class="neon-text typewriter">SAO Cybersecurity</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Master cybersecurity with comprehensive tutorials, from beginner basics to advanced techniques. 
+                Learn to protect yourself and others in the digital world.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToTutorials()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-all glow-effect">
+                    Start Learning
+                </button>
+                <button onclick="showAssessment()" class="border border-blue-600 hover:bg-blue-600/10 px-8 py-3 rounded-lg font-semibold transition-all">
+                    Take Assessment
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Modal -->
+    <div id="filter-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-gray-900 rounded-xl p-6 max-w-md w-full">
+                <h3 class="text-xl font-bold mb-4">Filter Tutorials</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Difficulty Level</label>
+                        <select id="difficulty-filter" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2">
+                            <option value="">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Category</label>
+                        <select id="category-filter" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2">
+                            <option value="">All Categories</option>
+                            <option value="basics">Basics</option>
+                            <option value="technical">Technical Skills</option>
+                            <option value="tools">Security Tools</option>
+                            <option value="career">Career</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <button onclick="applyFilters()" class="flex-1 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                        Apply
+                    </button>
+                    <button onclick="closeFilter()" class="flex-1 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Modal -->
+    <div id="assessment-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-gray-900 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+                <h3 class="text-2xl font-bold mb-4">Cybersecurity Knowledge Assessment</h3>
+                <div id="quiz-content">
+                    <!-- Quiz questions will be loaded here -->
+                </div>
+                <div id="quiz-results" class="hidden">
+                    <!-- Quiz results will be shown here -->
+                </div>
+                <div id="quiz-buttons" class="flex gap-3 mt-6">
+                    <!-- Quiz buttons will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorials Section -->
+    <section id="tutorials" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="font-orbitron text-4xl font-bold mb-4 neon-text">Cybersecurity Tutorials</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive guides to help you master cybersecurity concepts, tools, and best practices.
+                </p>
+            </div>
+
+            <!-- Tutorial Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="tutorial-grid">
+                <!-- Tutorial 1 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial01">
+                    <img data-src="resources/hero-cybersecurity.png" alt="Cybersecurity Basics" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">What Is Cybersecurity?</h3>
+                        <p class="text-gray-400 mb-4">Learn the fundamentals of cybersecurity, common threats, and why it's essential in today's digital world.</p>
+                        <a href="tutorial-pages/tutorial01.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 2 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial02">
+                    <img data-src="resources/password-security.png" alt="Password Security" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">7 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Create Strong Passwords</h3>
+                        <p class="text-gray-400 mb-4">Master the art of creating secure passwords with practical examples and best practices.</p>
+                        <a href="tutorial-pages/tutorial02.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 3 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial03">
+                    <img data-src="resources/2fa-security.png" alt="Two-Factor Authentication" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Enable Two-Factor Authentication</h3>
+                        <p class="text-gray-400 mb-4">Step-by-step guide to securing Instagram, Gmail, and WhatsApp with 2FA.</p>
+                        <a href="tutorial-pages/tutorial03.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 4 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial04">
+                    <img data-src="resources/phishing-detection.png" alt="Phishing Detection" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">8 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Spot Fake / Phishing Websites</h3>
+                        <p class="text-gray-400 mb-4">Learn to identify red flags and protect yourself from malicious websites.</p>
+                        <a href="tutorial-pages/tutorial04.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 5 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="basics" data-tutorial-id="tutorial05">
+                    <img data-src="resources/social-engineering.png" alt="Social Engineering" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">12 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">What Is Social Engineering?</h3>
+                        <p class="text-gray-400 mb-4">Understand psychological manipulation techniques and real-life attack examples.</p>
+                        <a href="tutorial-pages/tutorial05.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 6 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial06">
+                    <img data-src="resources/wifi-security.png" alt="WiFi Security" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Secure Your WiFi Router</h3>
+                        <p class="text-gray-400 mb-4">Simple steps to protect your home network with WPA3 and security best practices.</p>
+                        <a href="tutorial-pages/tutorial06.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 7 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial07">
+                    <img data-src="resources/linux-commands.png" alt="Linux Commands" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">15 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Top 10 Linux Commands for Beginners</h3>
+                        <p class="text-gray-400 mb-4">Essential Linux commands every cybersecurity enthusiast should know.</p>
+                        <a href="tutorial-pages/tutorial07.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 8 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial08">
+                    <img data-src="resources/kali-linux.png" alt="Kali Linux" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">20 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Install Kali Linux Safely</h3>
+                        <p class="text-gray-400 mb-4">VirtualBox step-by-step installation guide for safe and ethical learning.</p>
+                        <a href="tutorial-pages/tutorial08.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 9 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial09">
+                    <img data-src="resources/cyber-attacks.png" alt="Cyber Attacks" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">12 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Types of Cyber Attacks</h3>
+                        <p class="text-gray-400 mb-4">Simple explanations of DDoS, MITM, SQL injection, and brute-force attacks.</p>
+                        <a href="tutorial-pages/tutorial09.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 10 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial10">
+                    <img data-src="resources/nmap-scanning.png" alt="Nmap Scanning" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">15 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Use Nmap Safely</h3>
+                        <p class="text-gray-400 mb-4">Learn network scanning techniques for legitimate security testing.</p>
+                        <a href="tutorial-pages/tutorial10.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 11 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial11">
+                    <img data-src="resources/malware-detection.png" alt="Malware Detection" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">12 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Detect Malware</h3>
+                        <p class="text-gray-400 mb-4">Learn the signs of malware and how to remove it from your devices.</p>
+                        <a href="tutorial-pages/tutorial11.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 12 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial12">
+                    <img data-src="resources/firewall-security.png" alt="Firewall" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">What Is a Firewall?</h3>
+                        <p class="text-gray-400 mb-4">Understand the role of firewalls in network security.</p>
+                        <a href="tutorial-pages/tutorial12.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 13 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial13">
+                    <img data-src="resources/wireshark-analysis.png" alt="Wireshark" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">15 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Beginner Guide to Wireshark</h3>
+                        <p class="text-gray-400 mb-4">Learn to capture and analyze network traffic with Wireshark.</p>
+                        <a href="tutorial-pages/tutorial13.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 14 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="basics" data-tutorial-id="tutorial14">
+                    <img data-src="resources/password-cracking.png" alt="Password Cracking" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <span class="text-sm text-gray-400">12 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How Hackers Crack Passwords</h3>
+                        <p class="text-gray-400 mb-4">Understand the concepts behind password cracking techniques.</p>
+                        <a href="tutorial-pages/tutorial14.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 15 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial15">
+                    <img data-src="resources/mobile-security.png" alt="Mobile Security" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cybersecurity Settings for Mobile</h3>
+                        <p class="text-gray-400 mb-4">Secure your Android and iOS devices with these essential settings.</p>
+                        <a href="tutorial-pages/tutorial15.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 16 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial16">
+                    <img data-src="resources/social-media-security.png" alt="Social Media Security" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">How to Secure Social Media</h3>
+                        <p class="text-gray-400 mb-4">Protect your digital identity on social media platforms.</p>
+                        <a href="tutorial-pages/tutorial16.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 17 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial17">
+                    <img data-src="resources/scam-awareness.png" alt="Scam Awareness" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Scam Awareness Guide</h3>
+                        <p class="text-gray-400 mb-4">Learn to identify and protect yourself from common online scams.</p>
+                        <a href="tutorial-pages/tutorial17.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 18 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="basics" data-tutorial-id="tutorial18">
+                    <img data-src="resources/encryption-concept.png" alt="Encryption" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            <span class="text-sm text-gray-400">12 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">What Is Encryption?</h3>
+                        <p class="text-gray-400 mb-4">A guide to understanding data encryption.</p>
+                        <a href="tutorial-pages/tutorial18.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 19 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial19">
+                    <img data-src="resources/career-roadmap.png" alt="Career Roadmap" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            <span class="text-sm text-gray-400">15 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cybersecurity Career Roadmap</h3>
+                        <p class="text-gray-400 mb-4">A guide to starting and advancing your career in cybersecurity.</p>
+                        <a href="tutorial-pages/tutorial19.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 20 -->
+                <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="tools" data-tutorial-id="tutorial20">
+                    <img data-src="resources/security-tools.png" alt="Security Tools" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            <span class="text-sm text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Free Tools for Beginners</h3>
+                        <p class="text-gray-400 mb-4">A curated list of free and open-source tools for cybersecurity beginners.</p>
+                        <a href="tutorial-pages/tutorial20.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Read Tutorial <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

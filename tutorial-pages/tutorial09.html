@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Cyber Attacks - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .attack-type {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .attack-icon {
+            position: absolute;
+            top: -0.75rem;
+            right: 1.5rem;
+            background: #ef4444;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .attack-severity-high { border-left: 4px solid #ef4444; }
+        .attack-severity-medium { border-left: 4px solid #f59e0b; }
+        .attack-severity-low { border-left: 4px solid #22c55e; }
+        
+        .attack-example {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .prevention-tip {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .impact-meter {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .impact-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .impact-low { background: #22c55e; width: 30%; }
+        .impact-medium { background: #f59e0b; width: 60%; }
+        .impact-high { background: #ef4444; width: 90%; }
+        .impact-critical { background: #dc2626; width: 100%; }
+        
+        .quiz-option {
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--accent-primary);
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">12 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">Types of Cyber Attacks</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Simple explanations of DDoS, MITM, SQL injection, and brute-force attacks with real-world examples and prevention strategies.
+                </p>
+                <img src="../resources/cyber-attacks.png" alt="Cyber Attacks Overview" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Understanding Cyber Attacks</h2>
+                <p class="text-gray-300 mb-4">
+                    Cyber attacks are malicious attempts to access, damage, or disrupt computer systems, networks, or data. Understanding different attack types helps you better defend against them and recognize potential threats.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-red-400">Attack Frequency Statistics</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• A cyber attack occurs every 39 seconds</li>
+                        <li>• 43% of attacks target small businesses</li>
+                        <li>• The average cost of a data breach is $4.45 million</li>
+                        <li>• 95% of cybersecurity breaches are caused by human error</li>
+                        <li>• Ransomware attacks occur every 11 seconds</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- DDoS Attack -->
+            <section class="mb-8">
+                <div class="attack-type attack-severity-high">
+                    <div class="attack-icon">
+                        <i class="fas fa-flood"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">DDoS (Distributed Denial of Service)</h3>
+                    <p class="text-gray-300 mb-4">
+                        Overwhelms a system with massive amounts of traffic from multiple sources, making services unavailable to legitimate users.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm">Impact Level</span>
+                            <span class="text-sm text-red-400">Critical</span>
+                        </div>
+                        <div class="impact-meter">
+                            <div class="impact-fill impact-critical"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-red-400">Real-World Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            A hacker controls 10,000 infected computers (botnet) and directs them to simultaneously request pages from an e-commerce website. The site's servers can't handle the traffic and crash, preventing real customers from shopping during Black Friday.
+                        </p>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-blue-400">How It Works:</h4>
+                        <ol class="text-gray-300 text-sm space-y-1">
+                            <li>1. Attacker infects thousands of devices with malware</li>
+                            <li>2. Creates a botnet (network of infected devices)</li>
+                            <li>3. Commands all devices to flood target with requests</li>
+                            <li>4. Target's resources are exhausted</li>
+                            <li>5. Legitimate users can't access the service</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention Strategies:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Use DDoS protection services (Cloudflare, Akamai)</li>
+                            <li>• Implement rate limiting and traffic filtering</li>
+                            <li>• Deploy load balancers to distribute traffic</li>
+                            <li>• Monitor network traffic for unusual patterns</li>
+                            <li>• Have a DDoS response plan ready</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Man-in-the-Middle (MITM) -->
+            <section class="mb-8">
+                <div class="attack-type attack-severity-high">
+                    <div class="attack-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Man-in-the-Middle (MITM)</h3>
+                    <p class="text-gray-300 mb-4">
+                        Intercepts communications between two parties to eavesdrop, steal data, or manipulate information without either party knowing.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm">Impact Level</span>
+                            <span class="text-sm text-red-400">High</span>
+                        </div>
+                        <div class="impact-meter">
+                            <div class="impact-fill impact-high"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-red-400">Real-World Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            You're using public WiFi at a coffee shop. An attacker on the same network intercepts your connection to your bank's website. They can see your login credentials, account balance, and even modify transaction details before sending them to the real bank.
+                        </p>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-blue-400">Common MITM Scenarios:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Public WiFi networks (airports, cafes, hotels)</li>
+                            <li>• Compromised routers or network equipment</li>
+                            <li>• Fake cell towers (IMSI catchers)</li>
+                            <li>• DNS hijacking attacks</li>
+                            <li>• ARP spoofing on local networks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention Strategies:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Use HTTPS websites (look for the lock icon)</li>
+                            <li>• Avoid public WiFi for sensitive transactions</li>
+                            <li>• Use VPN when on untrusted networks</li>
+                            <li>• Verify SSL/TLS certificates</li>
+                            <li>• Use end-to-end encrypted messaging apps</li>
+                            <li>• Enable two-factor authentication</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SQL Injection -->
+            <section class="mb-8">
+                <div class="attack-type attack-severity-high">
+                    <div class="attack-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">SQL Injection</h3>
+                    <p class="text-gray-300 mb-4">
+                        Exploits vulnerabilities in database queries to access, modify, or delete database information through malicious SQL commands.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm">Impact Level</span>
+                            <span class="text-sm text-red-400">High</span>
+                        </div>
+                        <div class="impact-meter">
+                            <div class="impact-fill impact-high"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-red-400">Real-World Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            A shopping website has a search box that directly queries the database. An attacker types: <code>' OR '1'='1</code> in the search field. This tricks the database into returning all products instead of just matching ones, potentially exposing the entire product database.
+                        </p>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-blue-400">What Attackers Can Do:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Read sensitive data from the database</li>
+                            <li>• Modify or delete database content</li>
+                            <li>• Execute administrative operations</li>
+                            <li>• Issue commands to the operating system</li>
+                            <li>• Access files on the database server</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention Strategies:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Use parameterized queries/prepared statements</li>
+                            <li>• Validate and sanitize all user inputs</li>
+                            <li>• Limit database user permissions</li>
+                            <li>• Use web application firewalls (WAF)</li>
+                            <li>• Regular security testing and code reviews</li>
+                            <li>• Keep database systems updated</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brute Force Attack -->
+            <section class="mb-8">
+                <div class="attack-type attack-severity-medium">
+                    <div class="attack-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Brute Force Attack</h3>
+                    <p class="text-gray-300 mb-4">
+                        Systematically tries all possible password combinations until the correct one is found. Relies on computational power and time rather than clever techniques.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm">Impact Level</span>
+                            <span class="text-sm text-yellow-400">Medium</span>
+                        </div>
+                        <div class="impact-meter">
+                            <div class="impact-fill impact-medium"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-red-400">Real-World Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            An attacker uses automated software to try millions of password combinations against an email account. They start with common passwords like "password123", "qwerty", and dictionary words, then move to more complex combinations until they find the correct password.
+                        </p>
+                    </div>
+                    
+                    <div class="attack-example">
+                        <h4 class="font-semibold mb-2 text-blue-400">Types of Brute Force:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li><strong>Simple Brute Force:</strong> Try every possible combination</li>
+                            <li><strong>Dictionary Attack:</strong> Use common words and passwords</li>
+                            <li><strong>Hybrid Attack:</strong> Combine dictionary with variations</li>
+                            <li><strong>Rainbow Tables:</strong> Pre-computed password hashes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention Strategies:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Use strong, complex passwords (12+ characters)</li>
+                            <li>• Implement account lockout policies</li>
+                            <li>• Enable two-factor authentication (2FA)</li>
+                            <li>• Use CAPTCHA after failed attempts</li>
+                            <li>• Monitor for unusual login attempts</li>
+                            <li>• Implement rate limiting on login forms</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional Attack Types -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Other Common Attack Types</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="attack-type attack-severity-medium">
+                        <div class="attack-icon" style="background: #f59e0b;">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Malware Attacks</h3>
+                        <p class="text-gray-300 text-sm mb-3">
+                            Malicious software including viruses, worms, trojans, ransomware, and spyware that infects systems to steal data, cause damage, or gain unauthorized access.
+                        </p>
+                        <div class="prevention-tip">
+                            <strong>Prevention:</strong> Use antivirus software, keep systems updated, avoid suspicious downloads, be cautious with email attachments.
+                        </div>
+                    </div>
+                    
+                    <div class="attack-type attack-severity-medium">
+                        <div class="attack-icon" style="background: #f59e0b;">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Phishing Attacks</h3>
+                        <p class="text-gray-300 text-sm mb-3">
+                            Deceptive emails, messages, or websites that trick users into revealing sensitive information like passwords, credit card numbers, or personal data.
+                        </p>
+                        <div class="prevention-tip">
+                            <strong>Prevention:</strong> Verify sender identities, check URLs carefully, use email filters, enable 2FA, security awareness training.
+                        </div>
+                    </div>
+                    
+                    <div class="attack-type attack-severity-low">
+                        <div class="attack-icon" style="background: #22c55e;">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Social Engineering</h3>
+                        <p class="text-gray-300 text-sm mb-3">
+                            Psychological manipulation to trick people into revealing confidential information or performing actions that compromise security.
+                        </p>
+                        <div class="prevention-tip">
+                            <strong>Prevention:</strong> Security awareness training, verify requests through official channels, implement verification procedures.
+                        </div>
+                    </div>
+                    
+                    <div class="attack-type attack-severity-medium">
+                        <div class="attack-icon" style="background: #f59e0b;">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Zero-Day Exploits</h3>
+                        <p class="text-gray-300 text-sm mb-3">
+                            Attacks that exploit unknown vulnerabilities in software before patches are available. Highly dangerous because there are no defenses.
+                        </p>
+                        <div class="prevention-tip">
+                            <strong>Prevention:</strong> Keep software updated, use intrusion detection systems, implement defense-in-depth strategies, monitor for unusual activity.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attack Timeline -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Attack Timeline: How Attacks Typically Progress</h2>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</div>
+                            <div>
+                                <h3 class="font-semibold text-blue-400">Reconnaissance</h3>
+                                <p class="text-gray-300 text-sm">Attackers gather information about the target system, network, or organization.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-yellow-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</div>
+                            <div>
+                                <h3 class="font-semibold text-yellow-400">Initial Access</h3>
+                                <p class="text-gray-300 text-sm">The attacker gains initial entry through phishing, exploitation, or stolen credentials.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">3</div>
+                            <div>
+                                <h3 class="font-semibold text-orange-400">Persistence</h3>
+                                <p class="text-gray-300 text-sm">Malware is installed or backdoors are created to maintain access.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">4</div>
+                            <div>
+                                <h3 class="font-semibold text-red-400">Impact</h3>
+                                <p class="text-gray-300 text-sm">The attacker achieves their goal: data theft, system damage, or financial gain.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Quiz -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Attack Identification Quiz</h2>
+                <p class="text-gray-300 mb-4">Test your ability to identify different types of cyber attacks:</p>
+                
+                <div class="space-y-6">
+                    <!-- Question 1 -->
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Scenario 1: A company's website suddenly becomes extremely slow and eventually crashes. Investigation shows millions of requests coming from thousands of different IP addresses worldwide. What type of attack is this?</h3>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>DDoS Attack</strong>
+                                <p class="text-sm text-gray-400 mt-1">Multiple sources overwhelming the server with traffic</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>SQL Injection</strong>
+                                <p class="text-sm text-gray-400 mt-1">Database manipulation attack</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>Brute Force</strong>
+                                <p class="text-sm text-gray-400 mt-1">Password guessing attack</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Scenario 2: A user connects to public WiFi and later discovers someone accessed their email account. The user didn't enter their password on any suspicious websites. What likely happened?</h3>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>Phishing Attack</strong>
+                                <p class="text-sm text-gray-400 mt-1">Deceptive emails or websites</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>Man-in-the-Middle Attack</strong>
+                                <p class="text-sm text-gray-400 mt-1">Interception of network communications</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>DDoS Attack</strong>
+                                <p class="text-sm text-gray-400 mt-1">Traffic overwhelming attack</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Scenario 3: A website search feature is returning all products instead of just the searched ones. The URL shows unusual SQL-like commands. What attack is occurring?</h3>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>Brute Force</strong>
+                                <p class="text-sm text-gray-400 mt-1">Password guessing attack</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>SQL Injection</strong>
+                                <p class="text-sm text-gray-400 mt-1">Database query manipulation</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>Social Engineering</strong>
+                                <p class="text-sm text-gray-400 mt-1">Psychological manipulation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="checkQuizAnswers()" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold">
+                        Check Answers
+                    </button>
+                </div>
+
+                <div id="quiz-results" class="mt-6 hidden bg-gray-900 p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold mb-4">Quiz Results</h3>
+                    <div id="score-display" class="text-2xl font-bold text-center mb-4"></div>
+                    <div id="quiz-feedback" class="text-gray-300"></div>
+                </div>
+            </section>
+
+            <!-- Defense Strategies -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Multi-Layered Defense Strategy</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Preventive Measures</h3>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li>• Regular security updates and patches</li>
+                            <li>• Strong password policies</li>
+                            <li>• Employee security training</li>
+                            <li>• Network segmentation</li>
+                            <li>• Access control and least privilege</li>
+                            <li>• Security architecture planning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-yellow-400">Detective Controls</h3>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li>• Intrusion detection systems (IDS)</li>
+                            <li>• Security monitoring and SIEM</li>
+                            <li>• Log analysis and correlation</li>
+                            <li>• Behavioral analytics</li>
+                            <li>• Regular security assessments</li>
+                            <li>• Threat intelligence feeds</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-green-400">Responsive Actions</h3>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li>• Incident response plan</li>
+                            <li>• Backup and recovery procedures</li>
+                            <li>• Communication protocols</li>
+                            <li>• Forensic investigation capabilities</li>
+                            <li>• Business continuity planning</li>
+                            <li>• Post-incident analysis and improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial08.html" class="text-blue-400 font-semibold hover:underline">← Kali Linux</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 9 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial10.html" class="text-blue-400 font-semibold hover:underline">Nmap Scanning →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Quiz functionality
+        let quizAnswers = [];
+        
+        function selectOption(element, isCorrect) {
+            // Remove previous selections in this question
+            const question = element.closest('.bg-gray-900');
+            question.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark this option as selected
+            element.classList.add('selected');
+            
+            // Store the answer
+            const questionIndex = Array.from(document.querySelectorAll('.bg-gray-900')).indexOf(question);
+            quizAnswers[questionIndex] = isCorrect;
+        }
+        
+        function checkQuizAnswers() {
+            if (quizAnswers.length < 3) {
+                alert('Please answer all questions first!');
+                return;
+            }
+            
+            const score = quizAnswers.filter(answer => answer).length;
+            const percentage = (score / 3) * 100;
+            
+            document.getElementById('quiz-results').classList.remove('hidden');
+            document.getElementById('score-display').textContent = `${score}/3 (${percentage}%)`;
+            
+            let feedback = '';
+            let scoreClass = '';
+            
+            if (score === 3) {
+                feedback = 'Excellent! You have a strong understanding of different cyber attack types. You\'re ready to learn about more advanced security concepts.';
+                scoreClass = 'text-green-400';
+            } else if (score === 2) {
+                feedback = 'Good job! You understand most attack types. Review the scenarios you missed to improve your threat recognition skills.';
+                scoreClass = 'text-yellow-400';
+            } else {
+                feedback = 'Keep learning! Understanding attack types takes practice. Re-read the tutorial sections and try to identify the key characteristics of each attack type.';
+                scoreClass = 'text-red-400';
+            }
+            
+            document.getElementById('score-display').className = `text-2xl font-bold ${scoreClass} text-center mb-4`;
+            document.getElementById('quiz-feedback').textContent = feedback;
+        }
+    </script>
+</body>
+</html>

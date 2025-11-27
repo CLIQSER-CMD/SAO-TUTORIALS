@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Detect Malware on Your Phone/PC - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .symptom-card {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .symptom-icon {
+            position: absolute;
+            top: -0.75rem;
+            right: 1.5rem;
+            background: #ef4444;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">12 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Detect Malware on Your Phone/PC</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Learn to recognize the signs of malware infection on your devices and the steps to take for removal and prevention.
+                </p>
+                <img src="../resources/malware-detection.png" alt="Malware Detection" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What is Malware?</h2>
+                <p class="text-gray-300 mb-4">
+                    Malware, short for malicious software, is any software intentionally designed to cause disruption to a computer, server, client, or computer network, leak private information, gain unauthorized access to information or systems, deprive users access to information or which unknowingly interferes with the user's computer security and privacy.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-red-400">Common Types of Malware</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li><strong>Viruses:</strong> Attach to clean files and spread to other clean files.</li>
+                        <li><strong>Worms:</strong> Spread across networks without any user interaction.</li>
+                        <li><strong>Trojans:</strong> Disguise themselves as legitimate software.</li>
+                        <li><strong>Ransomware:</strong> Encrypts your files and demands a ransom for the decryption key.</li>
+                        <li><strong>Spyware:</strong> Secretly observes the user's activities.</li>
+                        <li><strong>Adware:</strong> Automatically delivers advertisements.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Common Symptoms of Malware Infection -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Symptoms of Malware Infection</h2>
+                
+                <div class="symptom-card">
+                    <div class="symptom-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Unusual Slowness</h3>
+                    <p class="text-gray-300">Your device runs significantly slower than usual, applications take a long time to load, or it freezes frequently.</p>
+                </div>
+
+                <div class="symptom-card">
+                    <div class="symptom-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Unexpected Pop-ups and Ads</h3>
+                    <p class="text-gray-300">You see a sudden increase in pop-up ads, even when you're not browsing the internet.</p>
+                </div>
+
+                <div class="symptom-card">
+                    <div class="symptom-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Rapid Battery Drain (Phones)</h3>
+                    <p class="text-gray-300">Your phone's battery drains much faster than normal, even with light usage.</p>
+                </div>
+
+                <div class="symptom-card">
+                    <div class="symptom-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">High Data Usage</h3>
+                    <p class="text-gray-300">You notice a sudden, unexplained spike in your internet or mobile data usage.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <div class="symptom-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Ransom Messages</h3>
+                    <p class="text-gray-300">You see a message demanding payment to unlock your files or device.</p>
+                </div>
+
+            </section>
+
+            <!-- How to Detect Malware on a PC (Windows/macOS) -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">How to Detect Malware on a PC (Windows/macOS)</h2>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 1: Run a Malware Scan</h4>
+                    <p class="text-gray-300">Use a reputable antivirus or anti-malware program to scan your system. Popular choices include Malwarebytes, Bitdefender, and Windows Defender.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 2: Check for Unfamiliar Applications</h4>
+                    <p class="text-gray-300">Look through your installed applications list for any software you don't recognize. Uninstall any suspicious programs.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 3: Monitor Network Activity</h4>
+                    <p class="text-gray-300">Use tools like Task Manager (Windows) or Activity Monitor (macOS) to see if any unknown processes are using a lot of network resources.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 4: Check Browser Extensions</h4>
+                    <p class="text-gray-300">Review your web browser's extensions and remove any that you did not install or that look suspicious.</p>
+                </div>
+            </section>
+
+            <!-- How to Detect Malware on a Phone (Android/iOS) -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">How to Detect Malware on a Phone (Android/iOS)</h2>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 1: Look for Suspicious Apps</h4>
+                    <p class="text-gray-300">Check your app list for any apps you don't remember installing. Also, check app permissions to see if any have excessive access to your data.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 2: Monitor Data and Battery Usage</h4>
+                    <p class="text-gray-300">In your phone's settings, check which apps are using the most data and battery. Unusually high usage from an unknown app is a major red flag.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 3: Run a Mobile Security Scan</h4>
+                    <p class="text-gray-300">Install a mobile security app from a trusted brand (like Avast, Bitdefender, or Malwarebytes) and run a full scan.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Step 4: Check for Unexplained Charges</h4>
+                    <p class="text-gray-300">Review your phone bill for any unexpected charges, which could be a sign of malware sending premium SMS messages.</p>
+                </div>
+            </section>
+
+            <!-- Malware Removal -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Malware Removal Steps</h2>
+
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-2 text-red-400">🚨 First, Disconnect from the Internet!</h4>
+                    <p class="text-gray-300">This prevents the malware from spreading or sending more of your data to the attacker.</p>
+                </div>
+
+                <div class="success-box">
+                    <h4 class="font-semibold mb-2 text-green-400">Removal Checklist</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li><strong>1. Enter Safe Mode:</strong> Reboot your device into Safe Mode to prevent non-essential apps (and most malware) from running.</li>
+                        <li><strong>2. Run a Malware Scan:</strong> Use your security software to run a full system scan and remove any detected threats.</li>
+                        <li><strong>3. Uninstall Suspicious Apps:</strong> Manually remove any applications you don't recognize.</li>
+                        <li><strong>4. Clear Browser Cache:</strong> Clear your browser's cache and reset its settings to default.</li>
+                        <li><strong>5. Change Your Passwords:</strong> After cleaning your device, change the passwords for your important accounts (email, banking, social media).</li>
+                        <li><strong>6. Factory Reset (Last Resort):</strong> If the infection persists, a full factory reset is the most effective way to ensure all malware is gone. Make sure to back up your important files first.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Prevention Strategies -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Prevention is the Best Defense</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Best Practices</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>✔️ Keep your OS and software updated.</li>
+                            <li>✔️ Use a reputable antivirus/anti-malware solution.</li>
+                            <li>✔️ Be cautious of email attachments and links.</li>
+                            <li>✔️ Download apps only from official stores.</li>
+                            <li>✔️ Use strong, unique passwords and a password manager.</li>
+                            <li>✔️ Enable two-factor authentication (2FA).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-red-400">Things to Avoid</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>❌ Using public WiFi for sensitive activities.</li>
+                            <li>❌ Installing software from untrusted sources.</li>
+                            <li>❌ Clicking on suspicious pop-up ads.</li>
+                            <li>❌ Rooting or "jailbreaking" your phone.</li>
+                            <li>❌ Ignoring security warnings from your browser or OS.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial10.html" class="text-blue-400 font-semibold hover:underline">← How to Use Nmap Safely</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 11 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial12.html" class="text-blue-400 font-semibold hover:underline">What Is a Firewall? →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

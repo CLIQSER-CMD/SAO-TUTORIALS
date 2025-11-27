@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Nmap Safely - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .terminal {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .terminal-header {
+            background: #333;
+            padding: 0.5rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            margin: -1rem -1rem 1rem -1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-button.close { background: #ff5f56; }
+        .terminal-button.minimize { background: #ffbd2e; }
+        .terminal-button.maximize { background: #27ca3f; }
+        
+        .command-output {
+            color: #00ff00;
+            margin: 0.5rem 0;
+        }
+        
+        .command-prompt {
+            color: var(--accent-primary);
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--accent-primary);
+            color: black;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        
+        .copy-btn:hover {
+            background: #0099cc;
+        }
+        
+        .scan-type {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .scan-intensity {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .intensity-stealth {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .intensity-normal {
+            background: rgba(251, 191, 36, 0.2);
+            color: #f59e0b;
+        }
+        
+        .intensity-aggressive {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .port-result {
+            display: grid;
+            grid-template-columns: auto auto 1fr auto;
+            gap: 1rem;
+            padding: 0.5rem;
+            border-bottom: 1px solid #333;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .port-number { color: #00d4ff; }
+        .port-state { color: #22c55e; }
+        .port-service { color: #f59e0b; }
+        .port-version { color: #b3b3b3; }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">15 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Use Nmap Safely</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Learn network scanning techniques for legitimate security testing and discovery of your own devices and networks.
+                </p>
+                <img src="../resources/nmap-scanning.png" alt="Nmap Network Scanning" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What is Nmap?</h2>
+                <p class="text-gray-300 mb-4">
+                    Nmap (Network Mapper) is a free and open-source tool used for network discovery and security auditing. It's one of the most popular tools in cybersecurity for discovering hosts, services, and vulnerabilities on networks.
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">What Nmap Can Do</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Discover devices on your network</li>
+                        <li>• Identify open ports and running services</li>
+                        <li>• Determine operating systems</li>
+                        <li>• Detect software versions</li>
+                        <li>• Find security vulnerabilities</li>
+                        <li>• Audit network security</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-2 text-red-400">⚠️ Legal and Ethical Use</h4>
+                    <p class="text-gray-300">Only scan networks and devices you own or have explicit permission to test. Scanning networks without authorization may be illegal in your jurisdiction.</p>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Installing Nmap</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Linux (Debian/Ubuntu)</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('sudo apt update && sudo apt install nmap')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ sudo apt update && sudo apt install nmap</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Linux (Red Hat/CentOS)</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('sudo yum install nmap')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ sudo yum install nmap</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">macOS</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('brew install nmap')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ brew install nmap</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Windows</h3>
+                        <p class="text-gray-300 text-sm">Download from <a href="https://nmap.org/download.html" class="text-blue-400 hover:underline">nmap.org</a> and run the installer.</p>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4 class="font-semibold mb-2 text-green-400">✅ Verify Installation</h4>
+                    <p class="text-gray-300">After installation, verify Nmap is working:</p>
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap --version')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">$ nmap --version</div>
+                        <div class="command-output">Nmap version 7.94 ( https://nmap.org )</div>
+                        <div class="command-output">Platform: x86_64-pc-linux-gnu</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Basic Scanning -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Basic Nmap Scanning</h2>
+                
+                <div class="scan-type">
+                    <div class="scan-intensity intensity-stealth">STEALTH</div>
+                    <h3 class="text-lg font-semibold mb-2">Simple Ping Scan</h3>
+                    <p class="text-gray-300 mb-3">Discover which hosts are up on your local network without port scanning.</p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap -sn 192.168.1.0/24')" class="copy-btn">Copy</button>
+                        <div class="terminal-header">
+                            <div class="terminal-button close"></div>
+                            <div class="terminal-button minimize"></div>
+                            <div class="terminal-button maximize"></div>
+                            <span class="ml-2 text-gray-400">Terminal</span>
+                        </div>
+                        <div class="command-prompt">$ nmap -sn 192.168.1.0/24</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.1</div>
+                        <div class="command-output">Host is up (0.0012s latency).</div>
+                        <div class="command-output">MAC Address: 00:11:22:33:44:55 (Router Manufacturer)</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.10</div>
+                        <div class="command-output">Host is up (0.0089s latency).</div>
+                        <div class="command-output">MAC Address: AA:BB:CC:DD:EE:FF (Phone Manufacturer)</div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Understanding the Output</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li><strong>192.168.1.0/24:</strong> Scans all IPs from 192.168.1.1 to 192.168.1.254</li>
+                            <li><strong>Host is up:</strong> Device responded to ping</li>
+                            <li><strong>MAC Address:</strong> Physical hardware address</li>
+                            <li><strong>Latency:</strong> Response time in seconds</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scan-type">
+                    <div class="scan-intensity intensity-normal">NORMAL</div>
+                    <h3 class="text-lg font-semibold mb-2">Basic Port Scan</h3>
+                    <p class="text-gray-300 mb-3">Scan the most common 1000 ports on a target to see which services are running.</p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap 192.168.1.1')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">$ nmap 192.168.1.1</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.1</div>
+                        <div class="command-output">Host is up (0.0012s latency).</div>
+                        <div class="command-output">Not shown: 998 closed ports</div>
+                        <div class="command-output">PORT     STATE SERVICE</div>
+                        <div class="command-output">22/tcp   open  ssh</div>
+                        <div class="command-output">53/tcp   open  domain</div>
+                        <div class="command-output">80/tcp   open  http</div>
+                        <div class="command-output">443/tcp  open  https</div>
+                        <div class="command-output">MAC Address: 00:11:22:33:44:55 (Router Manufacturer)</div>
+                    </div>
+                    
+                    <div class="port-result">
+                        <div class="port-number">22/tcp</div>
+                        <div class="port-state">open</div>
+                        <div class="port-service">ssh</div>
+                        <div class="port-version">Secure Shell remote access</div>
+                    </div>
+                    <div class="port-result">
+                        <div class="port-number">80/tcp</div>
+                        <div class="port-state">open</div>
+                        <div class="port-service">http</div>
+                        <div class="port-version">Web server (unencrypted)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Scanning Techniques -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Advanced Scanning Techniques</h2>
+                
+                <div class="scan-type">
+                    <div class="scan-intensity intensity-aggressive">AGGRESSIVE</div>
+                    <h3 class="text-lg font-semibold mb-2">Service Version Detection</h3>
+                    <p class="text-gray-300 mb-3">Identify specific software versions running on open ports to find potential vulnerabilities.</p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap -sV 192.168.1.1')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">$ nmap -sV 192.168.1.1</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.1</div>
+                        <div class="command-output">Host is up (0.0012s latency).</div>
+                        <div class="command-output">Not shown: 998 closed ports</div>
+                        <div class="command-output">PORT     STATE SERVICE VERSION</div>
+                        <div class="command-output">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1</div>
+                        <div class="command-output">53/tcp   open  domain  dnsmasq 2.80</div>
+                        <div class="command-output">80/tcp   open  http    Apache httpd 2.4.41</div>
+                        <div class="command-output">443/tcp  open  ssl/http Apache httpd 2.4.41</div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Version Detection Benefits</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Identify outdated software with known vulnerabilities</li>
+                            <li>• Plan targeted security updates</li>
+                            <li>• Assess security posture accurately</li>
+                            <li>• Compliance and audit requirements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scan-type">
+                    <div class="scan-intensity intensity-aggressive">AGGRESSIVE</div>
+                    <h3 class="text-lg font-semibold mb-2">Operating System Detection</h3>
+                    <p class="text-gray-300 mb-3">Determine the operating system of target devices using TCP/IP stack fingerprinting.</p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap -O 192.168.1.1')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">$ nmap -O 192.168.1.1</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.1</div>
+                        <div class="command-output">Host is up (0.0012s latency).</div>
+                        <div class="command-output">Device type: general purpose</div>
+                        <div class="command-output">Running: Linux 3.X|4.X</div>
+                        <div class="command-output">OS CPE: cpe:/o:linux:linux_kernel:3</div>
+                        <div class="command-output">OS details: Linux 3.2 - 4.9</div>
+                        <div class="command-output">Network Distance: 1 hop</div>
+                    </div>
+                </div>
+
+                <div class="scan-type">
+                    <div class="scan-intensity intensity-aggressive">AGGRESSIVE</div>
+                    <h3 class="text-lg font-semibold mb-2">Comprehensive Scan</h3>
+                    <p class="text-gray-300 mb-3">Combine multiple scanning techniques for detailed reconnaissance.</p>
+                    
+                    <div class="terminal">
+                        <button onclick="copyToClipboard('nmap -A -T4 192.168.1.1')" class="copy-btn">Copy</button>
+                        <div class="command-prompt">$ nmap -A -T4 192.168.1.1</div>
+                        <div class="command-output">Starting Nmap scan...</div>
+                        <div class="command-output">Nmap scan report for 192.168.1.1</div>
+                        <div class="command-output">Host is up (0.0012s latency).</div>
+                        <div class="command-output">Not shown: 998 closed ports</div>
+                        <div class="command-output">PORT     STATE SERVICE VERSION</div>
+                        <div class="command-output">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1</div>
+                        <div class="command-output">| ssh-hostkey:</div>
+                        <div class="command-output">|   2048 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef (RSA)</div>
+                        <div class="command-output">80/tcp   open  http    Apache httpd 2.4.41</div>
+                        <div class="command-output">|_http-title: Site doesn't have a title</div>
+                        <div class="command-output">Device type: general purpose</div>
+                        <div class="command-output">Running: Linux 3.X|4.X</div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">What -A Flag Includes</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Service version detection (-sV)</li>
+                            <li>• OS detection (-O)</li>
+                            <li>• Script scanning (--script=default)</li>
+                            <li>• Traceroute (--traceroute)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Port Scanning Options -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Port Scanning Options</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Specific Ports</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -p 22,80,443 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -p 22,80,443 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Scan specific ports only</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Port Range</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -p 1-1000 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -p 1-1000 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Scan a range of ports</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">All Ports</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -p- 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -p- 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Scan all 65,535 ports (very slow)</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Top Ports</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap --top-ports 100 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap --top-ports 100 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Scan the most common 100 ports</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timing and Performance -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Timing and Performance Options</h2>
+                
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="font-semibold mb-3">Timing Templates (-T0 to -T5)</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T0</strong> - Paranoid (very slow, unlikely to be detected)</span>
+                            <span class="text-red-400">5 minutes between probes</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T1</strong> - Sneaky (slow, stealthy)</span>
+                            <span class="text-yellow-400">15 seconds between probes</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T2</strong> - Polite (moderate speed)</span>
+                            <span class="text-blue-400">0.4 seconds between probes</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T3</strong> - Normal (default speed)</span>
+                            <span class="text-green-400">Parallel scanning</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T4</strong> - Aggressive (fast)</span>
+                            <span class="text-orange-400">May overwhelm targets</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-900 rounded">
+                            <span><strong>-T5</strong> - Insane (very fast)</span>
+                            <span class="text-red-400">Likely to crash targets</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal mt-4">
+                    <button onclick="copyToClipboard('nmap -T4 --max-rate=100 192.168.1.0/24')" class="copy-btn">Copy</button>
+                    <div class="command-prompt">$ nmap -T4 --max-rate=100 192.168.1.0/24</div>
+                    <div class="text-gray-400 text-sm mt-2"># Fast scan with rate limiting</div>
+                </div>
+            </section>
+
+            <!-- Output Formats -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Output Formats</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Normal Output</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -oN scan_results.txt 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -oN scan_results.txt 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Human-readable text file</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">XML Output</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -oX scan_results.xml 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -oX scan_results.xml 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Machine-readable XML format</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Grepable Output</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -oG scan_results.txt 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -oG scan_results.txt 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Easy to parse with grep</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">All Formats</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -oA scan_results 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -oA scan_results 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Creates normal, XML, and grepable files</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practical Examples -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Practical Examples</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Network Inventory</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -sn 192.168.1.0/24 | grep "Nmap scan report"')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -sn 192.168.1.0/24 | grep "Nmap scan report"</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">List all devices on your network</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Find Web Servers</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -p 80,443 192.168.1.0/24')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -p 80,443 192.168.1.0/24</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Find devices with web services</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Security Audit</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -sV -O --script vuln 192.168.1.1')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -sV -O --script vuln 192.168.1.1</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Check for known vulnerabilities</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Fast Network Scan</h3>
+                        <div class="terminal">
+                            <button onclick="copyToClipboard('nmap -T5 --top-ports 10 192.168.1.0/24')" class="copy-btn">Copy</button>
+                            <div class="command-prompt">$ nmap -T5 --top-ports 10 192.168.1.0/24</div>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-2">Quick scan of top 10 ports</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Safety Guidelines -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Safety and Best Practices</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="warning-box">
+                        <h3 class="font-semibold mb-3 text-red-400">❌ Never Do This</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Scan networks you don't own</li>
+                            <li>• Use aggressive timing on production systems</li>
+                            <li>• Scan government or military networks</li>
+                            <li>• Use Nmap for malicious purposes</li>
+                            <li>• Ignore rate limiting and network policies</li>
+                            <li>• Scan without proper authorization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success-box">
+                        <h3 class="font-semibold mb-3 text-green-400">✅ Always Do This</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Get permission before scanning</li>
+                            <li>• Start with stealthy scans</li>
+                            <li>• Document your scanning activities</li>
+                            <li>• Use appropriate timing templates</li>
+                            <li>• Respect network policies and firewalls</li>
+                            <li>• Use scans for security improvement only</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Legal Considerations -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Legal and Ethical Considerations</h2>
+                
+                <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-6">
+                    <h3 class="font-semibold mb-3 text-yellow-400">Important Legal Notes</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Network scanning may be considered reconnaissance for attacks</li>
+                        <li>• Some countries have strict laws about network scanning</li>
+                        <li>• Corporate networks often have security monitoring that detects scans</li>
+                        <li>• ISPs may terminate service for scanning activities</li>
+                        <li>• Always have written permission for professional penetration testing</li>
+                        <li>• Use Nmap only for legitimate security purposes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Issues & Solutions</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">"You need root privileges" Error</h3>
+                        <p class="text-gray-300 text-sm">Use sudo for privileged scans:</p>
+                        <div class="terminal mt-2">
+                            <div class="command-prompt">$ sudo nmap -sS 192.168.1.1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">All Ports Show as "filtered"</h3>
+                        <p class="text-gray-300 text-sm">Target is behind a firewall. Try different scan types:</p>
+                        <div class="terminal mt-2">
+                            <div class="command-prompt">$ nmap -sT -Pn 192.168.1.1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Scan is Very Slow</h3>
+                        <p class="text-gray-300 text-sm">Use faster timing or limit ports:</p>
+                        <div class="terminal mt-2">
+                            <div class="command-prompt">$ nmap -T4 --top-ports 100 192.168.1.1</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Next Steps in Network Security</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Advanced Nmap</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Learn Nmap Scripting Engine (NSE)</li>
+                            <li>• Master timing and performance tuning</li>
+                            <li>• Explore firewall evasion techniques</li>
+                            <li>• Practice with different scan types</li>
+                            <li>• Study output parsing and automation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Related Tools</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Masscan - Fast port scanner</li>
+                            <li>• Zmap - Internet-wide scanner</li>
+                            <li>• Unicornscan - Asynchronous scanner</li>
+                            <li>• Hping3 - Packet crafting tool</li>
+                            <li>• Scapy - Packet manipulation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial09.html" class="text-blue-400 font-semibold hover:underline">← Cyber Attacks</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 10 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial11.html" class="text-blue-400 font-semibold hover:underline">Malware Detection →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const message = document.createElement('div');
+                message.className = 'fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50';
+                message.textContent = 'Command copied to clipboard!';
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

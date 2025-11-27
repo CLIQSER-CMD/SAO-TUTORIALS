@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is Encryption? - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .terminal {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Advanced</span>
+                    <span class="text-gray-400 text-sm">12 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">What Is Encryption?</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    A foundational guide to encryption, the process of converting data into a code to prevent unauthorized access.
+                </p>
+                <img src="../resources/encryption-concept.png" alt="Encryption Concept" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The Basics of Encryption</h2>
+                <p class="text-gray-300 mb-4">
+                    Encryption is the process of scrambling data so that only authorized parties can understand it. It is a fundamental building block of data security and is used to protect data in transit (like emails and messages) and data at rest (like files on your computer).
+                </p>
+                <div class="terminal">
+                    <strong>Plaintext:</strong> "Hello World"<br>
+                    <strong>Ciphertext (Encrypted):</strong> "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+                </div>
+            </section>
+
+            <!-- How Encryption Works -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">How Encryption Works: Keys and Algorithms</h2>
+                <p class="text-gray-300 mb-4">
+                   Encryption uses an algorithm to scramble data and a key to unscramble it. The strength of the encryption depends on both the algorithm and the length of the key.
+                </p>
+                <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>Algorithm:</strong> The set of rules or instructions for the encryption process.</li>
+                    <li><strong>Key:</strong> A piece of information that determines the output of the algorithm.</li>
+                </ul>
+            </section>
+            
+            <!-- Types of Encryption -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Types of Encryption</h2>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Symmetric Encryption</h3>
+                    <p class="text-gray-300">Uses a single key for both encryption and decryption. It's fast and efficient but requires a secure way to share the key.</p>
+                    <p class="text-gray-300 mt-2"><strong>Example:</strong> AES (Advanced Encryption Standard)</p>
+                </div>
+                <div class="info-box">
+                    <h3 class="text-lg font-semibold mb-2">Asymmetric Encryption (Public-Key Cryptography)</h3>
+                    <p class="text-gray-300">Uses a pair of keys: a public key for encryption and a private key for decryption. The public key can be shared freely, while the private key must be kept secret.</p>
+                    <p class="text-gray-300 mt-2"><strong>Example:</strong> RSA (Rivest-Shamir-Adleman)</p>
+                </div>
+            </section>
+            
+            <!-- Real-World Applications -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Real-World Applications of Encryption</h2>
+                <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>HTTPS:</strong> Secures your connection to websites.</li>
+                    <li><strong>End-to-End Encrypted Messaging:</strong> Apps like Signal and WhatsApp protect your messages from being read by anyone other than the recipient.</li>
+                    <li><strong>VPNs:</strong> Encrypt your internet traffic to protect your privacy.</li>
+                    <li><strong>File Encryption:</strong> Tools like BitLocker and FileVault encrypt the data on your hard drive.</li>
+                </ul>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial17.html" class="text-blue-400 font-semibold hover:underline">← Scam Awareness Guide</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 18 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial19.html" class="text-blue-400 font-semibold hover:underline">Cybersecurity Career Roadmap →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

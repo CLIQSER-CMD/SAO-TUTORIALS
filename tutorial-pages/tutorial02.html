@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Strong Passwords - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .password-strength-meter {
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .strength-very-weak { background: #ef4444; width: 20%; }
+        .strength-weak { background: #f97316; width: 40%; }
+        .strength-medium { background: #f59e0b; width: 60%; }
+        .strength-strong { background: #84cc16; width: 80%; }
+        .strength-very-strong { background: #22c55e; width: 100%; }
+        
+        .example-password {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--accent-primary);
+            color: black;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        
+        .copy-btn:hover {
+            background: #0099cc;
+        }
+        
+        .password-generator {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            space-x: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent-primary);
+            color: black;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">7 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Create Strong Passwords</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Master the art of creating secure passwords that are both strong and memorable with practical examples and best practices.
+                </p>
+                <img src="../resources/password-security.png" alt="Password Security" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why Strong Passwords Matter</h2>
+                <p class="text-gray-300 mb-4">
+                    Your password is often the only thing standing between your personal information and cybercriminals. Despite advances in security technology, passwords remain the most common method of authentication, making them a prime target for attackers.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-4 mb-6">
+                    <h4 class="font-semibold mb-2 text-red-400">Alarming Statistics</h4>
+                    <ul class="text-gray-300 space-y-1">
+                        <li>• 81% of data breaches are caused by weak or stolen passwords</li>
+                        <li>• The average person has over 100 online accounts</li>
+                        <li>• "123456" and "password" are still among the most common passwords</li>
+                        <li>• A strong password can take centuries to crack, while weak ones can be cracked in seconds</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Password Strength Checker -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Interactive Password Strength Checker</h2>
+                <p class="text-gray-300 mb-4">Test your password strength in real-time:</p>
+                
+                <div class="password-generator">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">Enter Password:</label>
+                        <input type="password" id="password-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white" placeholder="Type your password here...">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm">Strength:</span>
+                            <span id="strength-label" class="text-sm font-medium">Very Weak</span>
+                        </div>
+                        <div class="password-strength-meter">
+                            <div id="strength-bar" class="strength-bar strength-very-weak"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="password-feedback" class="text-sm text-gray-300"></div>
+                    
+                    <div class="mt-4">
+                        <button onclick="togglePasswordVisibility()" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm mr-2">
+                            <i class="fas fa-eye mr-2"></i>Show/Hide
+                        </button>
+                        <button onclick="generateStrongPassword()" class="btn-primary">
+                            <i class="fas fa-magic mr-2"></i>Generate Strong Password
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Password Creation Rules -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The Golden Rules of Password Creation</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-green-400">✓ Do This</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Use at least 12-16 characters</li>
+                            <li>• Include uppercase and lowercase letters</li>
+                            <li>• Add numbers and special characters</li>
+                            <li>• Use unique passwords for each account</li>
+                            <li>• Consider using passphrases</li>
+                            <li>• Use a password manager</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-red-400">✗ Avoid This</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Personal information (birthdays, names)</li>
+                            <li>• Common words and phrases</li>
+                            <li>• Sequential patterns (123456, abcdef)</li>
+                            <li>• Reusing passwords across accounts</li>
+                            <li>• Short passwords (less than 8 characters)</li>
+                            <li>• Writing passwords on paper</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Password Creation Methods -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Proven Methods for Strong Passwords</h2>
+                
+                <h3 class="text-xl font-semibold mb-3">1. The Passphrase Method</h3>
+                <p class="text-gray-300 mb-4">
+                    Create a memorable phrase and modify it with numbers and symbols. This creates long, complex passwords that are easier to remember.
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="example-password">
+                        <strong>Example 1:</strong> "I love cybersecurity in 2025!" → <code>ILoveCybersecurity2025!</code>
+                        <button onclick="copyToClipboard('ILoveCybersecurity2025!')" class="copy-btn">Copy</button>
+                    </div>
+                    <div class="example-password">
+                        <strong>Example 2:</strong> "My cat Whiskers was born in 2019" → <code>MyCatWhiskers2019@</code>
+                        <button onclick="copyToClipboard('MyCatWhiskers2019@')" class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">2. The Random Words Method</h3>
+                <p class="text-gray-300 mb-4">
+                    Combine 3-4 unrelated words with numbers and symbols between them.
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="example-password">
+                        <strong>Example 1:</strong> Coffee + Telescope + Galaxy + 42 → <code>Coffee&Telescope#Galaxy42</code>
+                        <button onclick="copyToClipboard('Coffee&Telescope#Galaxy42')" class="copy-btn">Copy</button>
+                    </div>
+                    <div class="example-password">
+                        <strong>Example 2:</strong> Purple + Elephant + Mountain + 2024 → <code>Purple!Elephant@Mountain#2024</code>
+                        <button onclick="copyToClipboard('Purple!Elephant@Mountain#2024')" class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">3. The Sentence Method</h3>
+                <p class="text-gray-300 mb-4">
+                    Take the first letter of each word in a sentence and add numbers/symbols.
+                </p>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="example-password">
+                        <strong>Example 1:</strong> "The quick brown fox jumps over 13 lazy dogs!" → <code>Tqbfj013ld!</code>
+                        <button onclick="copyToClipboard('Tqbfj013ld!')" class="copy-btn">Copy</button>
+                    </div>
+                    <div class="example-password">
+                        <strong>Example 2:</strong> "In 2025 I will learn cybersecurity every day at 8PM" → <code>I2025Iwlcde@8PM</code>
+                        <button onclick="copyToClipboard('I2025Iwlcde@8PM')" class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Password Manager Section -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why You Need a Password Manager</h2>
+                <p class="text-gray-300 mb-4">
+                    Remembering dozens of unique, complex passwords is nearly impossible. That's where password managers come in—they generate, store, and autofill strong passwords for all your accounts.
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">Benefits of Password Managers</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Generate truly random, unique passwords for each account</li>
+                        <li>• Store passwords securely with military-grade encryption</li>
+                        <li>• Autofill login credentials safely</li>
+                        <li>• Detect and warn about phishing sites</li>
+                        <li>• Share credentials safely with others</li>
+                        <li>• Work across all your devices</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">Recommended Password Managers</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">Bitwarden</h4>
+                        <p class="text-sm text-gray-300">Free, open-source, works on all platforms</p>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">1Password</h4>
+                        <p class="text-sm text-gray-300">Premium features, excellent user interface</p>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">KeePass</h4>
+                        <p class="text-sm text-gray-300">Free, offline, highly secure</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Two-Factor Authentication -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Level Up with Two-Factor Authentication</h2>
+                <p class="text-gray-300 mb-4">
+                    Even the strongest password can be compromised. Two-factor authentication (2FA) adds an extra layer of security by requiring a second form of verification.
+                </p>
+                
+                <div class="bg-green-900/20 border-l-4 border-green-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-green-400">How 2FA Works</h4>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. Enter your username and password</li>
+                        <li>2. Provide a second form of verification</li>
+                        <li>3. Gain access to your account</li>
+                    </ol>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">Types of 2FA</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li><strong>SMS/Text Message:</strong> Code sent to your phone (least secure)</li>
+                    <li><strong>Authenticator App:</strong> Time-based codes from apps like Google Authenticator</li>
+                    <li><strong>Hardware Token:</strong> Physical device like YubiKey (most secure)</li>
+                    <li><strong>Biometric:</strong> Fingerprint or facial recognition</li>
+                </ul>
+            </section>
+
+            <!-- Action Items -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Your Action Plan</h2>
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold mb-4 text-blue-400">Immediate Steps (Do This Today!)</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold mb-2">High Priority Accounts</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>✓ Email accounts</li>
+                                <li>✓ Banking and financial</li>
+                                <li>✓ Social media</li>
+                                <li>✓ Work accounts</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Quick Wins</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>✓ Change reused passwords</li>
+                                <li>✓ Enable 2FA where possible</li>
+                                <li>✓ Update weak passwords</li>
+                                <li>✓ Install a password manager</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial01.html" class="text-blue-400 font-semibold hover:underline">← What Is Cybersecurity?</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 2 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial03.html" class="text-blue-400 font-semibold hover:underline">Two-Factor Authentication →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            let feedback = [];
+            
+            // Length check
+            if (password.length >= 12) {
+                strength += 2;
+            } else if (password.length >= 8) {
+                strength += 1;
+            } else {
+                feedback.push('Use at least 12 characters');
+            }
+            
+            // Character variety checks
+            if (/[a-z]/.test(password)) {
+                strength += 1;
+            } else {
+                feedback.push('Include lowercase letters');
+            }
+            
+            if (/[A-Z]/.test(password)) {
+                strength += 1;
+            } else {
+                feedback.push('Include uppercase letters');
+            }
+            
+            if (/[0-9]/.test(password)) {
+                strength += 1;
+            } else {
+                feedback.push('Include numbers');
+            }
+            
+            if (/[^A-Za-z0-9]/.test(password)) {
+                strength += 1;
+            } else {
+                feedback.push('Include special characters');
+            }
+            
+            // Common patterns check
+            if (/(.)\1{2,}/.test(password)) {
+                strength -= 1;
+                feedback.push('Avoid repeated characters');
+            }
+            
+            if (/123|abc|qwe/i.test(password)) {
+                strength -= 1;
+                feedback.push('Avoid sequential patterns');
+            }
+            
+            // Determine strength level
+            let strengthLevel = 'Very Weak';
+            let strengthClass = 'strength-very-weak';
+            
+            if (strength >= 6) {
+                strengthLevel = 'Very Strong';
+                strengthClass = 'strength-very-strong';
+            } else if (strength >= 5) {
+                strengthLevel = 'Strong';
+                strengthClass = 'strength-strong';
+            } else if (strength >= 3) {
+                strengthLevel = 'Medium';
+                strengthClass = 'strength-medium';
+            } else if (strength >= 2) {
+                strengthLevel = 'Weak';
+                strengthClass = 'strength-weak';
+            }
+            
+            return {
+                level: strengthLevel,
+                class: strengthClass,
+                feedback: feedback
+            };
+        }
+        
+        // Update password strength display
+        function updatePasswordStrength() {
+            const password = document.getElementById('password-input').value;
+            const result = checkPasswordStrength(password);
+            
+            document.getElementById('strength-label').textContent = result.level;
+            document.getElementById('strength-bar').className = `strength-bar ${result.class}`;
+            
+            const feedbackElement = document.getElementById('password-feedback');
+            if (result.feedback.length > 0) {
+                feedbackElement.innerHTML = '<strong>Suggestions:</strong><br>' + result.feedback.map(f => `• ${f}`).join('<br>');
+                feedbackElement.className = 'text-sm text-yellow-300';
+            } else {
+                feedbackElement.innerHTML = '<strong class="text-green-400">Excellent password!</strong>';
+                feedbackElement.className = 'text-sm text-green-400';
+            }
+        }
+        
+        // Event listener for password input
+        document.getElementById('password-input').addEventListener('input', updatePasswordStrength);
+        
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const input = document.getElementById('password-input');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+        
+        // Generate strong password
+        function generateStrongPassword() {
+            const length = 16;
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+            let password = '';
+            
+            // Ensure at least one of each character type
+            password += 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)];
+            password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
+            password += '0123456789'[Math.floor(Math.random() * 10)];
+            password += '!@#$%^&*'[Math.floor(Math.random() * 8)];
+            
+            // Fill the rest randomly
+            for (let i = 4; i < length; i++) {
+                password += charset[Math.floor(Math.random() * charset.length)];
+            }
+            
+            // Shuffle the password
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
+            
+            document.getElementById('password-input').value = password;
+            updatePasswordStrength();
+        }
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const message = document.createElement('div');
+                message.className = 'fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50';
+                message.textContent = 'Password copied to clipboard!';
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

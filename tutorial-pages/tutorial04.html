@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Spot Fake / Phishing Websites - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .phishing-example {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .legitimate-example {
+            background: #0d2818;
+            border: 1px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .fake-example {
+            background: #2d0b0b;
+            border: 1px solid #ef4444;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .url-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .quiz-option {
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--accent-primary);
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .quiz-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .red-flag {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        .green-flag {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">8 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Spot Fake / Phishing Websites</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Learn to identify red flags and protect yourself from malicious websites designed to steal your personal information.
+                </p>
+                <img src="../resources/phishing-detection.png" alt="Phishing Detection" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What is Phishing?</h2>
+                <p class="text-gray-300 mb-4">
+                    Phishing is a cyberattack where criminals create fake websites that look identical to legitimate ones (like your bank, social media, or email provider) to trick you into entering your login credentials, credit card numbers, or other sensitive information.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-red-400">Why Phishing is Dangerous</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• 90% of data breaches start with phishing attacks</li>
+                        <li>• Phishing sites can look identical to real ones</li>
+                        <li>• One compromised account can lead to identity theft</li>
+                        <li>• Financial losses from phishing average $4,000+ per incident</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- URL Analysis -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The Art of Reading URLs</h2>
+                <p class="text-gray-300 mb-4">
+                    The URL (web address) is your first line of defense. Learning to read and analyze URLs can help you spot most phishing attempts.
+                </p>
+
+                <h3 class="text-xl font-semibold mb-3">URL Structure Breakdown</h3>
+                <div class="phishing-example">
+                    <div class="text-sm text-gray-400 mb-2">Example URL Analysis:</div>
+                    <div class="text-blue-400">https://</div><div class="text-green-400">www.facebook.com</div><div class="text-yellow-400">/login.php</div><div class="text-purple-400">?ref=security</div>
+                    <div class="text-xs text-gray-400 mt-2">
+                        <span class="text-blue-400">Protocol</span> | 
+                        <span class="text-green-400">Domain</span> | 
+                        <span class="text-yellow-400">Path</span> | 
+                        <span class="text-purple-400">Parameters</span>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mb-3">Real vs Fake URL Examples</h3>
+                <div class="url-comparison">
+                    <div>
+                        <h4 class="text-green-400 font-semibold mb-2">✓ Legitimate</h4>
+                        <div class="legitimate-example">
+                            <strong>Real Facebook:</strong><br>
+                            https://www.facebook.com<br>
+                            https://facebook.com<br>
+                            https://m.facebook.com
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-red-400 font-semibold mb-2">✗ Phishing</h4>
+                        <div class="fake-example">
+                            <strong>Fake Facebook:</strong><br>
+                            https://facebook-security.com<br>
+                            https://facebook-login.net<br>
+                            https://faceb00k.com
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Red Flags -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Major Red Flags to Watch For</h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="red-flag">
+                        <h3 class="font-semibold mb-2 text-red-400">🚩 Suspicious Domain Names</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Extra words: facebook-security.com</li>
+                            <li>• Misspellings: faceb00k.com (with zeros)</li>
+                            <li>• Wrong TLD: yourbank.net instead of .com</li>
+                            <li>• Hyphens: pay-pal.com</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h3 class="font-semibold mb-2 text-red-400">🚩 Poor Design & Grammar</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Pixelated or low-quality logos</li>
+                            <li>• Spelling and grammar mistakes</li>
+                            <li>• Broken layouts or misaligned elements</li>
+                            <li>• Inconsistent fonts and colors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h3 class="font-semibold mb-2 text-red-400">🚩 Urgency & Threats</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• "Your account will be deleted!"</li>
+                            <li>• "Immediate action required!"</li>
+                            <li>• "Verify now or lose access!"</li>
+                            <li>• "Unusual activity detected!"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h3 class="font-semibold mb-2 text-red-400">🚩 Unusual Requests</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Asking for full password via email</li>
+                            <li>• Requesting Social Security numbers</li>
+                            <li>• Demanding immediate payment</li>
+                            <li>• Asking to download suspicious files</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Phishing Email Simulator -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Interactive Phishing Email Simulator</h2>
+                <p class="text-gray-300 mb-4">Can you spot the red flags in this email? Click on the suspicious parts of the email below.</p>
+                
+                <div id="phishing-simulator" class="bg-gray-800 p-6 rounded-lg">
+                    <div class="border-b border-gray-700 pb-4 mb-4">
+                        <p><strong>From:</strong> <span class="phishing-flag" data-feedback="The sender's email address is suspicious. Legitimate companies usually don't use generic domains like 'security-update.com'.">security@paypal-security-update.com</span></p>
+                        <p><strong>Subject:</strong> <span class="phishing-flag" data-feedback="Urgent and threatening subject lines are a common phishing tactic.">URGENT: Action Required on Your Account</span></p>
+                    </div>
+                    <div>
+                        <p>Dear Customer,</p>
+                        <p class="my-4">We have detected unusual activity on your account. For your security, we have temporarily suspended your account. To restore access, you must verify your identity immediately.</p>
+                        <p class="my-4">Please click the link below to login and verify your account details. If you do not verify your account within 24 hours, it will be permanently closed.</p>
+                        <p class="my-4"><a href="#" class="text-blue-400 underline phishing-flag" data-feedback="Hovering over the link would reveal a suspicious URL, not the official PayPal website.">https://paypal.com/login/verify-account</a></p>
+                        <p>Thank you for your cooperation.</p>
+                        <p class="mt-4">Sincerely,<br>The PayPal Team</p>
+                    </div>
+                </div>
+                <div id="phishing-feedback" class="mt-4"></div>
+            </section>
+
+            <!-- Green Flags -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Signs of a Legitimate Website</h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="green-flag">
+                        <h3 class="font-semibold mb-2 text-green-400">✅ Proper HTTPS</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Valid SSL certificate (lock icon)</li>
+                            <li>• HTTPS in the URL</li>
+                            <li>• Certificate matches the domain</li>
+                            <li>• No browser security warnings</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="green-flag">
+                        <h3 class="font-semibold mb-2 text-green-400">✅ Correct Domain</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Exact company name spelling</li>
+                            <li>• Official domain extension</li>
+                            <li>• No extra words or characters</li>
+                            <li>• Consistent with company's official URLs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="green-flag">
+                        <h3 class="font-semibold mb-2 text-green-400">✅ Professional Design</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• High-quality images and logos</li>
+                            <li>• Consistent branding</li>
+                            <li>• Proper grammar and spelling</li>
+                            <li>• Functional navigation and links</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="green-flag">
+                        <h3 class="font-semibold mb-2 text-green-400">✅ Contact Information</h3>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Physical address listed</li>
+                            <li>• Customer service phone numbers</li>
+                            <li>• Professional email addresses</li>
+                            <li>• About us and company information</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Phishing Quiz -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Interactive Phishing Detection Quiz</h2>
+                <p class="text-gray-300 mb-4">Test your ability to spot phishing attempts:</p>
+                
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Question 1 -->
+                    <div class="quiz-question bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Question 1: Which URL is safe to click?</h3>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>https://paypal-security.com/login</strong>
+                                <p class="text-sm text-gray-400 mt-1">Claims to be PayPal security</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>https://www.paypal.com/signin</strong>
+                                <p class="text-sm text-gray-400 mt-1">Official PayPal domain</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>https://pay-pal.net/auth</strong>
+                                <p class="text-sm text-gray-400 mt-1">Hyphen and wrong domain</p>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback mt-4 hidden"></div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="quiz-question bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Question 2: You receive this email. Is it phishing?</h3>
+                        <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                            <strong>Subject:</strong> URGENT: Your account will be deleted!<br>
+                            <strong>From:</strong> security@faceb00k.com<br>
+                            <strong>Message:</strong> Click here immediately to verify your account or it will be permanently deleted within 24 hours!<br>
+                            <strong>Link:</strong> https://facebook-verify.net/login
+                        </div>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>Yes, this is phishing</strong>
+                                <p class="text-sm text-gray-400 mt-1">Multiple red flags present</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>No, this is legitimate</strong>
+                                <p class="text-sm text-gray-400 mt-1">Facebook is warning me</p>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback mt-4 hidden"></div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="quiz-question bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4">Question 3: What should you check first when visiting a banking website?</h3>
+                        <div class="space-y-3">
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>The website design</strong>
+                                <p class="text-sm text-gray-400 mt-1">Visual appearance can be faked</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, true)">
+                                <strong>The URL and SSL certificate</strong>
+                                <p class="text-sm text-gray-400 mt-1">Most reliable security indicators</p>
+                            </div>
+                            <div class="quiz-option" onclick="selectOption(this, false)">
+                                <strong>The login form</strong>
+                                <p class="text-sm text-gray-400 mt-1">Too late if you're already entering data</p>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback mt-4 hidden"></div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="showQuizResults()" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold">
+                        Show Results
+                    </button>
+                </div>
+
+                <div id="quiz-results" class="mt-6 hidden bg-gray-900 p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold mb-4">Your Phishing Detection Score</h3>
+                    <div id="score-display" class="text-3xl font-bold text-center mb-4"></div>
+                    <div id="score-feedback" class="text-gray-300"></div>
+                </div>
+            </section>
+
+            <!-- Prevention Tips -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Prevention Best Practices</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Before Clicking Links</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Hover over links to preview the URL</li>
+                            <li>• Check for HTTPS and valid certificates</li>
+                            <li>• Type URLs manually instead of clicking</li>
+                            <li>• Use bookmarks for important sites</li>
+                            <li>• Be wary of shortened URLs (bit.ly, tinyurl)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">When in Doubt</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Contact the company directly</li>
+                            <li>• Use official apps instead of browsers</li>
+                            <li>• Enable two-factor authentication</li>
+                            <li>• Report suspicious emails and sites</li>
+                            <li>• Trust your instincts—if it feels off, it probably is</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools and Resources -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Helpful Tools and Resources</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Browser Security Features</h3>
+                        <p class="text-gray-300 text-sm">Modern browsers have built-in phishing protection. Keep them updated and pay attention to security warnings.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Password Managers</h3>
+                        <p class="text-gray-300 text-sm">Password managers can detect and warn about phishing sites by comparing URLs to stored credentials.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-green-400">Security Extensions</h3>
+                        <p class="text-gray-300 text-sm">Consider browser extensions like HTTPS Everywhere and uBlock Origin for additional protection.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What to Do If You Fall Victim -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What to Do If You Think You've Been Phished</h2>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6">
+                    <h3 class="font-semibold mb-3 text-red-400">Immediate Actions</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. <strong>Disconnect from the internet</strong> immediately</li>
+                        <li>2. <strong>Change your passwords</strong> for the compromised account and any others using the same password</li>
+                        <li>3. <strong>Enable two-factor authentication</strong> on all affected accounts</li>
+                        <li>4. <strong>Contact your bank</strong> if you entered financial information</li>
+                        <li>5. <strong>Run a malware scan</strong> on your device</li>
+                        <li>6. <strong>Report the phishing attempt</strong> to the legitimate company</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial03.html" class="text-blue-400 font-semibold hover:underline">← Two-Factor Authentication</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 4 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial05.html" class="text-blue-400 font-semibold hover:underline">Social Engineering →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Quiz functionality
+        let quizAnswers = [];
+        let score = 0;
+        
+        function selectOption(element, isCorrect) {
+            // Remove previous selections in this question
+            const question = element.closest('.quiz-question');
+            question.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark this option as selected
+            element.classList.add('selected');
+            
+            // Store the answer
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
+            quizAnswers[questionIndex] = isCorrect;
+            
+            // Show immediate feedback
+            const feedback = question.querySelector('.quiz-feedback');
+            feedback.classList.remove('hidden');
+            
+            if (isCorrect) {
+                feedback.innerHTML = '<div class="text-green-400 font-semibold">✓ Correct!</div>';
+                element.classList.add('correct');
+            } else {
+                feedback.innerHTML = '<div class="text-red-400 font-semibold">✗ Incorrect</div>';
+                element.classList.add('incorrect');
+                
+                // Show the correct answer
+                const options = question.querySelectorAll('.quiz-option');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+        
+        function showQuizResults() {
+            if (quizAnswers.length < 3) {
+                alert('Please answer all questions first!');
+                return;
+            }
+            
+            score = quizAnswers.filter(answer => answer).length;
+            const percentage = (score / 3) * 100;
+            
+            document.getElementById('quiz-results').classList.remove('hidden');
+            document.getElementById('score-display').textContent = `${score}/3 (${percentage}%)`;
+            
+            let feedback = '';
+            if (score === 3) {
+                feedback = 'Excellent! You have a keen eye for spotting phishing attempts. Keep up the great work!';
+                document.getElementById('score-display').className = 'text-3xl font-bold text-green-400 text-center mb-4';
+            } else if (score === 2) {
+                feedback = 'Good job! You\'re on the right track. Review the red flags section to improve your detection skills.';
+                document.getElementById('score-display').className = 'text-3xl font-bold text-yellow-400 text-center mb-4';
+            } else {
+                feedback = 'Keep learning! Phishing detection takes practice. Re-read this tutorial and try the quiz again.';
+                document.getElementById('score-display').className = 'text-3xl font-bold text-red-400 text-center mb-4';
+            }
+            
+            document.getElementById('score-feedback').textContent = feedback;
+        }
+    </script>
+</body>
+</html>

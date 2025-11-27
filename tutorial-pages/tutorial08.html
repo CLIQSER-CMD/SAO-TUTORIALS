@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install Kali Linux Safely - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .step-card {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -0.75rem;
+            left: 1.5rem;
+            background: var(--accent-primary);
+            color: black;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .screenshot {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .system-requirements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .requirement-min {
+            background: #2d0b0b;
+            border: 1px solid #ef4444;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        
+        .requirement-rec {
+            background: #0d2818;
+            border: 1px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        
+        .download-btn {
+            background: var(--accent-primary);
+            color: black;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .download-btn:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">20 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Install Kali Linux Safely</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    VirtualBox step-by-step installation guide for safe and ethical learning with the most popular penetration testing distribution.
+                </p>
+                <img src="../resources/kali-linux.png" alt="Kali Linux Installation" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What is Kali Linux?</h2>
+                <p class="text-gray-300 mb-4">
+                    Kali Linux is a Debian-based Linux distribution designed for digital forensics and penetration testing. It comes pre-installed with hundreds of security tools for ethical hacking, security research, and cybersecurity education.
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">Why Use Kali Linux?</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Pre-installed with 600+ penetration testing tools</li>
+                        <li>• Industry-standard distribution for cybersecurity professionals</li>
+                        <li>• Regular updates and security patches</li>
+                        <li>• Wide community support and documentation</li>
+                        <li>• Free and open-source</li>
+                        <li>• Used in cybersecurity certifications and training</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-2 text-red-400">⚠️ Important Legal Notice</h4>
+                    <p class="text-gray-300">Kali Linux contains powerful tools that can be misused. Only use these tools on systems you own or have explicit permission to test. Unauthorized access to computer systems is illegal in most jurisdictions.</p>
+                </div>
+            </section>
+
+            <!-- System Requirements -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">System Requirements</h2>
+                
+                <div class="system-requirements">
+                    <div class="requirement-min">
+                        <h3 class="font-semibold mb-2 text-red-400">Minimum Requirements</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• RAM: 2 GB</li>
+                            <li>• Storage: 20 GB</li>
+                            <li>• CPU: 1 GHz</li>
+                            <li>• Graphics: Any</li>
+                            <li>• Network: Internet connection</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-rec">
+                        <h3 class="font-semibold mb-2 text-green-400">Recommended Requirements</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• RAM: 4-8 GB</li>
+                            <li>• Storage: 50+ GB</li>
+                            <li>• CPU: 2+ cores</li>
+                            <li>• Graphics: Hardware acceleration</li>
+                            <li>• Network: High-speed internet</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">💡 Virtual Machine Benefits</h4>
+                    <p class="text-gray-300">Running Kali in a VM allows you to:</p>
+                    <ul class="text-gray-300 text-sm space-y-1 mt-2">
+                        <li>• Use Kali alongside your main operating system</li>
+                        <li>• Take snapshots before dangerous operations</li>
+                        <li>• Isolate Kali from your host system</li>
+                        <li>• Easily delete and reinstall if something goes wrong</li>
+                        <li>• Practice safely without affecting your main system</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Prerequisites -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What You'll Need</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2">VirtualBox Software</h3>
+                    <p class="text-gray-300 mb-3">Download and install Oracle VM VirtualBox, a free and open-source virtualization software.</p>
+                    <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" class="download-btn">
+                        <i class="fas fa-download mr-2"></i>Download VirtualBox
+                    </a>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2">Kali Linux ISO</h3>
+                    <p class="text-gray-300 mb-3">Download the official Kali Linux ISO image. Choose the appropriate version for your needs.</p>
+                    <a href="https://www.kali.org/get-kali/#kali-installer-images" target="_blank" class="download-btn">
+                        <i class="fas fa-download mr-2"></i>Download Kali Linux
+                    </a>
+                    <div class="mt-3 text-sm text-gray-400">
+                        <strong>Recommended:</strong> Kali Linux 64-bit Installer (not the live version for installation)
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2">System Resources</h3>
+                    <p class="text-gray-300 mb-3">Ensure your host system has enough resources to run both your main OS and the Kali VM simultaneously.</p>
+                    <div class="bg-gray-800 p-3 rounded text-sm">
+                        <strong>Minimum host requirements:</strong><br>
+                        • 8GB RAM (4GB for host + 4GB for VM)<br>
+                        • 50GB free disk space<br>
+                        • 2+ CPU cores
+                    </div>
+                </div>
+            </section>
+
+            <!-- VirtualBox Installation -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Step 1: Install VirtualBox</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2">Download VirtualBox</h3>
+                    <p class="text-gray-300 mb-3">Visit the VirtualBox website and download the installer for your operating system.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: VirtualBox download page showing different OS options]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2">Run the Installer</h3>
+                    <p class="text-gray-300 mb-3">Execute the downloaded installer and follow the installation wizard. Use default settings unless you have specific requirements.</p>
+                    <div class="info-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Installation Tips</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Accept the default installation path</li>
+                            <li>• Install all components (including network drivers)</li>
+                            <li>• Allow the installer to make changes to your system</li>
+                            <li>• Restart your computer if prompted</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2">Verify Installation</h3>
+                    <p class="text-gray-300 mb-3">Launch VirtualBox to ensure it installed correctly. You should see the VirtualBox Manager interface.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: VirtualBox Manager main interface showing empty VM list]</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Create Virtual Machine -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Step 2: Create Kali Linux VM</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2">Create New Virtual Machine</h3>
+                    <p class="text-gray-300 mb-3">Click "New" in VirtualBox Manager to start the VM creation wizard.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: VirtualBox Manager with "New" button highlighted]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2">Configure VM Settings</h3>
+                    <p class="text-gray-300 mb-3">Fill in the VM details:</p>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><strong>Name:</strong> Kali Linux 2025</li>
+                        <li><strong>Type:</strong> Linux</li>
+                        <li><strong>Version:</strong> Debian (64-bit)</li>
+                        <li><strong>Memory:</strong> 4096 MB (4 GB)</li>
+                        <li><strong>Hard Disk:</strong> Create a virtual hard disk (25 GB)</li>
+                    </ul>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2">Advanced VM Configuration</h3>
+                    <p class="text-gray-300 mb-3">Before starting the installation, configure these important settings:</p>
+                    
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-3">System Settings:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• <strong>Processor:</strong> 2+ CPUs (if available)</li>
+                            <li>• <strong>Acceleration:</strong> Enable VT-x/AMD-V</li>
+                            <li>• <strong>Base Memory:</strong> 4096 MB minimum</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold mb-3 mt-4">Display Settings:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• <strong>Video Memory:</strong> 128 MB</li>
+                            <li>• <strong>Graphics Controller:</strong> VBoxSVGA</li>
+                            <li>• <strong>Acceleration:</strong> Enable 3D Acceleration</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold mb-3 mt-4">Network Settings:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• <strong>Adapter 1:</strong> NAT (for internet access)</li>
+                            <li>• <strong>Adapter 2:</strong> Host-only (for VM-host communication)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kali Installation -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Step 3: Install Kali Linux</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2">Mount the ISO</h3>
+                    <p class="text-gray-300 mb-3">Select your Kali VM, click Settings → Storage, and mount the downloaded Kali ISO file to the virtual CD/DVD drive.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: Storage settings showing ISO file mounted]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2">Start the VM</h3>
+                    <p class="text-gray-300 mb-3">Click "Start" to boot from the Kali ISO. You'll see the Kali boot menu.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: Kali Linux boot menu with installation options]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2">Choose Installation Type</h3>
+                    <p class="text-gray-300 mb-3">Select "Graphical Install" for a user-friendly installation process.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-semibold mb-2">Installation Configuration</h3>
+                    <p class="text-gray-300 mb-3">Follow the installation wizard:</p>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <ol class="text-gray-300 text-sm space-y-1">
+                            <li>1. <strong>Language:</strong> Choose your preferred language</li>
+                            <li>2. <strong>Location:</strong> Select your country</li>
+                            <li>3. <strong>Keyboard:</strong> Configure keyboard layout</li>
+                            <li>4. <strong>Network:</strong> Configure hostname and domain</li>
+                            <li>5. <strong>User Account:</strong> Create username and password</li>
+                            <li>6. <strong>Clock:</strong> Set timezone</li>
+                            <li>7. <strong>Partitioning:</strong> Use "Guided - use entire disk"</li>
+                            <li>8. <strong>Software:</strong> Choose "XFCE" desktop environment</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="text-lg font-semibold mb-2">Complete Installation</h3>
+                    <p class="text-gray-300 mb-3">Wait for the installation to complete (usually 15-30 minutes). When prompted, remove the installation media and reboot.</p>
+                </div>
+            </section>
+
+            <!-- Post-Installation Setup -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Step 4: Post-Installation Configuration</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2">First Boot</h3>
+                    <p class="text-gray-300 mb-3">Log in with the username and password you created during installation.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: Kali Linux login screen]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2">Update Kali Linux</h3>
+                    <p class="text-gray-300 mb-3">Open a terminal and update your system:</p>
+                    <div class="bg-gray-900 p-3 rounded text-sm font-mono">
+                        sudo apt update && sudo apt upgrade -y
+                    </div>
+                    <p class="text-gray-300 text-sm mt-2">This ensures you have the latest security patches and tool updates.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2">Install VirtualBox Guest Additions</h3>
+                    <p class="text-gray-300 mb-3">Install Guest Additions for better performance and features:</p>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="bg-gray-900 p-3 rounded text-sm font-mono mb-2">
+                            sudo apt install -y virtualbox-guest-x11 virtualbox-guest-utils
+                        </div>
+                        <p class="text-gray-300 text-sm">This provides better screen resolution, mouse integration, and shared folders.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-semibold mb-2">Configure Shared Folders (Optional)</h3>
+                    <p class="text-gray-300 mb-3">Set up shared folders between your host and Kali VM for easy file transfer:</p>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <ol class="text-gray-300 text-sm space-y-1">
+                            <li>1. In VirtualBox, select your Kali VM → Settings → Shared Folders</li>
+                            <li>2. Click the add folder icon</li>
+                            <li>3. Choose a folder on your host system</li>
+                            <li>4. Set "Auto-mount" and "Make Permanent"</li>
+                            <li>5. In Kali, the folder will appear in /media/sf_folder_name</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Safety Guidelines -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Safety and Ethical Guidelines</h2>
+                
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-3 text-red-400">🚨 Ethical Hacking Principles</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li><strong>Permission:</strong> Only test systems you own or have written permission to test</li>
+                        <li><strong>Purpose:</strong> Use tools for learning, security assessment, or legitimate research</li>
+                        <li><strong>Responsibility:</strong> Report vulnerabilities responsibly through proper channels</li>
+                        <li><strong>Privacy:</strong> Respect user privacy and data protection laws</li>
+                        <li><strong>Legality:</strong> Always comply with local, state, and federal laws</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <h4 class="font-semibold mb-3 text-green-400">✅ Safe Practice Environments</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Practice on your own virtual machines</li>
+                        <li>• Use dedicated lab networks</li>
+                        <li>• Try online platforms like TryHackMe or HackTheBox</li>
+                        <li>• Set up vulnerable VMs like Metasploitable</li>
+                        <li>• Join cybersecurity competitions and CTFs</li>
+                        <li>• Use legal penetration testing platforms</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Essential Tools Overview -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Essential Kali Linux Tools</h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Information Gathering</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• nmap - Network scanning</li>
+                            <li>• maltego - Intelligence gathering</li>
+                            <li>• recon-ng - Web reconnaissance</li>
+                            <li>• theharvester - Email harvesting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Vulnerability Analysis</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• nikto - Web vulnerability scanner</li>
+                            <li>• sqlmap - SQL injection testing</li>
+                            <li>• burpsuite - Web app security testing</li>
+                            <li>• openvas - Vulnerability assessment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Web Applications</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• wpscan - WordPress security scanner</li>
+                            <li>• dirb - Web content scanner</li>
+                            <li>• gobuster - Directory/file brute forcer</li>
+                            <li>• whatweb - Web technology identifier</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Password Attacks</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• hashcat - Password cracking</li>
+                            <li>• john - John the Ripper</li>
+                            <li>• hydra - Login brute forcer</li>
+                            <li>• crunch - Password list generator</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Issues & Solutions</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Black Screen After Boot</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Increase video memory to 128MB</li>
+                            <li>• Enable 3D acceleration</li>
+                            <li>• Try different graphics controllers (VBoxSVGA)</li>
+                            <li>• Check if virtualization is enabled in BIOS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">No Internet Connection</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Check network adapter settings in VirtualBox</li>
+                            <li>• Try NAT instead of Bridged mode</li>
+                            <li>• Restart network services: sudo systemctl restart networking</li>
+                            <li>• Check if firewall is blocking connections</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Installation Freezes</h3>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Reduce VM memory to 2GB during installation</li>
+                            <li>• Disable 3D acceleration temporarily</li>
+                            <li>• Check ISO file integrity (re-download if corrupted)</li>
+                            <li>• Try a different desktop environment (XFCE is most stable)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Your Kali Linux Learning Path</h2>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-blue-400">Beginner's Roadmap</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. <strong>Get Comfortable:</strong> Learn basic Linux navigation and commands</li>
+                        <li>2. <strong>Explore Tools:</strong> Familiarize yourself with the main tool categories</li>
+                        <li>3. <strong>Practice Safely:</strong> Set up vulnerable VMs for practice</li>
+                        <li>4. <strong>Learn Networking:</strong> Understand TCP/IP, ports, and protocols</li>
+                        <li>5. <strong>Study Methodology:</strong> Learn penetration testing frameworks</li>
+                        <li>6. <strong>Join Communities:</strong> Engage with cybersecurity forums and groups</li>
+                        <li>7. <strong>Get Certified:</strong> Consider certifications like OSCP, CEH</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial07.html" class="text-blue-400 font-semibold hover:underline">← Linux Commands</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 8 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial09.html" class="text-blue-400 font-semibold hover:underline">Cyber Attacks →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

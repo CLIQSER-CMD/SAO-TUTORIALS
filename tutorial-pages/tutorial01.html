@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is Cybersecurity? - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .tutorial-content {
+            max-width: 4xl;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .tutorial-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+        
+        .tutorial-content h2 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-primary);
+        }
+        
+        .tutorial-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: var(--text-primary);
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--accent-primary);
+            color: black;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        
+        .copy-btn:hover {
+            background: #0099cc;
+        }
+        
+        .interactive-element {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .btn-primary {
+            background: var(--accent-primary);
+            color: black;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+        
+        .reading-progress {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #333;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reading Progress Indicator -->
+    <div class="reading-progress">
+        <div class="text-sm text-gray-400 mb-2">Reading Progress</div>
+        <div class="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
+            <div class="h-full bg-blue-500 transition-all duration-300" id="reading-progress-bar" style="width: 0%"></div>
+        </div>
+        <div class="text-xs text-gray-500 mt-1" id="reading-percentage">0%</div>
+    </div>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="tutorial-content">
+            <div class="max-w-4xl mx-auto">
+                <!-- Tutorial Header -->
+                <div class="mb-8">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                        <span class="text-gray-400 text-sm">5 min read</span>
+                        <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                    </div>
+                    <h1 class="font-orbitron text-4xl font-bold mb-4">What Is Cybersecurity?</h1>
+                    <p class="text-xl text-gray-300 mb-6">
+                        Understanding the fundamentals of digital security and why it matters in today's interconnected world.
+                    </p>
+                    <img src="../resources/hero-cybersecurity.png" alt="Cybersecurity Overview" class="w-full h-64 object-cover rounded-xl mb-6">
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 text-white">Table of Contents</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#definition" class="text-blue-400 hover:text-blue-300">What is Cybersecurity?</a></li>
+                        <li><a href="#importance" class="text-blue-400 hover:text-blue-300">Why Cybersecurity Matters</a></li>
+                        <li><a href="#threats" class="text-blue-400 hover:text-blue-300">Common Cyber Threats</a></li>
+                        <li><a href="#principles" class="text-blue-400 hover:text-blue-300">Core Security Principles</a></li>
+                        <li><a href="#careers" class="text-blue-400 hover:text-blue-300">Cybersecurity Careers</a></li>
+                        <li><a href="#next-steps" class="text-blue-400 hover:text-blue-300">Next Steps</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tutorial Sections -->
+                <section id="definition">
+                    <h2>What is Cybersecurity?</h2>
+                    <p>
+                        Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes.
+                    </p>
+                    
+                    <div class="highlight-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Key Point</h4>
+                        <p>Cybersecurity isn't just about technology—it's about protecting people, processes, and information in the digital realm.</p>
+                    </div>
+
+                    <p>
+                        In simple terms, cybersecurity is like having locks, alarms, and security guards for your digital life. Just as you protect your home from burglars, cybersecurity protects your digital assets from cybercriminals.
+                    </p>
+
+                    <h3>The Scope of Cybersecurity</h3>
+                    <p>Cybersecurity covers multiple areas:</p>
+                    <ul>
+                        <li><strong>Network Security:</strong> Protecting computer networks from intruders</li>
+                        <li><strong>Application Security:</strong> Keeping software and devices free of threats</li>
+                        <li><strong>Information Security:</strong> Protecting the integrity and privacy of data</li>
+                        <li><strong>Operational Security:</strong> Processes and decisions for handling data assets</li>
+                        <li><strong>Disaster Recovery:</strong> Responding to cybersecurity incidents</li>
+                        <li><strong>End-User Education:</strong> Teaching users about security best practices</li>
+                    </ul>
+                </section>
+
+                <section id="importance">
+                    <h2>Why Cybersecurity Matters</h2>
+                    <p>
+                        In our increasingly connected world, cybersecurity affects everyone. From individuals to large corporations, government agencies to small businesses—no one is immune to cyber threats.
+                    </p>
+
+                    <h3>Personal Impact</h3>
+                    <p>For individuals, cybersecurity protects:</p>
+                    <ul>
+                        <li>Personal and financial information</li>
+                        <li>Private communications and photos</li>
+                        <li>Banking and credit card details</li>
+                        <li>Medical records and personal identity</li>
+                        <li>Social media accounts and reputation</li>
+                    </ul>
+
+                    <h3>Business Impact</h3>
+                    <p>For organizations, cybersecurity is crucial for:</p>
+                    <ul>
+                        <li>Protecting customer data and maintaining trust</li>
+                        <li>Preventing financial losses from cyberattacks</li>
+                        <li>Maintaining business continuity</li>
+                        <li>Complying with legal and regulatory requirements</li>
+                        <li>Preserving brand reputation and customer confidence</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4 class="font-semibold mb-2 text-red-400">Important Statistics</h4>
+                        <p>According to recent studies, a cyberattack occurs every 39 seconds, and the average cost of a data breach is over $4 million. Every individual and organization is a potential target.</p>
+                    </div>
+                </section>
+
+                <section id="threats">
+                    <h2>Common Cyber Threats</h2>
+                    <p>
+                        Understanding common threats helps you better protect yourself and your organization. Here are the most prevalent cybersecurity threats:
+                    </p>
+
+                    <h3>1. Malware</h3>
+                    <p>
+                        Malicious software designed to damage, disrupt, or gain unauthorized access to computer systems. Types include viruses, worms, trojans, ransomware, and spyware.
+                    </p>
+
+                    <h3>2. Phishing</h3>
+                    <p>
+                        Fraudulent attempts to obtain sensitive information by pretending to be a trustworthy entity. Often delivered through emails, text messages, or fake websites.
+                    </p>
+
+                    <h3>3. Social Engineering</h3>
+                    <p>
+                        Manipulating people into revealing confidential information or performing actions that compromise security. This exploits human psychology rather than technical vulnerabilities.
+                    </p>
+
+                    <h3>4. Password Attacks</h3>
+                    <p>
+                        Attempts to crack or steal passwords through various methods like brute force attacks, dictionary attacks, or credential stuffing.
+                    </p>
+
+                    <h3>5. Man-in-the-Middle (MitM) Attacks</h3>
+                    <p>
+                        Intercepting communications between two parties to eavesdrop or manipulate the data being exchanged.
+                    </p>
+
+                    <div class="interactive-element">
+                        <h4 class="text-lg font-semibold mb-3">Interactive: Threat Assessment</h4>
+                        <p class="mb-4">Which of these situations represents the highest cybersecurity risk?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                                <input type="radio" name="threat-assessment" value="a" class="mr-3">
+                                <span>Using public WiFi without a VPN</span>
+                            </label>
+                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                                <input type="radio" name="threat-assessment" value="b" class="mr-3">
+                                <span>Clicking a link in an unexpected email</span>
+                            </label>
+                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                                <input type="radio" name="threat-assessment" value="c" class="mr-3">
+                                <span>Using the same password for multiple accounts</span>
+                            </label>
+                        </div>
+                        <button onclick="checkThreatAnswer()" class="btn-primary mt-4">Check Answer</button>
+                        <div id="threat-feedback" class="mt-4 hidden"></div>
+                    </div>
+                </section>
+
+                <section id="principles">
+                    <h2>Core Security Principles</h2>
+                    <p>
+                        Cybersecurity is built on fundamental principles that guide all security measures and practices.
+                    </p>
+
+                    <h3>The CIA Triad</h3>
+                    <p>The foundation of information security rests on three core principles:</p>
+                    
+                    <ul>
+                        <li><strong>Confidentiality:</strong> Ensuring information is accessible only to authorized individuals</li>
+                        <li><strong>Integrity:</strong> Maintaining the accuracy and completeness of data</li>
+                        <li><strong>Availability:</strong> Ensuring systems and data are accessible when needed</li>
+                    </ul>
+
+                    <h3>Additional Principles</h3>
+                    <ul>
+                        <li><strong>Authentication:</strong> Verifying the identity of users and systems</li>
+                        <li><strong>Authorization:</strong> Determining what resources users can access</li>
+                        <li><strong>Non-repudiation:</strong> Preventing denial of actions performed</li>
+                        <li><strong>Defense in Depth:</strong> Using multiple layers of security controls</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Remember</h4>
+                        <p>Good cybersecurity isn't about perfect security—it's about making attacks more difficult and costly than the value of what they're trying to steal.</p>
+                    </div>
+                </section>
+
+                <section id="careers">
+                    <h2>Cybersecurity Careers</h2>
+                    <p>
+                        The cybersecurity field offers diverse career opportunities with excellent job prospects and competitive salaries.
+                    </p>
+
+                    <h3>Entry-Level Positions</h3>
+                    <ul>
+                        <li>Security Analyst</li>
+                        <li>Junior Penetration Tester</li>
+                        <li>IT Security Specialist</li>
+                        <li>Cybersecurity Technician</li>
+                    </ul>
+
+                    <h3>Advanced Positions</h3>
+                    <ul>
+                        <li>Security Architect</li>
+                        <li>Cybersecurity Manager</li>
+                        <li>Chief Information Security Officer (CISO)</li>
+                        <li>Security Consultant</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4 class="font-semibold mb-2 text-blue-400">Growing Demand</h4>
+                        <p>The cybersecurity workforce shortage is expected to reach 3.5 million unfilled positions by 2025, making it one of the most in-demand fields in technology.</p>
+                    </div>
+                </section>
+
+                <section id="next-steps">
+                    <h2>Next Steps</h2>
+                    <p>
+                        Now that you understand the basics of cybersecurity, here are your next steps to continue learning:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mt-6">
+                        <div class="bg-gray-900 p-6 rounded-xl">
+                            <h4 class="text-lg font-semibold mb-3 text-blue-400">Immediate Actions</h4>
+                            <ul class="space-y-2">
+                                <li>✓ Review your current passwords</li>
+                                <li>✓ Enable two-factor authentication</li>
+                                <li>✓ Update your software and devices</li>
+                                <li>✓ Learn about phishing detection</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl">
+                            <h4 class="text-lg font-semibold mb-3 text-blue-400">Continue Learning</h4>
+                            <ul class="space-y-2">
+                                <li>📖 <a href="tutorial02.html" class="text-blue-400 hover:underline">Create strong passwords</a></li>
+                                <li>📖 <a href="tutorial03.html" class="text-blue-400 hover:underline">Set up two-factor authentication</a></li>
+                                <li>📖 <a href="tutorial04.html" class="text-blue-400 hover:underline">Learn phishing detection</a></li>
+                                <li>📖 <a href="tutorial05.html" class="text-blue-400 hover:underline">Understand social engineering</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tutorial Navigation -->
+                <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                    <div>
+                        <div class="text-sm text-gray-400">Previous Tutorial</div>
+                        <div class="text-blue-400 font-semibold">Getting Started</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-sm text-gray-400">Tutorial 1 of 20</div>
+                        <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-400">Next Tutorial</div>
+                        <a href="tutorial02.html" class="text-blue-400 font-semibold hover:underline">Strong Passwords →</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+            document.getElementById('reading-progress-bar').style.width = scrollPercent + '%';
+            document.getElementById('reading-percentage').textContent = Math.round(scrollPercent) + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Interactive threat assessment
+        function checkThreatAnswer() {
+            const selected = document.querySelector('input[name="threat-assessment"]:checked');
+            const feedback = document.getElementById('threat-feedback');
+            
+            if (!selected) {
+                alert('Please select an answer first.');
+                return;
+            }
+            
+            feedback.classList.remove('hidden');
+            
+            if (selected.value === 'c') {
+                feedback.innerHTML = '<div class="text-green-400 font-semibold">✓ Correct!</div><p class="mt-2">Using the same password for multiple accounts is extremely risky. If one account is compromised, all your accounts become vulnerable. This is why unique passwords for each account are crucial.</p>';
+            } else {
+                feedback.innerHTML = '<div class="text-yellow-400 font-semibold">Good try, but consider this:</div><p class="mt-2">While public WiFi and suspicious links are dangerous, using the same password across multiple accounts creates the highest risk because it creates a single point of failure for all your digital accounts.</p>';
+            }
+        }
+        
+        // Track tutorial progress
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mark tutorial as started
+            const progress = JSON.parse(localStorage.getItem('sao-progress') || '{}');
+            progress['tutorial01'] = 'started';
+            localStorage.setItem('sao-progress', JSON.stringify(progress));
+            
+            // Mark as completed when reaching the end
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        progress['tutorial01'] = 'completed';
+                        localStorage.setItem('sao-progress', JSON.stringify(progress));
+                    }
+                });
+            });
+            
+            const endSection = document.querySelector('footer');
+            if (endSection) {
+                observer.observe(endSection);
+            }
+        });
+    </script>
+</body>
+</html>

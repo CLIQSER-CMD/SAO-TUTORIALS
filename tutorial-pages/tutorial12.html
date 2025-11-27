@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is a Firewall? - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        .comparison-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">10 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">What Is a Firewall?</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    An essential guide to understanding how firewalls protect your network, the different types, and why they are a cornerstone of cybersecurity.
+                </p>
+                <img src="../resources/firewall-security.png" alt="Firewall Security" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The Role of a Firewall</h2>
+                <p class="text-gray-300 mb-4">
+                    A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules. Think of it as a digital gatekeeper for your network.
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">Core Functions of a Firewall</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• <strong>Traffic Filtering:</strong> Blocks or allows traffic based on rules.</li>
+                        <li>• <strong>Network Security:</strong> Prevents unauthorized access to or from a private network.</li>
+                        <li>• <strong>Threat Prevention:</strong> Protects against common cyber attacks.</li>
+                        <li>• <strong>Logging and Auditing:</strong> Records network traffic for analysis.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- How Firewalls Work -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">How Firewalls Work</h2>
+                <p class="text-gray-300 mb-4">
+                    Firewalls analyze data packets based on pre-determined rules. If a packet matches the rules, it's allowed through. If not, it's blocked. These rules can be based on IP addresses, ports, protocols, or even the content of the packets.
+                </p>
+                <div class="info-box">
+                    <p class="text-gray-300">For example, a firewall can be configured to block all incoming traffic except for traffic on port 443 (HTTPS), allowing users to browse websites securely while blocking other potential connections.</p>
+                </div>
+            </section>
+
+            <!-- Types of Firewalls -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Types of Firewalls</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Packet-Filtering Firewalls</strong></td>
+                            <td>Analyzes packets and blocks them based on IP address, protocol, and port number. Fast but basic.</td>
+                            <td>Small networks, basic protection.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stateful Inspection Firewalls</strong></td>
+                            <td>Tracks the state of active connections and makes decisions based on the context of the traffic. More secure than packet-filtering.</td>
+                            <td>Most businesses and home networks.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proxy Firewalls (Application-Level)</strong></td>
+                            <td>Acts as an intermediary for requests from clients seeking resources from other servers. Hides the client's IP address.</td>
+                            <td>Content filtering, enhanced security.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Next-Generation Firewalls (NGFW)</strong></td>
+                            <td>Combines traditional firewall features with advanced threat prevention capabilities like deep packet inspection (DPI), intrusion prevention systems (IPS), and application-level inspection.</td>
+                            <td>Enterprises, high-security environments.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Software vs. Hardware Firewalls -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Software vs. Hardware Firewalls</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Software Firewalls</h3>
+                        <p class="text-gray-300 mb-4">Installed on individual devices (like your PC or laptop). Protects a single device from threats.</p>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li><strong>Examples:</strong> Windows Defender Firewall, macOS Firewall.</li>
+                            <li><strong>Pros:</strong> Good for individual device protection, highly customizable.</li>
+                            <li><strong>Cons:</strong> Can be disabled by malware, consumes system resources.</li>
+                        </ul>
+                    </div>
+                     <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-blue-400">Hardware Firewalls</h3>
+                        <p class="text-gray-300 mb-4">Physical devices placed between your network and the internet. Protects all devices on the network.</p>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li><strong>Examples:</strong> Your home WiFi router has a built-in hardware firewall.</li>
+                            <li><strong>Pros:</strong> Centralized protection for all devices, doesn't use PC resources.</li>
+                            <li><strong>Cons:</strong> Can be more expensive, requires configuration.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why You Need a Firewall -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Why You Need a Firewall</h2>
+                <p class="text-gray-300 mb-4">
+                   In today's digital landscape, a firewall is not optional—it's a necessity. It's your first line of defense against a wide array of cyber threats.
+                </p>
+                <ul class="text-gray-300 list-disc list-inside space-y-2">
+                    <li><strong>Prevents Unauthorized Access:</strong> Stops hackers from accessing your computer and network.</li>
+                    <li><strong>Blocks Malicious Traffic:</strong> Can prevent malware from reaching your device.</li>
+                    <li><strong>Safer Online Gaming:</strong> Protects your computer from threats that can be present in online gaming environments.</li>
+                    <li><strong>Content Filtering:</strong> Can block access to inappropriate or malicious websites.</li>
+                </ul>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial11.html" class="text-blue-400 font-semibold hover:underline">← How to Detect Malware</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 12 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial13.html" class="text-blue-400 font-semibold hover:underline">Beginner Guide to Wireshark →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

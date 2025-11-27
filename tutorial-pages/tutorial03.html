@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Enable Two-Factor Authentication - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .step-card {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -0.75rem;
+            left: 1.5rem;
+            background: var(--accent-primary);
+            color: black;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .screenshot {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        .comparison-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+        }
+        
+        .security-level-high { color: #22c55e; }
+        .security-level-medium { color: #f59e0b; }
+        .security-level-low { color: #ef4444; }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">10 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">How to Enable Two-Factor Authentication</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Step-by-step guide to securing your Instagram, Gmail, and WhatsApp accounts with an extra layer of protection.
+                </p>
+                <img src="../resources/2fa-security.png" alt="Two-Factor Authentication" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What is Two-Factor Authentication?</h2>
+                <p class="text-gray-300 mb-4">
+                    Two-factor authentication (2FA) adds an extra layer of security to your accounts by requiring two forms of verification: something you know (your password) and something you have (your phone or a security key).
+                </p>
+                
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-blue-400">Why 2FA is Essential</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Blocks 99.9% of automated attacks</li>
+                        <li>• Protects even if your password is compromised</li>
+                        <li>• Required by most security-conscious organizations</li>
+                        <li>• Free and easy to set up</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 2FA Methods Comparison -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Types of Two-Factor Authentication</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Security Level</th>
+                            <th>Convenience</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SMS/Text Message</strong></td>
+                            <td class="security-level-low">Low</td>
+                            <td>High</td>
+                            <td>Beginners, casual users</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authenticator App</strong></td>
+                            <td class="security-level-high">High</td>
+                            <td>High</td>
+                            <td>Most users, recommended</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security Key (YubiKey)</strong></td>
+                            <td class="security-level-high">Very High</td>
+                            <td>Medium</td>
+                            <td>High-security needs, professionals</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biometric</strong></td>
+                            <td class="security-level-medium">Medium</td>
+                            <td>Very High</td>
+                            <td>Mobile devices, convenience</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Gmail 2FA Setup -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Setting Up 2FA on Gmail</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Sign in to Your Google Account</h3>
+                    <p class="text-gray-300 mb-3">Go to <a href="https://myaccount.google.com/" target="_blank" class="text-blue-400 hover:underline">myaccount.google.com</a> and sign in with your Gmail credentials.</p>
+                    <div class="screenshot">
+                        <div class="text-gray-400">[Screenshot: Google Account Dashboard]</div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Navigate to Security Settings</h3>
+                    <p class="text-gray-300 mb-3">Click on "Security" in the left sidebar, then find "2-Step Verification" under "Signing in to Google."</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Start 2-Step Verification Setup</h3>
+                    <p class="text-gray-300 mb-3">Click "Get started" and follow the prompts. Google will ask you to re-enter your password.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Choose Your Second Factor</h3>
+                    <p class="text-gray-300 mb-3">We recommend using an authenticator app for better security. Select "Authenticator app" from the options.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Set Up Authenticator App</h3>
+                    <p class="text-gray-300 mb-3">Download Google Authenticator or Authy on your phone. Scan the QR code shown on screen or enter the setup key manually.</p>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Recommended Authenticator Apps:</h4>
+                        <div class="flex items-center space-x-4">
+                            <div class="app-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div>
+                                <strong>Google Authenticator</strong><br>
+                                <span class="text-sm text-gray-400">Simple and reliable</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 mt-2">
+                            <div class="app-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Authy</strong><br>
+                                <span class="text-sm text-gray-400">Cloud backup, multi-device</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Verify Setup</h3>
+                    <p class="text-gray-300 mb-3">Enter the 6-digit code from your authenticator app to verify the setup is working correctly.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">7</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Save Backup Codes</h3>
+                    <p class="text-gray-300 mb-3">Google will provide backup codes. Save these in a secure location—they're your lifeline if you lose access to your authenticator app.</p>
+                    <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-4">
+                        <h4 class="font-semibold mb-2 text-yellow-400">Important!</h4>
+                        <p class="text-gray-300">Store backup codes in a password manager or secure physical location. Never save them in plain text or email them to yourself.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram 2FA Setup -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Setting Up 2FA on Instagram</h2>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Open Instagram Settings</h3>
+                    <p class="text-gray-300 mb-3">Go to your profile, tap the three lines (hamburger menu) in the top right, and select "Settings and privacy."</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Find Security Settings</h3>
+                    <p class="text-gray-300 mb-3">Scroll down and tap "Accounts Center" then "Password and security."</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Enable Two-Factor Authentication</h3>
+                    <p class="text-gray-300 mb-3">Tap "Two-factor authentication" and select your Instagram account if prompted.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Choose Authentication Method</h3>
+                    <p class="text-gray-300 mb-3">Instagram offers several options. For best security, choose "Authentication app" first, then you can add "Text message" as a backup.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Set Up Your App</h3>
+                    <p class="text-gray-300 mb-3">If you already have an authenticator app installed, Instagram will automatically detect it. Otherwise, follow the prompts to install one.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Complete Setup</h3>
+                    <p class="text-gray-300 mb-3">Enter the code from your authenticator app to complete the setup. Instagram will also provide backup codes—save these securely.</p>
+                </div>
+            </section>
+
+            <!-- WhatsApp 2FA Setup -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Setting Up 2FA on WhatsApp</h2>
+                <p class="text-gray-300 mb-4">
+                    WhatsApp uses a different type of 2FA called "Two-step verification" that requires a PIN when registering your phone number.
+                </p>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Open WhatsApp Settings</h3>
+                    <p class="text-gray-300 mb-3">Tap the three dots menu (Android) or Settings tab (iPhone), then select "Settings."</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Navigate to Account</h3>
+                    <p class="text-gray-300 mb-3">Tap "Account" and then select "Two-step verification."</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Enable Two-Step Verification</h3>
+                    <p class="text-gray-300 mb-3">Tap "Enable" to start the setup process.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Create Your PIN</h3>
+                    <p class="text-gray-300 mb-3">Enter a 6-digit PIN that you'll remember. Avoid obvious combinations like 123456 or your birth year.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Confirm Your PIN</h3>
+                    <p class="text-gray-300 mb-3">Re-enter your PIN to confirm it.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Add Email Address</h3>
+                    <p class="text-gray-300 mb-3">Provide an email address you can access. This is crucial for resetting your PIN if you forget it. Tap "Next" and confirm your email.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">7</div>
+                    <h3 class="text-lg font-semibold mb-2 mt-2">Verify Email</h3>
+                    <p class="text-gray-300 mb-3">Check your email for a verification code and enter it in WhatsApp to complete the setup.</p>
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">2FA Best Practices</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-900/20 border-l-4 border-green-500 p-6">
+                        <h3 class="text-lg font-semibold mb-3 text-green-400">✓ Do This</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Use authenticator apps over SMS when possible</li>
+                            <li>• Enable 2FA on all important accounts</li>
+                            <li>• Save backup codes securely</li>
+                            <li>• Use multiple 2FA methods if available</li>
+                            <li>• Keep your authenticator app updated</li>
+                            <li>• Test your 2FA setup regularly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-900/20 border-l-4 border-red-500 p-6">
+                        <h3 class="text-lg font-semibold mb-3 text-red-400">✗ Avoid This</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Using SMS 2FA for high-value accounts</li>
+                            <li>• Losing backup codes</li>
+                            <li>• Sharing 2FA codes with anyone</li>
+                            <li>• Using the same 2FA method everywhere</li>
+                            <li>• Ignoring 2FA setup prompts</li>
+                            <li>• Storing backup codes insecurely</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Issues & Solutions</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Lost Access to Authenticator App</h3>
+                        <p class="text-gray-300">Use your backup codes to regain access, then set up 2FA again with a new authenticator app.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Not Receiving SMS Codes</h3>
+                        <p class="text-gray-300">Check your phone signal, try again later, or switch to an authenticator app for better reliability.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-yellow-400">Codes Not Working</h3>
+                        <p class="text-gray-300">Ensure your device time is synchronized. Authenticator apps rely on accurate time to generate valid codes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Your Next Steps</h2>
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-blue-400">Action Plan</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. Set up 2FA on your primary email account first</li>
+                        <li>2. Enable 2FA on banking and financial accounts</li>
+                        <li>3. Secure your social media accounts</li>
+                        <li>4. Set up 2FA on work-related accounts</li>
+                        <li>5. Create a backup plan for your 2FA methods</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial02.html" class="text-blue-400 font-semibold hover:underline">← Strong Passwords</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 3 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial04.html" class="text-blue-400 font-semibold hover:underline">Phishing Detection →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>

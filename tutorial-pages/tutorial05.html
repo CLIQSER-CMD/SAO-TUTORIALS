@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is Social Engineering? - SAO Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+        
+        .attack-type {
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .attack-icon {
+            position: absolute;
+            top: -0.75rem;
+            right: 1.5rem;
+            background: #ef4444;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .real-example {
+            background: #0d2818;
+            border: 1px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .prevention-tip {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .psychology-trick {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tutorial Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                    <span class="text-gray-400 text-sm">12 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">What Is Social Engineering?</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Understanding psychological manipulation techniques and real-life attack examples to protect yourself from human-based cyber threats.
+                </p>
+                <img src="../resources/social-engineering.png" alt="Social Engineering" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Introduction -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Understanding Social Engineering</h2>
+                <p class="text-gray-300 mb-4">
+                    Social engineering is the art of manipulating people to divulge confidential information or perform actions that compromise security. Unlike technical attacks that exploit software vulnerabilities, social engineering exploits human psychology and trust.
+                </p>
+                
+                <div class="bg-red-900/20 border-l-4 border-red-500 p-6 mb-6">
+                    <h4 class="font-semibold mb-3 text-red-400">Why Social Engineering Works</h4>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• Humans are naturally trusting and helpful</li>
+                        <li>• People want to avoid conflict and be cooperative</li>
+                        <li>• Attackers exploit emotions like fear, greed, and urgency</li>
+                        <li>• Most people aren't trained to recognize manipulation</li>
+                        <li>• It's often easier than hacking technical systems</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- The Psychology Behind Social Engineering -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">The Psychology Behind Social Engineering</h2>
+                <p class="text-gray-300 mb-4">
+                    Social engineers leverage fundamental aspects of human psychology to achieve their goals. Understanding these psychological principles is key to defending against them.
+                </p>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Authority</h3>
+                    <p class="text-gray-300">People tend to obey authority figures without question. Attackers impersonate bosses, police, IT support, or government officials to gain compliance.</p>
+                </div>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Urgency and Scarcity</h3>
+                    <p class="text-gray-300">Creating a sense of urgency or limited availability bypasses rational thinking. "Act now or lose your account!" is a common tactic.</p>
+                </div>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Social Proof</h3>
+                    <p class="text-gray-300">People follow the crowd. Attackers create fake testimonials or claim "everyone is doing it" to build trust and credibility.</p>
+                </div>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Fear and Intimidation</h3>
+                    <p class="text-gray-300">Threatening consequences (account closure, legal action, fines) makes people act irrationally and bypass security procedures.</p>
+                </div>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Reciprocity</h3>
+                    <p class="text-gray-300">People feel obligated to return favors. Attackers offer small gifts or help to create a sense of debt and obligation.</p>
+                </div>
+
+                <div class="psychology-trick">
+                    <h3 class="font-semibold mb-2 text-red-400">Liking and Similarity</h3>
+                    <p class="text-gray-300">People trust those they like or perceive as similar to themselves. Attackers mirror personalities, interests, or backgrounds.</p>
+                </div>
+            </section>
+
+            <!-- Common Social Engineering Attacks -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Common Social Engineering Attacks</h2>
+                
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Phishing</h3>
+                    <p class="text-gray-300 mb-3">
+                        The most common social engineering attack, involving fraudulent emails, messages, or websites that appear to be from legitimate sources.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            An email claiming to be from your bank: "Suspicious activity detected on your account. Click here immediately to verify your identity or your account will be frozen."
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Never click links in suspicious emails. Type the URL manually or use bookmarks. Verify through official channels.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Vishing (Voice Phishing)</h3>
+                    <p class="text-gray-300 mb-3">
+                        Phone-based attacks where criminals impersonate legitimate organizations to extract information or convince victims to take action.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Caller claims to be from Microsoft support: "We've detected viruses on your computer. Please install this remote access software so we can help you."
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Legitimate companies don't call unsolicited. Hang up and call the official number to verify. Never give remote access to unknown callers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Smishing (SMS Phishing)</h3>
+                    <p class="text-gray-300 mb-3">
+                        Text message-based attacks that use urgent messages to trick victims into clicking malicious links or revealing information.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Text message: "Your package delivery failed. Update your address here: [malicious link] or your order will be returned."
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Don't click links in unexpected texts. Contact the company directly using official channels to verify messages.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Pretexting</h3>
+                    <p class="text-gray-300 mb-3">
+                        Creating a fabricated scenario (pretext) to obtain information or convince someone to perform an action they normally wouldn't.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Attacker poses as IT support: "Hi, I'm from IT. We're updating our systems and need to verify your login credentials for the migration."
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Verify identity through official channels. Legitimate IT staff won't ask for passwords. Check with your supervisor or IT department directly.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Tailgating</h3>
+                    <p class="text-gray-300 mb-3">
+                        Physical security breach where attackers follow authorized personnel into restricted areas without proper authentication.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Attacker waits near a secure door with arms full of boxes. When an employee opens the door, they ask them to hold it open, appearing to be a legitimate delivery person.
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Never hold secure doors for strangers. Everyone must badge in individually. Report suspicious individuals to security immediately.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attack-type">
+                    <div class="attack-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Baiting</h3>
+                    <p class="text-gray-300 mb-3">
+                        Offering something enticing (free software, prizes, gifts) to trick victims into compromising security or revealing information.
+                    </p>
+                    <div class="real-example">
+                        <h4 class="font-semibold mb-2 text-green-400">Real Example:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Free USB drives left in parking lot with labels like "Confidential - Salary Information 2025" containing malware that installs when plugged in.
+                        </p>
+                    </div>
+                    <div class="prevention-tip">
+                        <h4 class="font-semibold mb-2 text-green-400">Prevention:</h4>
+                        <p class="text-gray-300 text-sm">
+                            Never plug in unknown USB devices. Be skeptical of "free" offers that seem too good to be true. If it's free, you're probably the product.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-World Case Studies -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Real-World Case Studies</h2>
+                
+                <div class="bg-gray-900 p-6 rounded-xl mb-6">
+                    <h3 class="text-lg font-semibold mb-3 text-blue-400">The Twitter Bitcoin Scam (2020)</h3>
+                    <p class="text-gray-300 mb-3">
+                        Attackers used social engineering to convince Twitter employees they were colleagues needing access to internal tools. They compromised high-profile accounts (Obama, Musk, Gates) and posted bitcoin scam messages.
+                    </p>
+                    <div class="bg-red-900/20 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2 text-red-400">Key Lessons:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Even tech companies can fall victim to social engineering</li>
+                            <li>• Internal verification processes are crucial</li>
+                            <li>• High-profile accounts need extra protection</li>
+                            <li>• Employee training is essential</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-xl mb-6">
+                    <h3 class="text-lg font-semibold mb-3 text-blue-400">The Ubiquiti Networks Breach (2015)</h3>
+                    <p class="text-gray-300 mb-3">
+                        Attackers impersonated company executives in emails to finance departments, requesting wire transfers to fraudulent accounts. The scam cost the company over $46 million.
+                    </p>
+                    <div class="bg-red-900/20 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2 text-red-400">Key Lessons:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Email impersonation can be very convincing</li>
+                            <li>• Financial processes need verification procedures</li>
+                            <li>• Executive impersonation is a common tactic</li>
+                            <li>• Wire transfer requests should always be verified</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold mb-3 text-blue-400">The RSA SecurID Attack (2011)</h3>
+                    <p class="text-gray-300 mb-3">
+                        Attackers sent RSA employees phishing emails with malicious Excel attachments. The emails had the subject line "2011 Recruitment Plan" and exploited human curiosity to compromise one of the world's leading security companies.
+                    </p>
+                    <div class="bg-red-900/20 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2 text-red-400">Key Lessons:</h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Security companies are not immune to attacks</li>
+                            <li>• Curiosity is a powerful psychological trigger</li>
+                            <li>• Email attachments should always be treated carefully</li>
+                            <li>• Even security professionals can be tricked</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prevention Strategies -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">How to Defend Against Social Engineering</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-green-400">Personal Defense</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Slow down and think before acting</li>
+                            <li>• Verify requests through official channels</li>
+                            <li>• Never share passwords or sensitive info</li>
+                            <li>• Be skeptical of urgent requests</li>
+                            <li>• Trust your instincts—if it feels wrong, it probably is</li>
+                            <li>• Report suspicious activities immediately</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3 text-green-400">Organizational Defense</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Regular security awareness training</li>
+                            <li>• Clear verification procedures</li>
+                            <li>• Multi-factor authentication everywhere</li>
+                            <li>• Principle of least privilege access</li>
+                            <li>• Security culture and open communication</li>
+                            <li>• Regular phishing simulation exercises</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Red Flags Checklist -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Social Engineering Red Flags Checklist</h2>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <p class="text-gray-300 mb-4">If you encounter any of these signs, be extremely cautious:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold mb-2 text-red-400">Communication Red Flags</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Urgent language and threats</li>
+                                <li>• Requests for sensitive information</li>
+                                <li>• Unusual communication methods</li>
+                                <li>• Poor grammar or spelling</li>
+                                <li>• Pressure to act quickly</li>
+                                <li>• Requests to bypass procedures</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold mb-2 text-red-400">Behavioral Red Flags</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Name-dropping authority figures</li>
+                                <li>• Claiming emergencies</li>
+                                <li>• Offering gifts or favors</li>
+                                <li>• Creating artificial deadlines</li>
+                                <li>• Using intimidation tactics</li>
+                                <li>• Requesting confidentiality</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What to Do If You're Targeted -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">What to Do If You're Targeted</h2>
+                
+                <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-6">
+                    <h3 class="font-semibold mb-3 text-yellow-400">Immediate Response Protocol</h3>
+                    <ol class="text-gray-300 space-y-2">
+                        <li>1. <strong>Stop communication immediately</strong> - Don't engage further</li>
+                        <li>2. <strong>Don't provide any information</strong> - Even seemingly harmless details</li>
+                        <li>3. <strong>Verify through official channels</strong> - Use known phone numbers or websites</li>
+                        <li>4. <strong>Report to security/IT department</strong> - Document everything</li>
+                        <li>5. <strong>Warn colleagues</strong> - Share the incident (without sensitive details)</li>
+                        <li>6. <strong>Document the incident</strong> - Save messages, call logs, etc.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <a href="tutorial04.html" class="text-blue-400 font-semibold hover:underline">← Phishing Detection</a>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 5 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial06.html" class="text-blue-400 font-semibold hover:underline">WiFi Security →</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+    </script>
+</body>
+</html>
