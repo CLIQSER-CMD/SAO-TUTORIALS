@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SAO Cybersecurity Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">Contact Us</h1>
+                <p class="text-gray-400">Last updated: November 27, 2025</p>
+            </div>
+
+            <!-- Main Content -->
+            <section class="mb-8 text-gray-300 space-y-4">
+                <p>We'd love to hear from you! Whether you have questions, feedback, or need assistance, feel free to reach out to us. We strive to respond to all inquiries as quickly as possible.</p>
+                
+                <h2 class="text-2xl font-bold pt-4">General Inquiries & Support</h2>
+                <p>For any general questions, technical support regarding our tutorials, or partnership inquiries, please contact us via email:</p>
+                <p class="text-xl font-bold neon-text">Email: <a href="mailto:cliqser73gmail.com" class="hover:underline">cliqser73gmail.com</a></p>
+
+                <h2 class="text-2xl font-bold pt-4">Social Media</h2>
+                <p>You can also connect with us on Instagram for updates and community discussions:</p>
+                <p class="text-xl">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-blue-400 hover:underline">
+                        <i class="fab fa-instagram mr-2"></i>@system_anomaly_operator
+                    </a>
+                </p>
+
+                <h2 class="text-2xl font-bold pt-4">Feedback</h2>
+                <p>Your feedback is invaluable to us. If you have suggestions for new tutorial topics, improvements to our content, or any other comments, please don't hesitate to share them.</p>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400 mb-4">
+                        <a href="about.html" class="hover:text-white">About</a> |
+                        <a href="contact.html" class="hover:text-white">Contact</a> |
+                        <a href="privacy.html" class="hover:text-white">Privacy Policy</a> |
+                        <a href="terms.html" class="hover:text-white">Terms & Conditions</a> |
+                        <a href="disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

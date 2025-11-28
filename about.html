@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SAO Cybersecurity Tutorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-text {
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <button onclick="window.history.back()" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="pt-20">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">About SAO Cybersecurity Tutorials</h1>
+                <p class="text-gray-400">Last updated: November 27, 2025</p>
+            </div>
+
+            <!-- Main Content -->
+            <section class="mb-8 text-gray-300 space-y-4">
+                <p>Welcome to SAO Cybersecurity Tutorials! We are dedicated to providing comprehensive and accessible cybersecurity education for everyone, from beginners to advanced enthusiasts.</p>
+                <p>Our mission is to empower individuals with the knowledge and skills necessary to navigate the complex digital landscape safely and securely. In an era where cyber threats are constantly evolving, understanding cybersecurity fundamentals is no longer optional—it's essential.</p>
+                
+                <h2 class="text-2xl font-bold pt-4">What We Offer</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>In-depth Tutorials:</strong> Step-by-step guides covering a wide range of topics, including strong passwords, two-factor authentication, phishing detection, malware removal, network security, and ethical hacking techniques.</li>
+                    <li><strong>Interactive Tools:</strong> Engage with our password strength checker, phishing email simulator, and command-line simulator to practice and reinforce your learning.</li>
+                    <li><strong>Career Guidance:</strong> Resources and roadmaps for those looking to build a career in the dynamic field of cybersecurity.</li>
+                    <li><strong>Latest Insights:</strong> Stay updated with the newest trends, threats, and defense strategies in the cybersecurity world.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold pt-4">Our Vision</h2>
+                <p>We believe that cybersecurity knowledge should be freely available to all. By demystifying complex topics and presenting them in a clear, engaging, and practical manner, we aim to foster a community of cyber-aware individuals who can protect themselves and contribute to a safer digital future.</p>
+                <p>Join us on this journey to master cybersecurity and become a guardian of the digital realm!</p>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="text-sm text-gray-400">Made by SAO</div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <div class="text-sm text-gray-400 mb-4">
+                        <a href="about.html" class="hover:text-white">About</a> |
+                        <a href="contact.html" class="hover:text-white">Contact</a> |
+                        <a href="privacy.html" class="hover:text-white">Privacy Policy</a> |
+                        <a href="terms.html" class="hover:text-white">Terms & Conditions</a> |
+                        <a href="disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
