@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAO - Cybersecurity Tutorials</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #16213e;
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --accent-primary: #4d90fe;
             --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
+            --text-secondary: #aaaaaa;
         }
         
         body {
@@ -31,17 +28,7 @@
         }
         
         .hero-bg {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            position: relative;
-        }
-        
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        .neon-text {
-            color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            background: var(--bg-primary);
         }
         
         .card-hover {
@@ -50,7 +37,7 @@
         
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         .difficulty-badge {
@@ -61,8 +48,8 @@
         }
         
         .difficulty-beginner {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
+            background: rgba(77, 144, 254, 0.2);
+            color: var(--accent-primary);
         }
         
         .difficulty-intermediate {
@@ -73,15 +60,6 @@
         .difficulty-advanced {
             background: rgba(239, 68, 68, 0.2);
             color: #ef4444;
-        }
-        
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
         }
         
         .typewriter {
@@ -111,72 +89,57 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        #vanta-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        
-        .content-overlay {
-            position: relative;
-            z-index: 1;
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-4">
-                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
-                    <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <div class="relative">
-                        <input type="text" id="search-input" onkeyup="SAO.searchTutorials(this.value)" placeholder="Search... (Ctrl+K)" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 w-full pl-10 text-sm" />
-                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="font-orbitron text-2xl font-bold" style="color:var(--accent-primary)">SAO</div>
+                        <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+                        
                     </div>
-                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <button id="filter-btn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
-                        <i class="fas fa-filter mr-2"></i>Filter
+                    <div class="flex items-center space-x-6">
+                        <div class="relative">
+                            <input type="text" id="search-input" onkeyup="SAO.searchTutorials(this.value)" placeholder="Search... (Ctrl+K)" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 w-full pl-10 text-sm" />
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <button id="filter-btn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition-colors">
+                            <i class="fas fa-filter mr-2"></i>Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- Hero Section -->
+        <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+            <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="mb-8">
+                    <img src="resources/hero-cybersecurity.png" alt="Cybersecurity Hero" class="w-64 h-64 mx-auto object-cover rounded-full">
+                </div>
+                <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6">
+                    <span style="color:var(--accent-primary)">SAO Cybersecurity</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Master cybersecurity with comprehensive tutorials, from beginner basics to advanced techniques. 
+                    Learn to protect yourself and others in the digital world.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToTutorials()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-all">
+                        Start Learning
+                    </button>
+                    <button onclick="showAssessment()" class="border border-blue-600 hover:bg-blue-600/10 px-8 py-3 rounded-lg font-semibold transition-all">
+                        Take Assessment
                     </button>
                 </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        <div id="vanta-bg"></div>
-        <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="floating-animation mb-8">
-                <img src="resources/hero-cybersecurity.png" alt="Cybersecurity Hero" class="w-64 h-64 mx-auto object-cover rounded-full glow-effect">
-            </div>
-            <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6">
-                <span class="neon-text typewriter">SAO Cybersecurity</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Master cybersecurity with comprehensive tutorials, from beginner basics to advanced techniques. 
-                Learn to protect yourself and others in the digital world.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="scrollToTutorials()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-all glow-effect">
-                    Start Learning
-                </button>
-                <button onclick="showAssessment()" class="border border-blue-600 hover:bg-blue-600/10 px-8 py-3 rounded-lg font-semibold transition-all">
-                    Take Assessment
-                </button>
-            </div>
-        </div>
-    </section>
-
+        </section>
     <!-- Filter Modal -->
     <div id="filter-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
         <div class="flex items-center justify-center min-h-screen p-4">
@@ -581,10 +544,15 @@
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <div class="text-sm text-gray-400">
-                        © 2025 SAO Cybersecurity Tutorials
-                    </div>
-                </div>
+                                    <div class="text-sm text-gray-400 mb-4">
+
+                                        <a href="privacy.html" class="hover:text-white">Privacy Policy</a> |
+                                        <a href="terms.html" class="hover:text-white">Terms & Conditions</a> |
+                                        <a href="disclaimer.html" class="hover:text-white">Disclaimer</a>
+                                    </div>
+                                    <div class="text-sm text-gray-400">
+                                        © 2025 SAO Cybersecurity Tutorials
+                                    </div>                </div>
             </div>
         </div>
     </footer>

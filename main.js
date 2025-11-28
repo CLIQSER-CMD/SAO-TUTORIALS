@@ -2,30 +2,6 @@
 
 // Initialize Vanta.js background
 document.addEventListener('DOMContentLoaded', function() {
-    if (typeof VANTA !== 'undefined') {
-        VANTA.BIRDS({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            backgroundColor: 0x0a0a0a,
-            color1: 0x1a1a2e,
-            color2: 0x00d4ff,
-            colorMode: "lerp",
-            birdSize: 1.20,
-            wingSpan: 25.00,
-            speedLimit: 3.00,
-            separation: 20.00,
-            alignment: 20.00,
-            cohesion: 20.00,
-            quantity: 3.00
-        });
-    }
-    
     // Initialize scroll reveal
     initScrollReveal();
     
