@@ -30,7 +30,6 @@
         
         .neon-text {
             color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
         
         .progress-bar {
@@ -87,7 +86,7 @@
         }
         
         .highlight-box {
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(77, 144, 254, 0.1);
             border-left: 4px solid var(--accent-primary);
             padding: 1rem;
             margin: 1.5rem 0;
@@ -175,8 +174,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-4">
-                    <a href="../index.html" class="font-orbitron text-2xl font-bold neon-text">SAO</a>
+                    <a href="../index.html" class="font-orbitron text-2xl font-bold" style="color:var(--accent-primary)">SAO</a>
                     <div class="hidden md:block text-sm text-gray-400">Cybersecurity Tutorials</div>
+
                 </div>
                 <div class="flex items-center space-x-6">
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
@@ -201,247 +201,353 @@
 
     <!-- Tutorial Content -->
     <main class="pt-20">
-        <article class="tutorial-content">
-            <div class="max-w-4xl mx-auto">
-                <!-- Tutorial Header -->
-                <div class="mb-8">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
-                        <span class="text-gray-400 text-sm">5 min read</span>
-                        <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
-                    </div>
-                    <h1 class="font-orbitron text-4xl font-bold mb-4">What Is Cybersecurity?</h1>
-                    <p class="text-xl text-gray-300 mb-6">
-                        Understanding the fundamentals of digital security and why it matters in today's interconnected world.
-                    </p>
-                    <img src="../resources/hero-cybersecurity.png" alt="Cybersecurity Overview" class="w-full h-64 object-cover rounded-xl mb-6">
+        <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Tutorial Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                    <span class="text-gray-400 text-sm">5 min read</span>
+                    <span class="text-gray-400 text-sm">Published Nov 27, 2025</span>
+                </div>
+                <h1 class="font-orbitron text-4xl font-bold mb-4 neon-text">What Is Cybersecurity?</h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Understanding the fundamentals of digital security and why it matters in today's interconnected world.
+                </p>
+                <img src="../resources/hero-cybersecurity.png" alt="Cybersecurity Overview" class="w-full h-64 object-cover rounded-xl mb-6">
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="bg-gray-900 rounded-xl p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-white">Table of Contents</h3>
+                <ul class="space-y-2">
+                    <li><a href="#definition" class="text-blue-400 hover:text-blue-300">What is Cybersecurity?</a></li>
+                    <li><a href="#importance" class="text-blue-400 hover:text-blue-300">Why Cybersecurity Matters</a></li>
+                    <li><a href="#threats" class="text-blue-400 hover:text-blue-300">Common Cyber Threats</a></li>
+                    <li><a href="#principles" class="text-blue-400 hover:text-blue-300">Core Security Principles</a></li>
+                    <li><a href="#careers" class="text-blue-400 hover:text-blue-300">Cybersecurity Careers</a></li>
+                    <li><a href="#faqs" class="text-blue-400 hover:text-blue-300">FAQs about Cybersecurity</a></li>
+                    <li><a href="#next-steps" class="text-blue-400 hover:text-blue-300">Next Steps</a></li>
+                </ul>
+            </div>
+
+            <!-- Tutorial Sections -->
+            <section id="definition">
+                <h2 class="text-3xl font-bold mb-4 text-white">What is Cybersecurity?</h2>
+                <p class="text-gray-300 mb-4">
+                    In our rapidly evolving digital world, where every aspect of our lives, from communication to commerce, relies heavily on interconnected systems, cybersecurity has become an indispensable guardian. At its core, <strong>cybersecurity is the comprehensive practice of protecting computer systems, networks, programs, and data from digital attacks, damage, or unauthorized access.</strong> These malicious attempts, often referred to as cyberattacks, can come in various forms and typically aim to achieve specific goals: accessing, changing, or destroying sensitive information; extorting money from individuals or organizations; or interrupting normal business processes to cause disruption.
+                </p>
+                
+                <div class="highlight-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">Think of it this way:</h4>
+                    <p class="text-gray-300">Just as you secure your physical home with locks, alarms, and security systems to deter burglars, cybersecurity provides the digital equivalent for your online life. It's about safeguarding your digital assets and privacy from malicious actors in the vast and complex cyber landscape.</p>
                 </div>
 
-                <!-- Table of Contents -->
-                <div class="bg-gray-900 rounded-xl p-6 mb-8">
-                    <h3 class="text-xl font-bold mb-4 text-white">Table of Contents</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#definition" class="text-blue-400 hover:text-blue-300">What is Cybersecurity?</a></li>
-                        <li><a href="#importance" class="text-blue-400 hover:text-blue-300">Why Cybersecurity Matters</a></li>
-                        <li><a href="#threats" class="text-blue-400 hover:text-blue-300">Common Cyber Threats</a></li>
-                        <li><a href="#principles" class="text-blue-400 hover:text-blue-300">Core Security Principles</a></li>
-                        <li><a href="#careers" class="text-blue-400 hover:text-blue-300">Cybersecurity Careers</a></li>
-                        <li><a href="#next-steps" class="text-blue-400 hover:text-blue-300">Next Steps</a></li>
-                    </ul>
+                <p class="text-gray-300 mb-4">
+                    Cybersecurity extends far beyond just technical safeguards; it encompasses a blend of technology, processes, and human vigilance. It's not merely about installing antivirus software; it's about understanding the threats, implementing robust defenses, and continuously adapting to new challenges.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">The Broad Scope of Cybersecurity</h3>
+                <p class="text-gray-300 mb-4">
+                    The field of cybersecurity is vast and multifaceted, covering several critical areas, each playing a vital role in creating a secure digital environment:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Network Security:</strong> This involves securing computer networks from intrusion, unauthorized access, and misuse. It includes technologies like firewalls, intrusion detection systems (IDS), and virtual private networks (VPNs).</li>
+                    <li><strong>Application Security:</strong> Focuses on keeping software applications and devices free of vulnerabilities. This involves secure coding practices, security testing during development, and regular updates.</li>
+                    <li><strong>Information Security (InfoSec):</strong> Concentrates on protecting the confidentiality, integrity, and availability (CIA triad) of data. This includes data encryption, access controls, and data loss prevention (DLP) strategies.</li>
+                    <li><strong>Operational Security (OpSec):</strong> Deals with the processes and decisions for handling and protecting data assets. It's about how organizations manage and protect their information during daily operations.</li>
+                    <li><strong>Disaster Recovery and Business Continuity:</strong> This involves planning for and responding to cybersecurity incidents, ensuring that critical business functions can continue even after an attack or disruption.</li>
+                    <li><strong>End-User Education:</strong> Arguably one of the most crucial aspects, as human error is a significant factor in many breaches. Educating users about security best practices, such as recognizing phishing attempts and creating strong passwords, is paramount.</li>
+                </ul>
+                <p class="text-gray-300 mt-4">
+                    Each of these domains contributes to a layered defense strategy, aiming to protect against the ever-evolving landscape of cyber threats.
+                </p>
+            </section>
+
+            <section id="importance">
+                <h2 class="text-3xl font-bold mb-4 text-white">Why Cybersecurity Matters More Than Ever</h2>
+                <p class="text-gray-300 mb-4">
+                    In our increasingly interconnected and digital world, cybersecurity is no longer an optional luxury but an absolute necessity. With the proliferation of smart devices, cloud services, and online interactions, the surface area for potential cyber threats has expanded dramatically. From individuals to multinational corporations, everyone is a potential target, and the consequences of neglecting cybersecurity can be severe.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">Personal Impact: Protecting Your Digital Life</h3>
+                <p class="text-gray-300 mb-4">
+                    For individuals, cybersecurity is about safeguarding their personal digital lives. A cyberattack can have devastating personal repercussions:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Financial Ruin:</strong> Compromised banking details or credit card information can lead to direct financial theft, draining savings or running up massive debts.</li>
+                    <li><strong>Identity Theft:</strong> Stolen personal information (Social Security numbers, driver's license details) can be used to open new accounts, commit fraud, or even impersonate you for criminal activities.</li>
+                    <li><strong>Loss of Privacy:</strong> Private communications, photos, and sensitive documents can be exposed, leading to embarrassment, blackmail, or exploitation.</li>
+                    <li><strong>Reputational Damage:</strong> Hacked social media accounts can be used to spread misinformation under your name, damaging your personal brand and relationships.</li>
+                    <li><strong>Emotional Distress:</strong> The aftermath of a cyberattack can be incredibly stressful, involving significant time and effort to recover compromised accounts and repair the damage.</li>
+                </ul>
+                <p class="text-gray-300 mt-4">
+                    It's crucial to understand that every online interaction, from shopping to social media, carries a potential risk. Good cybersecurity practices empower you to navigate this digital world more safely.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">Business Impact: Safeguarding Operations and Trust</h3>
+                <p class="text-gray-300 mb-4">
+                    For organizations, cybersecurity is paramount for maintaining operations, protecting assets, and preserving stakeholder trust. The impact of a successful cyberattack on a business can be catastrophic:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Financial Losses:</strong> This includes direct theft of funds, costs associated with incident response, legal fees, regulatory fines, and lost revenue due to downtime.</li>
+                    <li><strong>Data Breaches:</strong> Exposure of sensitive customer data, intellectual property, or trade secrets can lead to massive financial penalties, lawsuits, and severe damage to reputation.</li>
+                    <li><strong>Operational Disruption:</strong> Attacks like ransomware or DDoS can bring business operations to a complete halt, leading to significant productivity losses and inability to serve customers.</li>
+                    <li><strong>Reputational Damage:</strong> News of a cyberattack can erode customer trust, damage brand image, and lead to a loss of market share that takes years to rebuild.</li>
+                    <li><strong>Legal and Regulatory Penalties:</strong> Non-compliance with data protection laws (e.g., GDPR, HIPAA) due to a breach can result in hefty fines and legal action.</li>
+                    <li><strong>Erosion of Customer Trust:</strong> Customers entrust organizations with their personal data. A breach shatters that trust, leading to customer churn and a negative public perception.</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4 class="font-semibold mb-2 text-red-400">A Stark Reality: The Cost of Complacency</h4>
+                    <p class="text-gray-300">Recent studies paint a grim picture: a cyberattack occurs every 39 seconds, highlighting the constant threat landscape. Furthermore, the average cost of a data breach has soared to over $4 million. These aren't just statistics; they represent tangible financial losses, disrupted lives, and shattered reputations. Every individual and organization, regardless of size, is a potential target. Therefore, proactive cybersecurity measures are not just advisable; they are absolutely essential for survival in the digital age.</p>
                 </div>
+            </section>
 
-                <!-- Tutorial Sections -->
-                <section id="definition">
-                    <h2>What is Cybersecurity?</h2>
-                    <p>
-                        Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes.
-                    </p>
+            <section id="threats">
+                <h2 class="text-3xl font-bold mb-4 text-white">Common Cyber Threats You Need to Know</h2>
+                <p class="text-gray-300 mb-4">
+                    Understanding the most prevalent types of cyber threats is your first step in building effective defenses. Cybercriminals employ a variety of sophisticated techniques, constantly evolving their methods to exploit vulnerabilities. Here are some of the most common cyber threats you might encounter:
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">1. Malware: The Malicious Software</h3>
+                <p class="text-gray-300 mb-2">
+                    Malware is a broad term for "malicious software" designed to disrupt, damage, or gain unauthorized access to computer systems. It's often delivered through infected email attachments, compromised websites, or malicious downloads.
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-gray-300 mb-4">
+                    <li><strong>Viruses:</strong> Attach to legitimate programs and spread when those programs are executed.</li>
+                    <li><strong>Worms:</strong> Self-replicating malware that spreads across networks without human intervention.</li>
+                    <li><strong>Trojans:</strong> Disguise themselves as legitimate software but carry malicious payloads.</li>
+                    <li><strong>Ransomware:</strong> Encrypts your files and demands a ransom payment for their release.</li>
+                    <li><strong>Spyware:</strong> Secretly monitors your computer activity and collects personal information.</li>
+                    <li><strong>Adware:</strong> Displays unwanted advertisements, often in pop-ups.</li>
+                </ul>
+                <p class="text-gray-300 mb-4">
+                    <strong>Prevention Tip:</strong> Keep your antivirus software updated, be cautious about opening suspicious attachments, and only download software from trusted sources. Regularly update your operating system and applications to patch known vulnerabilities.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">2. Phishing: The Digital Deception</h3>
+                <p class="text-gray-300 mb-4">
+                    Phishing is a deceptive attack where criminals impersonate trustworthy entities (like banks, popular websites, or even colleagues) through email, text messages (smishing), or phone calls (vishing) to trick you into revealing sensitive information, such as usernames, passwords, credit card details, or other personal data. These attacks often create a sense of urgency or fear to bypass rational judgment.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Real-world Example:</strong> You receive an email that looks like it's from your bank, warning you of "unusual activity" on your account and providing a link to "verify your details." Clicking this link leads you to a fake website designed to steal your login credentials. Learn more about how to spot these in our <a href="tutorial04.html" class="text-blue-400 hover:underline">Phishing Detection Tutorial</a>.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Prevention Tip:</strong> Always verify the sender's email address, hover over links before clicking to check the actual URL, and never provide sensitive information via email or untrusted links. If in doubt, visit the official website directly.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">3. Social Engineering: The Human Weakness</h3>
+                <p class="text-gray-300 mb-4">
+                    Social engineering is a manipulation technique that exploits human psychology rather than technical vulnerabilities. Attackers use psychological tactics like trust, fear, urgency, or curiosity to trick individuals into divulging confidential information or performing actions that compromise security. This can involve impersonation, pretexting (creating a fabricated scenario), or baiting (offering something tempting).
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Real-world Example:</strong> An attacker might call an employee, impersonating an IT technician, and convince them to reveal their login credentials by claiming there's an "urgent system issue" that needs immediate attention. Our <a href="tutorial05.html" class="text-blue-400 hover:underline">Social Engineering Tutorial</a> dives deeper into these tactics.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Prevention Tip:</strong> Be skeptical of unsolicited requests for information, verify the identity of callers/senders through official channels, and never share your credentials. Companies should implement strong security awareness training.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">4. Password Attacks: Cracking the Code</h3>
+                <p class="text-gray-300 mb-4">
+                    Password attacks involve various methods criminals use to discover or steal passwords to gain unauthorized access to accounts. These attacks leverage computational power or lists of common passwords.
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-gray-300 mb-4">
+                    <li><strong>Brute-Force Attacks:</strong> Trying every possible combination of characters until the correct password is found.</li>
+                    <li><strong>Dictionary Attacks:</strong> Using pre-compiled lists of common words, phrases, and previously leaked passwords.</li>
+                    <li><strong>Credential Stuffing:</strong> Using username/password combinations stolen from one data breach to try and log into accounts on other websites, banking on users reusing credentials.</li>
+                </ul>
+                <p class="text-gray-300 mb-4">
+                    <strong>Prevention Tip:</strong> Use strong, unique passwords for every account (preferably managed by a password manager), enable two-factor authentication (<a href="tutorial03.html" class="text-blue-400 hover:underline">2FA</a>), and ensure accounts have lockout policies after multiple failed login attempts. Learn more in our <a href="tutorial02.html" class="text-blue-400 hover:underline">Strong Passwords Tutorial</a> and <a href="tutorial14.html" class="text-blue-400 hover:underline">How Hackers Crack Passwords</a> tutorial.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">5. Man-in-the-Middle (MitM) Attacks: The Interceptor</h3>
+                <p class="text-gray-300 mb-4">
+                    A Man-in-the-Middle (MitM) attack occurs when an attacker secretly relays and possibly alters the communication between two parties who believe they are directly communicating with each other. The attacker essentially "listens in" on your conversation or data exchange, often on unsecured networks.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Real-world Example:</strong> You connect to a public Wi-Fi network at a coffee shop. An attacker sets up a fake Wi-Fi hotspot with a similar name. When you connect to their fake network, they can intercept all your internet traffic, potentially stealing login credentials or sensitive data as it passes through.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    <strong>Prevention Tip:</strong> Always use a Virtual Private Network (VPN) when connecting to public Wi-Fi, ensure websites use HTTPS (look for the padlock icon in your browser), and avoid conducting sensitive transactions over unsecured networks.
+                </p>
+
+                <div class="interactive-element">
+                    <h4 class="text-lg font-semibold mb-3">Interactive: Threat Assessment</h4>
+                    <p class="mb-4">Which of these situations represents the highest cybersecurity risk?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                            <input type="radio" name="threat-assessment" value="a" class="mr-3">
+                            <span>Using public WiFi without a VPN</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                            <input type="radio" name="threat-assessment" value="b" class="mr-3">
+                            <span>Clicking a link in an unexpected email</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
+                            <input type="radio" name="threat-assessment" value="c" class="mr-3">
+                            <span>Using the same password for multiple accounts</span>
+                        </label>
+                    </div>
+                    <button onclick="checkThreatAnswer()" class="btn-primary mt-4">Check Answer</button>
+                    <div id="threat-feedback" class="mt-4 hidden"></div>
+                </div>
+            </section>
+
+            <section id="principles">
+                <h2 class="text-3xl font-bold mb-4 text-white">Core Security Principles: The Foundation of Defense</h2>
+                <p class="text-gray-300 mb-4">
+                    Effective cybersecurity is built upon a set of foundational principles that guide all security measures, policies, and practices. These principles ensure a holistic approach to protecting digital assets.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">The CIA Triad: The Cornerstone of Information Security</h3>
+                <p class="text-gray-300 mb-4">
+                    The CIA Triad is a model designed to guide policies for information security. It represents three core principles that should be protected within any information system:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4">
+                    <li><strong>Confidentiality:</strong> This principle ensures that information is accessible only to authorized individuals or systems. It prevents sensitive data from being disclosed to unauthorized entities. For example, encrypting a private message ensures only the intended recipient can read it.</li>
+                    <li><strong>Integrity:</strong> Integrity guarantees that data remains accurate, consistent, and trustworthy throughout its lifecycle. It prevents unauthorized modification or alteration of data. For instance, a financial transaction should not be modifiable once recorded, and any tampering should be detectable.</li>
+                    <li><strong>Availability:</strong> This principle ensures that authorized users can reliably access information and resources when needed. It protects against disruptions caused by attacks (like DDoS) or system failures. An online banking service, for example, must always be available for customers to manage their finances.</li>
+                </ul>
+                <p class="text-gray-300 mt-4">
+                    All three elements of the CIA Triad are equally important and interdependent. Compromising one can often impact the others.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">Additional Critical Security Principles</h3>
+                <p class="text-gray-300 mb-4">
+                    Beyond the CIA triad, several other principles strengthen an organization's security posture:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Authentication:</strong> This is the process of verifying the identity of a user or system. Common authentication methods include passwords, biometrics (fingerprints, facial recognition), and multi-factor authentication (MFA).</li>
+                    <li><strong>Authorization:</strong> Once authenticated, authorization determines what specific resources a user or system is permitted to access or what actions they can perform. For example, a regular user might view certain files, while an administrator can view and modify them.</li>
+                    <li><strong>Non-repudiation:</strong> This principle ensures that a party cannot deny having sent a message or performed an action. Digital signatures are a common method to achieve non-repudiation in electronic communications, providing undeniable proof of origin and integrity.</li>
+                    <li><strong>Defense in Depth:</strong> This strategy involves implementing multiple layers of security controls to protect information. If one layer fails, others are still in place to provide protection. It's like having multiple locks on a door instead of just one.</li>
+                    <li><strong>Least Privilege:</strong> Users and systems should only be granted the minimum level of access or permissions necessary to perform their required tasks. This minimizes the potential damage if an account is compromised.</li>
+                    <li><strong>Segregation of Duties:</strong> Critical tasks are divided among multiple individuals to prevent any single person from having complete control over a process. This helps prevent fraud and errors.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">The Practical Side of Cybersecurity</h4>
+                    <p class="text-gray-300">It's important to remember that achieving "perfect security" is often an unrealistic goal. Cybersecurity is an ongoing battle against evolving threats. Instead, the aim is to make attacks sufficiently difficult and costly for malicious actors that the effort outweighs the potential gain. By implementing these core principles, individuals and organizations can significantly enhance their resilience against cyberattacks.</p>
+                </div>
+            </section>
+
+            <section id="careers">
+                <h2 class="text-3xl font-bold mb-4 text-white">Building a Career in Cybersecurity: Opportunities and Paths</h2>
+                <p class="text-gray-300 mb-4">
+                    The cybersecurity field is experiencing exponential growth, driven by the increasing sophistication of cyber threats and the critical need to protect digital assets. This demand translates into abundant career opportunities, competitive salaries, and a dynamic work environment. If you're looking for a challenging and rewarding career, cybersecurity offers diverse paths for professionals with various skill sets.
+                </p>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">Entry-Level Positions: Your Starting Point</h3>
+                <p class="text-gray-300 mb-4">
+                    For those new to the field, several entry-level roles provide an excellent foundation for a cybersecurity career. These positions typically require a basic understanding of IT infrastructure, networking, and security principles.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Security Analyst:</strong> Often the first line of defense, security analysts monitor security access logs, investigate alerts, and respond to basic security incidents. They play a crucial role in identifying potential threats.</li>
+                    <li><strong>Junior Penetration Tester / Ethical Hacker:</strong> Under supervision, these professionals identify vulnerabilities in systems, networks, and applications by simulating real-world attacks. This role requires strong technical skills and ethical considerations.</li>
+                    <li><strong>IT Security Specialist:</strong> These roles often involve implementing and managing security tools, configuring firewalls, and ensuring compliance with security policies.</li>
+                    <li><strong>Cybersecurity Technician / Support:</strong> Provides technical support for security-related issues, assists with security tool deployment, and helps end-users with security best practices.</li>
+                    <li><strong>Security Operations Center (SOC) Analyst Level 1:</strong> Part of a team that monitors security systems for anomalies and responds to initial security events.</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold mb-3 text-white">Advanced Positions: Specialization and Leadership</h3>
+                <p class="text-gray-300 mb-4">
+                    As you gain experience and deepen your expertise, you can advance to more specialized and leadership roles within cybersecurity. These positions often require advanced technical skills, strategic thinking, and leadership capabilities.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>Security Architect:</strong> Designs and builds secure IT infrastructures and systems. They ensure that security is integrated into the architecture from the ground up, rather than being an afterthought.</li>
+                    <li><strong>Cybersecurity Engineer:</strong> Implements, manages, and troubleshoots complex security systems and tools. They often work on vulnerability management, incident response, and security automation.</li>
+                    <li><strong>Cybersecurity Manager / Team Lead:</strong> Leads a team of security professionals, oversees security operations, manages projects, and develops security strategies.</li>
+                    <li><strong>Chief Information Security Officer (CISO):</strong> A senior executive role responsible for an organization's entire information security strategy and implementation. This role requires a blend of technical expertise, business acumen, and leadership skills.</li>
+                    <li><strong>Incident Response Analyst:</strong> Specializes in responding to major security breaches, containing threats, eradicating malware, and recovering affected systems.</li>
+                    <li><strong>Forensic Analyst:</strong> Investigates cybercrimes and security incidents to determine the cause, scope, and impact, often involving legal implications.</li>
+                    <li><strong>Vulnerability Researcher / Exploit Developer:</strong> Identifies new vulnerabilities in software and systems and develops proof-of-concept exploits. This is a highly technical and specialized role.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 class="font-semibold mb-2 text-blue-400">The Cybersecurity Talent Gap</h4>
+                    <p class="text-gray-300">The demand for cybersecurity professionals far outstrips the supply, with a projected workforce shortage expected to reach 3.5 million unfilled positions by 2025. This makes cybersecurity one of the most in-demand and rapidly growing fields in technology. Continuous learning, certifications, and practical experience are key to thriving in this dynamic industry.</p>
+                </div>
+                <p class="text-gray-300 mt-4">
+                    For more detailed guidance on career paths, explore our <a href="tutorial19.html" class="text-blue-400 hover:underline">Cybersecurity Career Roadmap</a> tutorial.
+                </p>
+            </section>
+
+            <!-- FAQs Section -->
+            <section id="faqs">
+                <h2 class="text-3xl font-bold mb-4 text-white">FAQs about Cybersecurity</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Q: Why is cybersecurity so important today?</h3>
+                        <p class="text-gray-300 text-sm">A: Cybersecurity is crucial because almost every aspect of modern life, from personal communications to global finance, relies on digital systems. Protecting these systems from cyber threats is essential to maintain privacy, prevent financial loss, ensure business continuity, and safeguard national security.</p>
+                    </div>
                     
-                    <div class="highlight-box">
-                        <h4 class="font-semibold mb-2 text-blue-400">Key Point</h4>
-                        <p>Cybersecurity isn't just about technology—it's about protecting people, processes, and information in the digital realm.</p>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Q: What's the easiest way for a beginner to get started with cybersecurity?</h3>
+                        <p class="text-gray-300 text-sm">A: For beginners, start by mastering the fundamentals: strong passwords, two-factor authentication, understanding phishing, and keeping software updated. Explore introductory courses, read cybersecurity blogs, and practice with basic Linux commands. Tools like Nmap and Wireshark are also great for hands-on learning.</p>
                     </div>
-
-                    <p>
-                        In simple terms, cybersecurity is like having locks, alarms, and security guards for your digital life. Just as you protect your home from burglars, cybersecurity protects your digital assets from cybercriminals.
-                    </p>
-
-                    <h3>The Scope of Cybersecurity</h3>
-                    <p>Cybersecurity covers multiple areas:</p>
-                    <ul>
-                        <li><strong>Network Security:</strong> Protecting computer networks from intruders</li>
-                        <li><strong>Application Security:</strong> Keeping software and devices free of threats</li>
-                        <li><strong>Information Security:</strong> Protecting the integrity and privacy of data</li>
-                        <li><strong>Operational Security:</strong> Processes and decisions for handling data assets</li>
-                        <li><strong>Disaster Recovery:</strong> Responding to cybersecurity incidents</li>
-                        <li><strong>End-User Education:</strong> Teaching users about security best practices</li>
-                    </ul>
-                </section>
-
-                <section id="importance">
-                    <h2>Why Cybersecurity Matters</h2>
-                    <p>
-                        In our increasingly connected world, cybersecurity affects everyone. From individuals to large corporations, government agencies to small businesses—no one is immune to cyber threats.
-                    </p>
-
-                    <h3>Personal Impact</h3>
-                    <p>For individuals, cybersecurity protects:</p>
-                    <ul>
-                        <li>Personal and financial information</li>
-                        <li>Private communications and photos</li>
-                        <li>Banking and credit card details</li>
-                        <li>Medical records and personal identity</li>
-                        <li>Social media accounts and reputation</li>
-                    </ul>
-
-                    <h3>Business Impact</h3>
-                    <p>For organizations, cybersecurity is crucial for:</p>
-                    <ul>
-                        <li>Protecting customer data and maintaining trust</li>
-                        <li>Preventing financial losses from cyberattacks</li>
-                        <li>Maintaining business continuity</li>
-                        <li>Complying with legal and regulatory requirements</li>
-                        <li>Preserving brand reputation and customer confidence</li>
-                    </ul>
-
-                    <div class="warning-box">
-                        <h4 class="font-semibold mb-2 text-red-400">Important Statistics</h4>
-                        <p>According to recent studies, a cyberattack occurs every 39 seconds, and the average cost of a data breach is over $4 million. Every individual and organization is a potential target.</p>
-                    </div>
-                </section>
-
-                <section id="threats">
-                    <h2>Common Cyber Threats</h2>
-                    <p>
-                        Understanding common threats helps you better protect yourself and your organization. Here are the most prevalent cybersecurity threats:
-                    </p>
-
-                    <h3>1. Malware</h3>
-                    <p>
-                        Malicious software designed to damage, disrupt, or gain unauthorized access to computer systems. Types include viruses, worms, trojans, ransomware, and spyware.
-                    </p>
-
-                    <h3>2. Phishing</h3>
-                    <p>
-                        Fraudulent attempts to obtain sensitive information by pretending to be a trustworthy entity. Often delivered through emails, text messages, or fake websites.
-                    </p>
-
-                    <h3>3. Social Engineering</h3>
-                    <p>
-                        Manipulating people into revealing confidential information or performing actions that compromise security. This exploits human psychology rather than technical vulnerabilities.
-                    </p>
-
-                    <h3>4. Password Attacks</h3>
-                    <p>
-                        Attempts to crack or steal passwords through various methods like brute force attacks, dictionary attacks, or credential stuffing.
-                    </p>
-
-                    <h3>5. Man-in-the-Middle (MitM) Attacks</h3>
-                    <p>
-                        Intercepting communications between two parties to eavesdrop or manipulate the data being exchanged.
-                    </p>
-
-                    <div class="interactive-element">
-                        <h4 class="text-lg font-semibold mb-3">Interactive: Threat Assessment</h4>
-                        <p class="mb-4">Which of these situations represents the highest cybersecurity risk?</p>
-                        <div class="space-y-2">
-                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
-                                <input type="radio" name="threat-assessment" value="a" class="mr-3">
-                                <span>Using public WiFi without a VPN</span>
-                            </label>
-                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
-                                <input type="radio" name="threat-assessment" value="b" class="mr-3">
-                                <span>Clicking a link in an unexpected email</span>
-                            </label>
-                            <label class="flex items-center p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700">
-                                <input type="radio" name="threat-assessment" value="c" class="mr-3">
-                                <span>Using the same password for multiple accounts</span>
-                            </label>
-                        </div>
-                        <button onclick="checkThreatAnswer()" class="btn-primary mt-4">Check Answer</button>
-                        <div id="threat-feedback" class="mt-4 hidden"></div>
-                    </div>
-                </section>
-
-                <section id="principles">
-                    <h2>Core Security Principles</h2>
-                    <p>
-                        Cybersecurity is built on fundamental principles that guide all security measures and practices.
-                    </p>
-
-                    <h3>The CIA Triad</h3>
-                    <p>The foundation of information security rests on three core principles:</p>
                     
-                    <ul>
-                        <li><strong>Confidentiality:</strong> Ensuring information is accessible only to authorized individuals</li>
-                        <li><strong>Integrity:</strong> Maintaining the accuracy and completeness of data</li>
-                        <li><strong>Availability:</strong> Ensuring systems and data are accessible when needed</li>
-                    </ul>
-
-                    <h3>Additional Principles</h3>
-                    <ul>
-                        <li><strong>Authentication:</strong> Verifying the identity of users and systems</li>
-                        <li><strong>Authorization:</strong> Determining what resources users can access</li>
-                        <li><strong>Non-repudiation:</strong> Preventing denial of actions performed</li>
-                        <li><strong>Defense in Depth:</strong> Using multiple layers of security controls</li>
-                    </ul>
-
-                    <div class="highlight-box">
-                        <h4 class="font-semibold mb-2 text-blue-400">Remember</h4>
-                        <p>Good cybersecurity isn't about perfect security—it's about making attacks more difficult and costly than the value of what they're trying to steal.</p>
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Q: Can I really be hacked if I'm "just a normal user?"</h3>
+                        <p class="text-gray-300 text-sm">A: Yes, absolutely. Cybercriminals often target individuals through phishing, malware, or compromised websites, regardless of their public profile. Your personal information, banking details, or even your social media accounts can be valuable targets. Everyone needs to practice good cybersecurity hygiene.</p>
                     </div>
-                </section>
-
-                <section id="careers">
-                    <h2>Cybersecurity Careers</h2>
-                    <p>
-                        The cybersecurity field offers diverse career opportunities with excellent job prospects and competitive salaries.
-                    </p>
-
-                    <h3>Entry-Level Positions</h3>
-                    <ul>
-                        <li>Security Analyst</li>
-                        <li>Junior Penetration Tester</li>
-                        <li>IT Security Specialist</li>
-                        <li>Cybersecurity Technician</li>
-                    </ul>
-
-                    <h3>Advanced Positions</h3>
-                    <ul>
-                        <li>Security Architect</li>
-                        <li>Cybersecurity Manager</li>
-                        <li>Chief Information Security Officer (CISO)</li>
-                        <li>Security Consultant</li>
-                    </ul>
-
-                    <div class="highlight-box">
-                        <h4 class="font-semibold mb-2 text-blue-400">Growing Demand</h4>
-                        <p>The cybersecurity workforce shortage is expected to reach 3.5 million unfilled positions by 2025, making it one of the most in-demand fields in technology.</p>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Q: What's the difference between antivirus and anti-malware?</h3>
+                        <p class="text-gray-300 text-sm">A: Historically, antivirus software primarily protected against computer viruses. Anti-malware is a broader term that encompasses protection against a wider range of malicious software, including viruses, worms, Trojans, spyware, ransomware, and adware. Most modern security software offers comprehensive anti-malware protection.</p>
                     </div>
-                </section>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-blue-400">Q: Is it safe to use public Wi-Fi?</h3>
+                        <p class="text-gray-300 text-sm">A: Public Wi-Fi networks are generally not safe for sensitive activities (e.g., banking, online shopping) because they often lack encryption, making your data vulnerable to Man-in-the-Middle attacks. If you must use public Wi-Fi, always use a reputable Virtual Private Network (VPN) to encrypt your traffic.</p>
+                    </div>
+                </div>
+            </section>
 
-                <section id="next-steps">
-                    <h2>Next Steps</h2>
-                    <p>
-                        Now that you understand the basics of cybersecurity, here are your next steps to continue learning:
-                    </p>
+            <section id="next-steps">
+                <h2 class="text-3xl font-bold mb-4 text-white">Your Cybersecurity Journey: Next Steps</h2>
+                <p class="text-gray-300 mb-4">
+                    Congratulations! You've taken the first crucial step in understanding the foundational concepts of cybersecurity. The digital landscape is constantly evolving, and so must your knowledge and practices. Here's a roadmap to continue your learning journey:
+                </p>
 
-                    <div class="grid md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-gray-900 p-6 rounded-xl">
-                            <h4 class="text-lg font-semibold mb-3 text-blue-400">Immediate Actions</h4>
-                            <ul class="space-y-2">
-                                <li>✓ Review your current passwords</li>
-                                <li>✓ Enable two-factor authentication</li>
-                                <li>✓ Update your software and devices</li>
-                                <li>✓ Learn about phishing detection</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-900 p-6 rounded-xl">
-                            <h4 class="text-lg font-semibold mb-3 text-blue-400">Continue Learning</h4>
-                            <ul class="space-y-2">
-                                <li>📖 <a href="tutorial02.html" class="text-blue-400 hover:underline">Create strong passwords</a></li>
-                                <li>📖 <a href="tutorial03.html" class="text-blue-400 hover:underline">Set up two-factor authentication</a></li>
-                                <li>📖 <a href="tutorial04.html" class="text-blue-400 hover:underline">Learn phishing detection</a></li>
-                                <li>📖 <a href="tutorial05.html" class="text-blue-400 hover:underline">Understand social engineering</a></li>
-                            </ul>
-                        </div>
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h4 class="text-xl font-semibold mb-3 text-blue-400">Immediate Actions to Enhance Your Security</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Review and Strengthen Passwords:</strong> Head over to our <a href="tutorial02.html" class="text-blue-400 hover:underline">"How to Create Strong Passwords"</a> tutorial to learn best practices and consider using a password manager.</li>
+                            <li><strong>Enable Two-Factor Authentication (2FA):</strong> This is one of the most effective security measures. Our <a href="tutorial03.html" class="text-blue-400 hover:underline">"How to Enable Two-Factor Authentication"</a> guide will walk you through it.</li>
+                            <li><strong>Update Your Software and Devices:</strong> Regularly check for and install updates for your operating systems, web browsers, and applications. These updates often include critical security patches.</li>
+                            <li><strong>Learn Phishing Detection:</strong> Sharpen your skills in identifying malicious emails and websites with our <a href="tutorial04.html" class="text-blue-400 hover:underline">"How to Spot Fake / Phishing Websites"</a> tutorial.</li>
+                        </ul>
                     </div>
-                </section>
+                    <div class="bg-gray-900 p-6 rounded-xl">
+                        <h4 class="text-xl font-semibold mb-3 text-blue-400">Continue Your Learning Path</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Understand Social Engineering:</strong> Delve deeper into the human element of security with our <a href="tutorial05.html" class="text-blue-400 hover:underline">"What Is Social Engineering?"</a> tutorial.</li>
+                            <li><strong>Explore Cyber Attack Types:</strong> Broaden your knowledge of different threats by reading about <a href="tutorial09.html" class="text-blue-400 hover:underline">"Types of Cyber Attacks."</a></li>
+                            <li><strong>Set Up Your Home Network Securely:</strong> Ensure your Wi-Fi is protected with our guide on <a href="tutorial06.html" class="text-blue-400 hover:underline">"How to Secure Your WiFi Router."</a></li>
+                            <li><strong>Consider a Cybersecurity Career:</strong> If you're interested in pursuing cybersecurity professionally, check out our <a href="tutorial19.html" class="text-blue-400 hover:underline">"Cybersecurity Career Roadmap"</a> for guidance.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-gray-300 mt-6">
+                    By consistently applying these practices and continuing to learn, you'll build a strong foundation in cybersecurity, protecting yourself and contributing to a safer digital world.
+                </p>
+            </section>
 
-                <!-- Tutorial Navigation -->
-                <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
-                    <div>
-                        <div class="text-sm text-gray-400">Previous Tutorial</div>
-                        <div class="text-blue-400 font-semibold">Getting Started</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-sm text-gray-400">Tutorial 1 of 20</div>
-                        <div class="text-xs text-gray-500 mt-1">Complete!</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-gray-400">Next Tutorial</div>
-                        <a href="tutorial02.html" class="text-blue-400 font-semibold hover:underline">Strong Passwords →</a>
-                    </div>
+            <!-- Tutorial Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-700">
+                <div>
+                    <div class="text-sm text-gray-400">Previous Tutorial</div>
+                    <div class="text-blue-400 font-semibold">Getting Started</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm text-gray-400">Tutorial 1 of 20</div>
+                    <div class="text-xs text-gray-500 mt-1">Complete!</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-400">Next Tutorial</div>
+                    <a href="tutorial02.html" class="text-blue-400 font-semibold hover:underline">Strong Passwords →</a>
                 </div>
             </div>
         </article>
@@ -449,20 +555,25 @@
 
     <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg., px-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
+                    <div class="font-orbitron text-2xl font-bold" style="color:var(--accent-primary)">SAO</div>
                     <div class="text-sm text-gray-400">Made by SAO</div>
                 </div>
                 <div class="flex items-center space-x-6">
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <div class="text-sm text-gray-400">
-                        © 2025 SAO Cybersecurity Tutorials
-                    </div>
-                </div>
+                                    <div class="text-sm text-gray-400 mb-4">
+
+                                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
+                                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
+                                        <a href="../disclaimer.html" class="hover: Oncol-text-white">Disclaimer</a>
+                                    </div>
+                                    <div class="text-sm text-gray-400">
+                                        © 2025 SAO Cybersecurity Tutorials
+                                    </div>                </div>
             </div>
         </div>
     </footer>
@@ -495,7 +606,7 @@
             feedback.classList.remove('hidden');
             
             if (selected.value === 'c') {
-                feedback.innerHTML = '<div class="text-green-400 font-semibold">✓ Correct!</div><p class="mt-2">Using the same password for multiple accounts is extremely risky. If one account is compromised, all your accounts become vulnerable. This is why unique passwords for each account are crucial.</p>';
+                feedback.innerHTML = '<div class="text-green-400 font-semibold">✓ Correct!</div><p class="mt-2">Using the same password for multiple accounts is extremely risky. If one account is compromised, all your accounts becomes vulnerable. This is why unique passwords for each account are crucial.</p>';
             } else {
                 feedback.innerHTML = '<div class="text-yellow-400 font-semibold">Good try, but consider this:</div><p class="mt-2">While public WiFi and suspicious links are dangerous, using the same password across multiple accounts creates the highest risk because it creates a single point of failure for all your digital accounts.</p>';
             }
