@@ -1,0 +1,687 @@
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a2e;
+    --accent-primary: #00d4ff;
+    --accent-secondary: #16213e;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.font-orbitron {
+    font-family: 'Orbitron', monospace;
+}
+
+.neon-text {
+    color: var(--accent-primary);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* From index.html */
+.hero-bg {
+    background: var(--bg-primary);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.difficulty-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+}
+
+.difficulty-beginner {
+    background: rgba(77, 144, 254, 0.2);
+    color: var(--accent-primary);
+}
+
+.difficulty-intermediate {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+}
+
+.difficulty-advanced {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--accent-primary);
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent-primary); }
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* from tutorial01.html */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), #0099cc);
+    z-index: 100;
+    transition: width 0.3s ease;
+}
+
+.tutorial-content {
+    max-width: 4xl;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tutorial-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+.tutorial-content h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: var(--text-primary);
+}
+
+.tutorial-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--text-primary);
+}
+
+.tutorial-content p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.tutorial-content ul, .tutorial-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--text-secondary);
+}
+
+.tutorial-content li {
+    margin-bottom: 0.5rem;
+}
+
+.highlight-box {
+    background: rgba(77, 144, 254, 0.1);
+    border-left: 4px solid var(--accent-primary);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+}
+
+.warning-box {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid #ef4444;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+}
+
+.code-block {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--accent-primary);
+    color: black;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.copy-btn:hover {
+    background: #0099cc;
+}
+
+.interactive-element {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: black;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #0099cc;
+    transform: translateY(-2px);
+}
+
+.reading-progress {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #333;
+    z-index: 50;
+}
+
+/* from tutorial02.html */
+.password-strength-meter {
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.strength-bar {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.strength-very-weak { background: #ef4444; width: 20%; }
+.strength-weak { background: #f97316; width: 40%; }
+.strength-medium { background: #f59e0b; width: 60%; }
+.strength-strong { background: #84cc16; width: 80%; }
+.strength-very-strong { background: #22c55e; width: 100%; }
+
+.example-password {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.password-generator {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    space-x: 0.5rem;
+}
+
+/* from tutorial04.html */
+.phishing-example {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.legitimate-example {
+    background: #0d2818;
+    border: 1px solid #22c55e;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.fake-example {
+    background: #2d0b0b;
+    border: 1px solid #ef4444;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.url-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.quiz-option {
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    border-color: var(--accent-primary);
+}
+
+.quiz-option.selected {
+    border-color: var(--accent-primary);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.quiz-option.correct {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.quiz-option.incorrect {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.red-flag {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid #ef4444;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.green-flag {
+    background: rgba(34, 197, 94, 0.1);
+    border-left: 4px solid #22c55e;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+
+/* from tutorial07.html */
+.terminal {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.terminal-header {
+    background: #333;
+    padding: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    margin: -1rem -1rem 1rem -1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-button.close { background: #ff5f56; }
+.terminal-button.minimize { background: #ffbd2e; }
+.terminal-button.maximize { background: #27ca3f; }
+
+.command-output {
+    color: #00ff00;
+    margin: 0.5rem 0;
+}
+
+.command-prompt {
+    color: var(--accent-primary);
+}
+
+.command-card {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.command-number {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+    background: var(--accent-primary);
+    color: black;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.difficulty-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.difficulty-easy {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.difficulty-medium {
+    background: rgba(251, 191, 36, 0.2);
+    color: #f59e0b;
+}
+
+.example-box {
+    background: rgba(0, 212, 255, 0.1);
+    border-left: 4px solid var(--accent-primary);
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* from tutorial pages that has this css that is not in the other files */
+.info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.success-box {
+    background: rgba(34, 197, 94, 0.1);
+    border-left: 4px solid #22c55e;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.comparison-table th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+}
+
+.symptom-card {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.symptom-icon {
+    position: absolute;
+    top: -0.75rem;
+    right: 1.5rem;
+    background: #ef4444;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.scan-type {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.scan-intensity {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.intensity-stealth {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.intensity-normal {
+    background: rgba(251, 191, 36, 0.2);
+    color: #f59e0b;
+}
+
+.intensity-aggressive {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.port-result {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #333;
+    font-family: 'Courier New', monospace;
+}
+
+.port-number { color: #00d4ff; }
+.port-state { color: #22c55e; }
+.port-service { color: #f59e0b; }
+.port-version { color: #b3b3b3; }
+
+.attack-type {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.attack-icon {
+    position: absolute;
+    top: -0.75rem;
+    right: 1.5rem;
+    background: #ef4444;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.attack-severity-high { border-left: 4px solid #ef4444; }
+.attack-severity-medium { border-left: 4px solid #f59e0b; }
+.attack-severity-low { border-left: 4px solid #22c55e; }
+
+.attack-example {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.impact-meter {
+    width: 100%;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.impact-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.impact-low { background: #22c55e; width: 30%; }
+.impact-medium { background: #f59e0b; width: 60%; }
+.impact-high { background: #ef4444; width: 90%; }
+.impact-critical { background: #dc2626; width: 100%; }
+
+.step-card {
+    background: var(--bg-secondary);
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.step-number {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+    background: var(--accent-primary);
+    color: black;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.screenshot {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.system-requirements {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.requirement-min {
+    background: #2d0b0b;
+    border: 1px solid #ef4444;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.requirement-rec {
+    background: #0d2818;
+    border: 1px solid #22c55e;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.download-btn {
+    background: var(--accent-primary);
+    color: black;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.download-btn:hover {
+    background: #0099cc;
+    transform: translateY(-2px);
+}
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --accent-primary: #4d90fe;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+}

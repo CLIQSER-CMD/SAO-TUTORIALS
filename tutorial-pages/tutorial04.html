@@ -7,126 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #16213e;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .neon-text {
-            color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
-            z-index: 100;
-            transition: width 0.3s ease;
-        }
-        
-        .phishing-example {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-        
-        .legitimate-example {
-            background: #0d2818;
-            border: 1px solid #22c55e;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-        
-        .fake-example {
-            background: #2d0b0b;
-            border: 1px solid #ef4444;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-        
-        .url-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .quiz-option {
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quiz-option:hover {
-            border-color: var(--accent-primary);
-        }
-        
-        .quiz-option.selected {
-            border-color: var(--accent-primary);
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .quiz-option.correct {
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.1);
-        }
-        
-        .quiz-option.incorrect {
-            border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-        }
-        
-        .red-flag {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 1rem;
-            margin: 0.5rem 0;
-        }
-        
-        .green-flag {
-            background: rgba(34, 197, 94, 0.1);
-            border-left: 4px solid #22c55e;
-            padding: 1rem;
-            margin: 0.5rem 0;
-        }
-    </style>
-<script type='text/javascript' src='//pl28155573.effectivegatecpm.com/8c/08/5b/8c085b903fb1dca286df873464b52baa.js'></script>
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
-    <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+    
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
     
@@ -297,7 +182,7 @@
                 <div id="phishing-feedback" class="mt-4"></div>
             </section>
 
-            <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+            
 
             <!-- Green Flags -->
             <section class="mb-8">
@@ -519,7 +404,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
@@ -527,99 +412,33 @@
                     <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
                     <div class="text-sm text-gray-400">Made by SAO</div>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-6">
+                    <div class="text-sm text-gray-400">
+                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
+                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
+                        <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    </div>
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                                    <div class="text-sm text-gray-400 mb-4">
-
-                                                                                    <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
-                                                                                    <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
-                                                                                    <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
-                                                                                </div>
-                                                                                <div class="text-sm text-gray-400">
-                                                                                    © 2025 SAO Cybersecurity Tutorials
-                                                                                </div>                </div>
-                                                            </div>
-                                                        </footer>
-    <script src="../main.js"></script>
-    <script>
-        // Progress bar functionality
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progress-bar').style.width = scrollPercent + '%';
-        }
-        
-        window.addEventListener('scroll', updateProgressBar);
-        
-        // Quiz functionality
-        let quizAnswers = [];
-        let score = 0;
-        
-        function selectOption(element, isCorrect) {
-            // Remove previous selections in this question
-            const question = element.closest('.quiz-question');
-            question.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Mark this option as selected
-            element.classList.add('selected');
-            
-            // Store the answer
-            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
-            quizAnswers[questionIndex] = isCorrect;
-            
-            // Show immediate feedback
-            const feedback = question.querySelector('.quiz-feedback');
-            feedback.classList.remove('hidden');
-            
-            if (isCorrect) {
-                feedback.innerHTML = '<div class="text-green-400 font-semibold">✓ Correct!</div>';
-                element.classList.add('correct');
-            } else {
-                feedback.innerHTML = '<div class="text-red-400 font-semibold">✗ Incorrect</div>';
-                element.classList.add('incorrect');
-                
-                // Show the correct answer
-                const options = question.querySelectorAll('.quiz-option');
-                options.forEach(opt => {
-                    if (opt.onclick.toString().includes('true')) {
-                        opt.classList.add('correct');
-                    }
-                });
-            }
-        }
-        
-        function showQuizResults() {
-            if (quizAnswers.length < 3) {
-                alert('Please answer all questions first!');
-                return;
-            }
-            
-            score = quizAnswers.filter(answer => answer).length;
-            const percentage = (score / 3) * 100;
-            
-            document.getElementById('quiz-results').classList.remove('hidden');
-            document.getElementById('score-display').textContent = `${score}/3 (${percentage}%)`;
-            
-            let feedback = '';
-            if (score === 3) {
-                feedback = 'Excellent! You have a keen eye for spotting phishing attempts. Keep up the great work!';
-                document.getElementById('score-display').className = 'text-3xl font-bold text-green-400 text-center mb-4';
-            } else if (score === 2) {
-                feedback = 'Good job! You\'re on the right track. Review the red flags section to improve your detection skills.';
-                document.getElementById('score-display').className = 'text-3xl font-bold text-yellow-400 text-center mb-4';
-            } else {
-                feedback = 'Keep learning! Phishing detection takes practice. Re-read this tutorial and try the quiz again.';
-                document.getElementById('score-display').className = 'text-3xl font-bold text-red-400 text-center mb-4';
-            }
-            
-            document.getElementById('score-feedback').textContent = feedback;
-        }
-    </script>
-    <script type='text/javascript' src='//pl28155859.effectivegatecpm.com/d3/8c/9d/d38c9d8af2605e69b89916345a4bf7ae.js'></script>
+                    <div class="text-sm text-gray-400">
+                        � 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+    
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+

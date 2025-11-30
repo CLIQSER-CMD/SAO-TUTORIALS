@@ -7,121 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #16213e;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .neon-text {
-            color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
-            z-index: 100;
-            transition: width 0.3s ease;
-        }
-        
-        .router-interface {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .security-setting {
-            background: var(--bg-secondary);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            position: relative;
-        }
-        
-        .security-level {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .level-essential {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        
-        .level-recommended {
-            background: rgba(251, 191, 36, 0.2);
-            color: #fbbf24;
-        }
-        
-        .level-optional {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-        }
-        
-        .step-by-step {
-            background: rgba(0, 212, 255, 0.1);
-            border-left: 4px solid var(--accent-primary);
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .warning-box {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .encryption-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .weak-encryption {
-            background: #2d0b0b;
-            border: 1px solid #ef4444;
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
-        
-        .strong-encryption {
-            background: #0d2818;
-            border: 1px solid #22c55e;
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Progress Bar -->
@@ -306,7 +192,7 @@
                 </div>
             </section>
 
-            <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+            
 
             <!-- Advanced Security Settings -->
             <section class="mb-8">
@@ -469,7 +355,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
@@ -477,34 +363,34 @@
                     <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
                     <div class="text-sm text-gray-400">Made by SAO</div>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-6">
+                    <div class="text-sm text-gray-400">
+                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
+                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
+                        <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    </div>
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                                    <div class="text-sm text-gray-400 mb-4">
-                                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
-                                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
-                                        <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
-                                    </div>
-                                    <div class="text-sm text-gray-400">
-                                        Â© 2025 SAO Cybersecurity Tutorials
-                                    </div>                </div>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="../main.js"></script>
-    <script>
-        // Progress bar functionality
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progress-bar').style.width = scrollPercent + '%';
-        }
-        
-        window.addEventListener('scroll', updateProgressBar);
-    </script>
-    <script type='text/javascript' src='//pl28155859.effectivegatecpm.com/d3/8c/9d/d38c9d8af2605e69b89916345a4bf7ae.js'></script>
+    <script src="../js/script.js"></script>
+    
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+

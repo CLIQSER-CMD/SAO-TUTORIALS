@@ -7,129 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #000000;
-            --bg-secondary: #111111;
-            --accent-primary: #4d90fe;
-            --text-primary: #ffffff;
-            --text-secondary: #aaaaaa;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .neon-text {
-            color: var(--accent-primary);
-        }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
-            z-index: 100;
-            transition: width 0.3s ease;
-        }
-        
-        .password-strength-meter {
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 0.5rem 0;
-        }
-        
-        .strength-bar {
-            height: 100%;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-        
-        .strength-very-weak { background: #ef4444; width: 20%; }
-        .strength-weak { background: #f97316; width: 40%; }
-        .strength-medium { background: #f59e0b; width: 60%; }
-        .strength-strong { background: #84cc16; width: 80%; }
-        .strength-very-strong { background: #22c55e; width: 100%; }
-        
-        .example-password {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: var(--accent-primary);
-            color: black;
-            border: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            font-size: 0.75rem;
-        }
-        
-        .copy-btn:hover {
-            background: #0099cc;
-        }
-        
-        .password-generator {
-            background: var(--bg-secondary);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            space-x: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: var(--accent-primary);
-            color: black;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background: #0099cc;
-            transform: translateY(-2px);
-        }
-    </style>
-<script type='text/javascript' src='//pl28155573.effectivegatecpm.com/8c/08/5b/8c085b903fb1dca286df873464b52baa.js'></script>
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
-    <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+    
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
     
@@ -307,7 +189,7 @@
                 </div>
             </section>
 
-            <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+            
 
             <!-- Password Manager Section -->
             <section class="mb-8">
@@ -421,183 +303,42 @@
         </div>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div class="font-orbitron text-2xl font-bold" style="color:var(--accent-primary)">SAO</div>
+                    <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
                     <div class="text-sm text-gray-400">Made by SAO</div>
                 </div>
-                <div class="flex items-center space-x-6">
-                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <div class="text-sm text-gray-400 mb-4">
-                                                <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
+                <div class="flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-6">
+                    <div class="text-sm text-gray-400">
+                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
                         <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
                         <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
                     </div>
+                    <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
                     <div class="text-sm text-gray-400">
-                        © 2025 SAO Cybersecurity Tutorials
+                        � 2025 SAO Cybersecurity Tutorials
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="../main.js"></script>
-    <script>
-        // Progress bar functionality
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progress-bar').style.width = scrollPercent + '%';
-        }
-        
-        window.addEventListener('scroll', updateProgressBar);
-        
-        // Password strength checker
-        function checkPasswordStrength(password) {
-            let strength = 0;
-            let feedback = [];
-            
-            // Length check
-            if (password.length >= 12) {
-                strength += 2;
-            } else if (password.length >= 8) {
-                strength += 1;
-            } else {
-                feedback.push('Use at least 12 characters');
-            }
-            
-            // Character variety checks
-            if (/[a-z]/.test(password)) {
-                strength += 1;
-            } else {
-                feedback.push('Include lowercase letters');
-            }
-            
-            if (/[A-Z]/.test(password)) {
-                strength += 1;
-            } else {
-                feedback.push('Include uppercase letters');
-            }
-            
-            if (/[0-9]/.test(password)) {
-                strength += 1;
-            } else {
-                feedback.push('Include numbers');
-            }
-            
-            if (/[^A-Za-z0-9]/.test(password)) {
-                strength += 1;
-            } else {
-                feedback.push('Include special characters');
-            }
-            
-            // Common patterns check
-            if (/(.)\1{2,}/.test(password)) {
-                strength -= 1;
-                feedback.push('Avoid repeated characters');
-            }
-            
-            if (/123|abc|qwe/i.test(password)) {
-                strength -= 1;
-                feedback.push('Avoid sequential patterns');
-            }
-            
-            // Determine strength level
-            let strengthLevel = 'Very Weak';
-            let strengthClass = 'strength-very-weak';
-            
-            if (strength >= 6) {
-                strengthLevel = 'Very Strong';
-                strengthClass = 'strength-very-strong';
-            } else if (strength >= 5) {
-                strengthLevel = 'Strong';
-                strengthClass = 'strength-strong';
-            } else if (strength >= 3) {
-                strengthLevel = 'Medium';
-                strengthClass = 'strength-medium';
-            } else if (strength >= 2) {
-                strengthLevel = 'Weak';
-                strengthClass = 'strength-weak';
-            }
-            
-            return {
-                level: strengthLevel,
-                class: strengthClass,
-                feedback: feedback
-            };
-        }
-        
-        // Update password strength display
-        function updatePasswordStrength() {
-            const password = document.getElementById('password-input').value;
-            const result = checkPasswordStrength(password);
-            
-            document.getElementById('strength-label').textContent = result.level;
-            document.getElementById('strength-bar').className = `strength-bar ${result.class}`;
-            
-            const feedbackElement = document.getElementById('password-feedback');
-            if (result.feedback.length > 0) {
-                feedbackElement.innerHTML = '<strong>Suggestions:</strong><br>' + result.feedback.map(f => `• ${f}`).join('<br>');
-                feedbackElement.className = 'text-sm text-yellow-300';
-            } else {
-                feedbackElement.innerHTML = '<strong class="text-green-400">Excellent password!</strong>';
-                feedbackElement.className = 'text-sm text-green-400';
-            }
-        }
-        
-        // Event listener for password input
-        document.getElementById('password-input').addEventListener('input', updatePasswordStrength);
-        
-        // Toggle password visibility
-        function togglePasswordVisibility() {
-            const input = document.getElementById('password-input');
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
-        
-        // Generate strong password
-        function generateStrongPassword() {
-            const length = 16;
-            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
-            let password = '';
-            
-            // Ensure at least one of each character type
-            password += 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)];
-            password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
-            password += '0123456789'[Math.floor(Math.random() * 10)];
-            password += '!@#$%^&*'[Math.floor(Math.random() * 8)];
-            
-            // Fill the rest randomly
-            for (let i = 4; i < length; i++) {
-                password += charset[Math.floor(Math.random() * charset.length)];
-            }
-            
-            // Shuffle the password
-            password = password.split('').sort(() => Math.random() - 0.5).join('');
-            
-            document.getElementById('password-input').value = password;
-            updatePasswordStrength();
-        }
-        
-        // Copy to clipboard function
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const message = document.createElement('div');
-                message.className = 'fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50';
-                message.textContent = 'Password copied to clipboard!';
-                document.body.appendChild(message);
-                
-                setTimeout(() => {
-                    message.remove();
-                }, 2000);
-            });
-        }
-    </script>
-    <script type='text/javascript' src='//pl28155859.effectivegatecpm.com/d3/8c/9d/d38c9d8af2605e69b89916345a4bf7ae.js'></script>
+    <script src="../js/script.js"></script>
+    
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+

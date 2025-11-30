@@ -7,126 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #16213e;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .neon-text {
-            color: var(--accent-primary);
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), #0099cc);
-            z-index: 100;
-            transition: width 0.3s ease;
-        }
-        
-        .attack-type {
-            background: var(--bg-secondary);
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            position: relative;
-        }
-        
-        .attack-icon {
-            position: absolute;
-            top: -0.75rem;
-            right: 1.5rem;
-            background: #ef4444;
-            color: white;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-        
-        .attack-severity-high { border-left: 4px solid #ef4444; }
-        .attack-severity-medium { border-left: 4px solid #f59e0b; }
-        .attack-severity-low { border-left: 4px solid #22c55e; }
-        
-        .attack-example {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .prevention-tip {
-            background: rgba(34, 197, 94, 0.1);
-            border-left: 4px solid #22c55e;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .impact-meter {
-            width: 100%;
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 0.5rem 0;
-        }
-        
-        .impact-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-        
-        .impact-low { background: #22c55e; width: 30%; }
-        .impact-medium { background: #f59e0b; width: 60%; }
-        .impact-high { background: #ef4444; width: 90%; }
-        .impact-critical { background: #dc2626; width: 100%; }
-        
-        .quiz-option {
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0.5rem 0;
-        }
-        
-        .quiz-option:hover {
-            border-color: var(--accent-primary);
-        }
-        
-        .quiz-option.selected {
-            border-color: var(--accent-primary);
-            background: rgba(0, 212, 255, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Progress Bar -->
@@ -399,7 +280,7 @@
                 </div>
             </section>
 
-            <script type="text/javascript">atOptions = {'key' : 'c90855325201b64368a08d26e9e70d12','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};</script><script type="text/javascript" src="//www.highperformanceformat.com/c90855325201b64368a08d26e9e70d12/invoke.js"></script>
+            
 
             <!-- Additional Attack Types -->
             <section class="mb-8">
@@ -644,7 +525,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
@@ -652,82 +533,34 @@
                     <div class="font-orbitron text-2xl font-bold neon-text">SAO</div>
                     <div class="text-sm text-gray-400">Made by SAO</div>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-6">
+                    <div class="text-sm text-gray-400">
+                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
+                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
+                        <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    </div>
                     <a href="https://www.instagram.com/system_anomaly_operator/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                                    <div class="text-sm text-gray-400 mb-4">
-                                        <a href="../privacy.html" class="hover:text-white">Privacy Policy</a> |
-                                        <a href="../terms.html" class="hover:text-white">Terms & Conditions</a> |
-                                        <a href="../disclaimer.html" class="hover:text-white">Disclaimer</a>
-                                    </div>
-                                    <div class="text-sm text-gray-400">
-                                        Â© 2025 SAO Cybersecurity Tutorials
-                                    </div>                </div>
+                    <div class="text-sm text-gray-400">
+                        © 2025 SAO Cybersecurity Tutorials
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="../main.js"></script>
-    <script>
-        // Progress bar functionality
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progress-bar').style.width = scrollPercent + '%';
-        }
-        
-        window.addEventListener('scroll', updateProgressBar);
-        
-        // Quiz functionality
-        let quizAnswers = [];
-        
-        function selectOption(element, isCorrect) {
-            // Remove previous selections in this question
-            const question = element.closest('.bg-gray-900');
-            question.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Mark this option as selected
-            element.classList.add('selected');
-            
-            // Store the answer
-            const questionIndex = Array.from(document.querySelectorAll('.bg-gray-900')).indexOf(question);
-            quizAnswers[questionIndex] = isCorrect;
-        }
-        
-        function checkQuizAnswers() {
-            if (quizAnswers.length < 3) {
-                alert('Please answer all questions first!');
-                return;
-            }
-            
-            const score = quizAnswers.filter(answer => answer).length;
-            const percentage = (score / 3) * 100;
-            
-            document.getElementById('quiz-results').classList.remove('hidden');
-            document.getElementById('score-display').textContent = `${score}/3 (${percentage}%)`;
-            
-            let feedback = '';
-            let scoreClass = '';
-            
-            if (score === 3) {
-                feedback = 'Excellent! You have a strong understanding of different cyber attack types. You\'re ready to learn about more advanced security concepts.';
-                scoreClass = 'text-green-400';
-            } else if (score === 2) {
-                feedback = 'Good job! You understand most attack types. Review the scenarios you missed to improve your threat recognition skills.';
-                scoreClass = 'text-yellow-400';
-            } else {
-                feedback = 'Keep learning! Understanding attack types takes practice. Re-read the tutorial sections and try to identify the key characteristics of each attack type.';
-                scoreClass = 'text-red-400';
-            }
-            
-            document.getElementById('score-display').className = `text-2xl font-bold ${scoreClass} text-center mb-4`;
-            document.getElementById('quiz-feedback').textContent = feedback;
-        }
-    </script>
-    <script type='text/javascript' src='//pl28155859.effectivegatecpm.com/d3/8c/9d/d38c9d8af2605e69b89916345a4bf7ae.js'></script>
+    <script src="../js/script.js"></script>
+    
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+

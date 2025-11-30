@@ -3,94 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="monetag" content="32beccd03a04365fd2f7b3204bb1406e">
+    
     <title>SAO - Cybersecurity Tutorials</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #000000;
-            --bg-secondary: #111111;
-            --accent-primary: #4d90fe;
-            --text-primary: #ffffff;
-            --text-secondary: #aaaaaa;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .hero-bg {
-            background: var(--bg-primary);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .difficulty-badge {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-        }
-        
-        .difficulty-beginner {
-            background: rgba(77, 144, 254, 0.2);
-            color: var(--accent-primary);
-        }
-        
-        .difficulty-intermediate {
-            background: rgba(251, 191, 36, 0.2);
-            color: #fbbf24;
-        }
-        
-        .difficulty-advanced {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid var(--accent-primary);
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--accent-primary); }
-        }
-        
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8896000159762826"
      crossorigin="anonymous"></script>
 </head>
@@ -124,7 +42,7 @@
         <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
             <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="mb-8">
-                    <img src="resources/hero-cybersecurity.png" alt="Cybersecurity Hero" class="w-64 h-64 mx-auto object-cover rounded-full">
+                    <img src="https://via.placeholder.com/400x192?text=hero-cybersecurity.png" alt="Cybersecurity Hero" class="w-64 h-64 mx-auto object-cover rounded-full">
                 </div>
                 <h1 class="font-orbitron text-5xl md:text-7xl font-bold mb-6">
                     <span style="color:var(--accent-primary)">SAO Cybersecurity</span>
@@ -213,7 +131,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="tutorial-grid">
                 <!-- Tutorial 1 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial01">
-                    <img data-src="resources/hero-cybersecurity.png" alt="Cybersecurity Basics" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=hero-cybersecurity.png" alt="Cybersecurity Basics" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -229,7 +147,7 @@
 
                 <!-- Tutorial 2 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial02">
-                    <img data-src="resources/password-security.png" alt="Password Security" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=password-security.png" alt="Password Security" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -245,7 +163,7 @@
 
                 <!-- Tutorial 3 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial03">
-                    <img data-src="resources/2fa-security.png" alt="Two-Factor Authentication" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=2fa-security.png" alt="Two-Factor Authentication" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -261,7 +179,7 @@
 
                 <!-- Tutorial 4 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="basics" data-tutorial-id="tutorial04">
-                    <img data-src="resources/phishing-detection.png" alt="Phishing Detection" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=phishing-detection.png" alt="Phishing Detection" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -277,7 +195,7 @@
 
                 <!-- Tutorial 5 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="basics" data-tutorial-id="tutorial05">
-                    <img data-src="resources/social-engineering.png" alt="Social Engineering" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=social-engineering.png" alt="Social Engineering" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -293,7 +211,7 @@
 
                 <!-- Tutorial 6 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial06">
-                    <img data-src="resources/wifi-security.png" alt="WiFi Security" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=wifi-security.png" alt="WiFi Security" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -309,7 +227,7 @@
 
                 <!-- Tutorial 7 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial07">
-                    <img data-src="resources/linux-commands.png" alt="Linux Commands" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=linux-commands.png" alt="Linux Commands" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -325,7 +243,7 @@
 
                 <!-- Tutorial 8 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial08">
-                    <img data-src="resources/kali-linux.png" alt="Kali Linux" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=kali-linux.png" alt="Kali Linux" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -341,7 +259,7 @@
 
                 <!-- Tutorial 9 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial09">
-                    <img data-src="resources/cyber-attacks.png" alt="Cyber Attacks" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=cyber-attacks.png" alt="Cyber Attacks" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -357,7 +275,7 @@
 
                 <!-- Tutorial 10 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial10">
-                    <img data-src="resources/nmap-scanning.png" alt="Nmap Scanning" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=nmap-scanning.png" alt="Nmap Scanning" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -373,7 +291,7 @@
 
                 <!-- Tutorial 11 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial11">
-                    <img data-src="resources/malware-detection.png" alt="Malware Detection" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=malware-detection.png" alt="Malware Detection" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -389,7 +307,7 @@
 
                 <!-- Tutorial 12 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="technical" data-tutorial-id="tutorial12">
-                    <img data-src="resources/firewall-security.png" alt="Firewall" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=firewall-security.png" alt="Firewall" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -405,7 +323,7 @@
 
                 <!-- Tutorial 13 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="tools" data-tutorial-id="tutorial13">
-                    <img data-src="resources/wireshark-analysis.png" alt="Wireshark" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=wireshark-analysis.png" alt="Wireshark" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -421,7 +339,7 @@
 
                 <!-- Tutorial 14 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="intermediate" data-category="basics" data-tutorial-id="tutorial14">
-                    <img data-src="resources/password-cracking.png" alt="Password Cracking" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=password-cracking.png" alt="Password Cracking" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
@@ -437,7 +355,7 @@
 
                 <!-- Tutorial 15 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="technical" data-tutorial-id="tutorial15">
-                    <img data-src="resources/mobile-security.png" alt="Mobile Security" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=mobile-security.png" alt="Mobile Security" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -453,7 +371,7 @@
 
                 <!-- Tutorial 16 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial16">
-                    <img data-src="resources/social-media-security.png" alt="Social Media Security" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=social-media-security.png" alt="Social Media Security" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-advanced">Advanced</span>
@@ -469,7 +387,7 @@
 
                 <!-- Tutorial 17 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial17">
-                    <img data-src="resources/scam-awareness.png" alt="Scam Awareness" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=scam-awareness.png" alt="Scam Awareness" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-advanced">Advanced</span>
@@ -485,7 +403,7 @@
 
                 <!-- Tutorial 18 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="basics" data-tutorial-id="tutorial18">
-                    <img data-src="resources/encryption-concept.png" alt="Encryption" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=encryption-concept.png" alt="Encryption" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-advanced">Advanced</span>
@@ -501,7 +419,7 @@
 
                 <!-- Tutorial 19 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="advanced" data-category="career" data-tutorial-id="tutorial19">
-                    <img data-src="resources/career-roadmap.png" alt="Career Roadmap" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=career-roadmap.png" alt="Career Roadmap" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-advanced">Advanced</span>
@@ -517,7 +435,7 @@
 
                 <!-- Tutorial 20 -->
                 <div class="tutorial-card bg-gray-800 rounded-xl overflow-hidden card-hover scroll-reveal" data-difficulty="beginner" data-category="tools" data-tutorial-id="tutorial20">
-                    <img data-src="resources/security-tools.png" alt="Security Tools" class="w-full h-48 object-cover lazy">
+                    <img data-src="https://via.placeholder.com/400x192?text=security-tools.png" alt="Security Tools" class="w-full h-48 object-cover lazy">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <span class="difficulty-badge difficulty-beginner">Beginner</span>
@@ -560,6 +478,13 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

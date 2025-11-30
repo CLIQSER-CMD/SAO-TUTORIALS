@@ -1,0 +1,47 @@
+[
+    {
+        "question": "What is the primary purpose of two-factor authentication?",
+        "options": [
+            "To make passwords stronger",
+            "To add an extra layer of security beyond passwords",
+            "To replace passwords completely"
+        ],
+        "answer": "To add an extra layer of security beyond passwords"
+    },
+    {
+        "question": "Which of the following is the strongest password?",
+        "options": [
+            "password123",
+            "MyPassword!",
+            "Tr0ub4dor&3"
+        ],
+        "answer": "Tr0ub4dor&3"
+    },
+    {
+        "question": "What is phishing?",
+        "options": [
+            "A type of fishing",
+            "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity",
+            "A type of malware"
+        ],
+        "answer": "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity"
+    },
+    {
+        "question": "What does a firewall do?",
+        "options": [
+            "Prevents unauthorized access to a network",
+            "Speeds up your internet connection",
+            "Protects against viruses"
+        ],
+        "answer": "Prevents unauthorized access to a network"
+    },
+    {
+        "question": "What is the best way to protect yourself from malware?",
+        "options": [
+            "Only use incognito mode",
+            "Keep your software updated and use antivirus",
+            "Don't download anything"
+        ],
+        "answer": "Keep your software updated and use antivirus"
+    }
+]
